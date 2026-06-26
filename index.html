@@ -5,1207 +5,235 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>英文法マスター | Lessons 21–30</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap');
+:root{
+  --navy:#1a2340;--navy2:#253057;--indigo:#3d52a0;--sky:#7091e6;--sky2:#8697c4;
+  --cream:#f7f8fc;--white:#fff;--gold:#f0a500;--goldl:#ffd580;
+  --green:#28a745;--red:#dc3545;--orange:#fd7e14;--purple:#6f42c1;
+  --text:#1a2340;--muted:#6b7a9e;--border:#dde3f0;
+  --sh:0 4px 24px rgba(26,35,64,.10);--shl:0 8px 40px rgba(26,35,64,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+a{color:inherit;text-decoration:none;}
 
-  :root {
-    --navy: #1a2340;
-    --navy-light: #253057;
-    --indigo: #3d52a0;
-    --sky: #7091e6;
-    --sky-light: #8697c4;
-    --cream: #f7f8fc;
-    --white: #ffffff;
-    --gold: #f0a500;
-    --gold-light: #ffd580;
-    --green: #28a745;
-    --red: #dc3545;
-    --text-main: #1a2340;
-    --text-muted: #6b7a9e;
-    --border: #dde3f0;
-    --shadow: 0 4px 24px rgba(26,35,64,0.10);
-    --shadow-lg: 0 8px 40px rgba(26,35,64,0.16);
-  }
+/* HEADER */
+header{background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;position:sticky;top:0;z-index:200;box-shadow:var(--shl);}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;gap:12px;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-ico{width:34px;height:34px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:var(--navy);}
+.logo-txt{font-size:16px;font-weight:700;}
+.logo-sub{font-size:10px;opacity:.7;margin-top:1px;}
+.hdr-right{display:flex;align-items:center;gap:10px;}
+.xp-badge{background:var(--gold);color:var(--navy);padding:4px 12px;border-radius:20px;font-weight:700;font-size:13px;}
+.nav-tab{display:flex;gap:4px;}
+.nav-tab button{padding:6px 14px;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;background:rgba(255,255,255,.12);color:#fff;}
+.nav-tab button.active,.nav-tab button:hover{background:var(--gold);color:var(--navy);}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* LAYOUT */
+.app{display:flex;max-width:1200px;margin:0 auto;padding:20px 16px;gap:20px;align-items:flex-start;}
 
-  body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background: var(--cream);
-    color: var(--text-main);
-    min-height: 100vh;
-  }
+/* SIDEBAR */
+.sidebar{width:220px;flex-shrink:0;position:sticky;top:70px;}
+.sb-sec{background:#fff;border-radius:14px;box-shadow:var(--sh);overflow:hidden;margin-bottom:14px;}
+.sb-title{background:var(--navy);color:#fff;padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.lb{display:block;width:100%;padding:9px 14px;border:none;background:none;text-align:left;cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-size:12px;color:var(--text);border-left:3px solid transparent;transition:.2s;border-bottom:1px solid var(--border);}
+.lb:last-child{border-bottom:none;}
+.lb:hover{background:#f0f4ff;border-left-color:var(--sky);}
+.lb.act{background:#eef2ff;border-left-color:var(--indigo);color:var(--indigo);font-weight:700;}
+.lb .ln{display:inline-block;background:var(--indigo);color:#fff;border-radius:4px;padding:1px 6px;font-size:10px;margin-right:5px;font-weight:600;}
+.lb.act .ln{background:var(--gold);color:var(--navy);}
 
-  /* ===== HEADER ===== */
-  header {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--indigo) 100%);
-    color: white;
-    padding: 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: var(--shadow-lg);
-  }
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 24px;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .logo-icon {
-    width: 36px; height: 36px;
-    background: var(--gold);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; font-weight: 700; color: var(--navy);
-    font-family: 'Poppins', sans-serif;
-  }
-  .logo-text {
-    font-family: 'Poppins', sans-serif;
-    font-size: 18px; font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-  .logo-sub { font-size: 11px; opacity: 0.7; margin-top: 1px; font-weight: 300; }
-  .header-progress {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 12px; opacity: 0.85;
-  }
-  .xp-badge {
-    background: var(--gold); color: var(--navy);
-    padding: 4px 10px; border-radius: 20px;
-    font-weight: 700; font-size: 13px;
-    font-family: 'Poppins', sans-serif;
-  }
+/* MAIN */
+.main{flex:1;min-width:0;}
 
-  /* ===== MAIN LAYOUT ===== */
-  .app-container {
-    display: flex;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 24px 16px;
-    gap: 24px;
-    align-items: flex-start;
-  }
+/* LESSON CARD */
+.lcard{background:#fff;border-radius:18px;box-shadow:var(--sh);overflow:hidden;margin-bottom:18px;}
+.lhdr{padding:18px 22px;color:#fff;}
+.lhdr-label{font-size:10px;font-weight:700;letter-spacing:2px;opacity:.7;text-transform:uppercase;margin-bottom:3px;}
+.lhdr-title{font-size:20px;font-weight:700;}
+.lhdr-title .jp{font-size:13px;opacity:.85;font-weight:400;margin-left:8px;}
+.lhdr-desc{font-size:12px;margin-top:6px;opacity:.8;line-height:1.6;}
 
-  /* ===== SIDEBAR ===== */
-  .sidebar {
-    width: 240px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 72px;
-  }
-  .sidebar-section {
-    background: white;
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    margin-bottom: 16px;
-  }
-  .sidebar-title {
-    background: var(--navy);
-    color: white;
-    padding: 10px 16px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-  .lesson-btn {
-    display: block; width: 100%;
-    padding: 10px 16px;
-    border: none; background: none;
-    text-align: left;
-    cursor: pointer;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 13px;
-    color: var(--text-main);
-    border-left: 3px solid transparent;
-    transition: all 0.2s;
-    border-bottom: 1px solid var(--border);
-    line-height: 1.4;
-  }
-  .lesson-btn:last-child { border-bottom: none; }
-  .lesson-btn:hover { background: #f0f4ff; border-left-color: var(--sky); }
-  .lesson-btn.active {
-    background: #eef2ff;
-    border-left-color: var(--indigo);
-    color: var(--indigo);
-    font-weight: 700;
-  }
-  .lesson-btn .lesson-num {
-    display: inline-block;
-    background: var(--indigo);
-    color: white;
-    border-radius: 4px;
-    padding: 1px 6px;
-    font-size: 11px;
-    margin-right: 6px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-  }
-  .lesson-btn.active .lesson-num { background: var(--gold); color: var(--navy); }
+/* TABS */
+.tab-bar{display:flex;border-bottom:2px solid var(--border);background:#fff;}
+.tbtn{flex:1;padding:11px 4px;border:none;background:none;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:.2s;}
+.tbtn:hover{color:var(--indigo);}
+.tbtn.act{color:var(--indigo);border-bottom-color:var(--indigo);font-weight:700;}
+.tcontent{padding:22px;display:none;}
+.tcontent.act{display:block;}
 
-  /* ===== MAIN CONTENT ===== */
-  .main-content {
-    flex: 1;
-    min-width: 0;
-  }
+/* GRAMMAR SECTIONS */
+.gsec{margin-bottom:22px;border-left:4px solid var(--sky);padding-left:14px;}
+.gsec-title{font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:10px;display:flex;align-items:center;gap:7px;line-height:1.4;}
+.gbadge{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--indigo);color:#fff;border-radius:50%;font-size:10px;font-weight:700;flex-shrink:0;}
+.formula{background:var(--navy);color:#fff;border-radius:8px;padding:10px 14px;margin:8px 0;font-size:12px;line-height:1.8;}
+.formula b{color:var(--goldl);}
+.ex{background:#f8f9ff;border-radius:8px;padding:12px 14px;margin-bottom:8px;border:1px solid #e8ecf8;}
+.ex-en{font-size:13px;font-weight:500;color:var(--navy);line-height:1.7;margin-bottom:3px;}
+.ex-en mark{background:#dde8ff;color:var(--indigo);font-weight:700;border-radius:3px;padding:1px 3px;}
+.ex-en em{color:#888;font-style:italic;}
+.ex-jp{font-size:11px;color:var(--muted);margin-top:3px;}
+.ex-note{font-size:11px;color:#5d4a00;background:#fff9e6;border:1px solid #ffd54f;border-radius:5px;padding:6px 10px;margin-top:6px;line-height:1.6;}
+.ex-note::before{content:"💡 ";}
+.tips{background:#f0f4ff;border-radius:8px;padding:10px 14px;margin-top:10px;}
+.tips p{font-size:11px;color:var(--navy);line-height:1.7;margin-bottom:3px;}
+.tips p:last-child{margin-bottom:0;}
+.tips p::before{content:"▶ ";}
 
-  /* ===== LESSON CARD ===== */
-  .lesson-card {
-    background: white;
-    border-radius: 20px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-  .lesson-header {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--indigo) 100%);
-    color: white;
-    padding: 20px 24px;
-  }
-  .lesson-label {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 2px; opacity: 0.7;
-    text-transform: uppercase; font-family: 'Poppins', sans-serif;
-    margin-bottom: 4px;
-  }
-  .lesson-title {
-    font-size: 22px; font-weight: 700;
-    font-family: 'Poppins', sans-serif;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .lesson-title .jp { font-size: 16px; font-family: 'Noto Sans JP', sans-serif; opacity: 0.85; }
-  .lesson-desc {
-    font-size: 13px; margin-top: 8px; opacity: 0.8; line-height: 1.6;
-  }
+/* AI */
+.ai-area{background:linear-gradient(135deg,#f0f4ff,#e8ecff);border-radius:14px;padding:18px;border:1px solid #d0dafe;}
+.ai-title{font-size:12px;font-weight:700;color:var(--indigo);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.ai-desc{font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6;}
+.ai-row{display:flex;gap:8px;margin-bottom:8px;}
+.ai-input{flex:1;padding:9px 12px;border:2px solid #c5d0f8;border-radius:8px;font-family:'Noto Sans JP',sans-serif;font-size:12px;background:#fff;outline:none;transition:.2s;resize:none;min-height:42px;}
+.ai-input:focus{border-color:var(--indigo);}
+.ai-btn{padding:9px 16px;background:var(--indigo);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer;transition:.2s;white-space:nowrap;}
+.ai-btn:hover{background:var(--navy);}
+.ai-btn:disabled{opacity:.5;cursor:not-allowed;}
+.ai-loading{display:none;align-items:center;gap:7px;font-size:11px;color:var(--muted);padding:4px 0;}
+.ai-loading.vis{display:flex;}
+.dp span{display:inline-block;width:5px;height:5px;background:var(--sky);border-radius:50%;margin:0 2px;animation:dp 1.2s infinite;}
+.dp span:nth-child(2){animation-delay:.2s;}.dp span:nth-child(3){animation-delay:.4s;}
+@keyframes dp{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+.ai-resp{background:#fff;border-radius:8px;padding:12px;font-size:12px;line-height:1.8;color:var(--text);border:1px solid #d0dafe;white-space:pre-wrap;display:none;}
+.ai-resp.vis{display:block;}
 
-  .tab-bar {
-    display: flex;
-    border-bottom: 2px solid var(--border);
-    background: white;
-  }
-  .tab-btn {
-    flex: 1; padding: 12px; border: none; background: none;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 13px; font-weight: 500;
-    color: var(--text-muted); cursor: pointer;
-    border-bottom: 3px solid transparent;
-    margin-bottom: -2px;
-    transition: all 0.2s;
-  }
-  .tab-btn:hover { color: var(--indigo); }
-  .tab-btn.active { color: var(--indigo); border-bottom-color: var(--indigo); font-weight: 700; }
+/* QUIZ */
+.qprog{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.qcnt{font-size:11px;color:var(--muted);font-weight:500;}
+.pbar-wrap{flex:1;height:7px;background:var(--border);border-radius:10px;margin:0 12px;overflow:hidden;}
+.pbar{height:100%;background:linear-gradient(90deg,var(--sky),var(--indigo));border-radius:10px;transition:.4s;}
+.score-bdg{background:var(--gold);color:var(--navy);padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;}
+.qcard{background:#f8f9ff;border-radius:12px;padding:18px;border:1px solid var(--border);margin-bottom:14px;}
+.qlabel{font-size:10px;letter-spacing:1.5px;font-weight:700;color:var(--sky);text-transform:uppercase;margin-bottom:8px;}
+.qtype-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;margin-bottom:8px;}
+.qtype-mc{background:#e8ecff;color:var(--indigo);}
+.qtype-fill{background:#e8f8ed;color:#155724;}
+.qtype-sort{background:#fff3cd;color:#856404;}
+.qtype-write{background:#fde8ec;color:#721c24;}
+.qtype-twist{background:#f3e8ff;color:#5a21a8;}
+.qtext{font-size:15px;font-weight:600;line-height:1.7;color:var(--navy);margin-bottom:5px;}
+.qsub{font-size:12px;color:#555;margin-bottom:13px;font-style:italic;}
+.qopts{display:grid;gap:8px;}
+.qopt{padding:11px 14px;border:2px solid var(--border);border-radius:9px;background:#fff;font-family:'Noto Sans JP',sans-serif;font-size:13px;cursor:pointer;text-align:left;transition:.2s;display:flex;align-items:center;gap:9px;color:var(--text);}
+.qopt:hover:not(:disabled){border-color:var(--sky);background:#f0f4ff;}
+.qopt.ok{border-color:var(--green);background:#e8f8ed;color:#155724;}
+.qopt.ng{border-color:var(--red);background:#fde8ec;color:#721c24;}
+.qopt:disabled{cursor:default;}
+.opt-ind{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;transition:.2s;color:var(--muted);}
+.qopt:hover:not(:disabled) .opt-ind{border-color:var(--sky);color:var(--sky);}
+.qopt.ok .opt-ind{border-color:var(--green);background:var(--green);color:#fff;}
+.qopt.ng .opt-ind{border-color:var(--red);background:var(--red);color:#fff;}
 
-  .tab-content { padding: 24px; display: none; }
-  .tab-content.active { display: block; }
+/* Fill/Sort/Write inputs */
+.qfill-input{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:9px;font-family:'Noto Sans JP',sans-serif;font-size:14px;outline:none;transition:.2s;margin-bottom:10px;}
+.qfill-input:focus{border-color:var(--indigo);}
+.qfill-input.ok{border-color:var(--green);background:#e8f8ed;}
+.qfill-input.ng{border-color:var(--red);background:#fde8ec;}
+.qsort-area{margin-bottom:10px;}
+.sort-bank{display:flex;flex-wrap:wrap;gap:7px;padding:12px;background:#f0f4ff;border-radius:9px;min-height:46px;margin-bottom:8px;border:2px dashed #c5d0f8;}
+.sort-slot{display:flex;flex-wrap:wrap;gap:7px;padding:12px;background:#fff;border-radius:9px;min-height:46px;border:2px dashed var(--border);}
+.sort-chip{padding:6px 12px;background:var(--indigo);color:#fff;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;user-select:none;}
+.sort-chip:hover{background:var(--navy);}
+.sort-chip.placed{background:#28a745;}
+.sort-slot-label{font-size:10px;color:var(--muted);margin-bottom:5px;font-weight:600;}
+.qtextarea{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:9px;font-family:'Noto Sans JP',sans-serif;font-size:13px;outline:none;transition:.2s;resize:vertical;min-height:80px;margin-bottom:10px;}
+.qtextarea:focus{border-color:var(--indigo);}
+.submit-btn{padding:10px 20px;background:var(--indigo);color:#fff;border:none;border-radius:9px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;}
+.submit-btn:hover{background:var(--navy);}
+.qfb{padding:12px 14px;border-radius:9px;font-size:12px;line-height:1.7;margin-top:10px;display:none;}
+.qfb.ok{background:#e8f8ed;border:1px solid #b2dfdb;color:#155724;}
+.qfb.ng{background:#fde8ec;border:1px solid #f5c6cb;color:#721c24;}
+.qfb.vis{display:block;}
+.qfb strong{display:block;margin-bottom:3px;}
+.qnav{display:flex;justify-content:flex-end;gap:8px;margin-top:14px;}
+.btn-next{padding:9px 22px;background:var(--indigo);color:#fff;border:none;border-radius:9px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;display:none;}
+.btn-next:hover{background:var(--navy);}
+.btn-next.vis{display:inline-flex;align-items:center;gap:5px;}
 
-  /* ===== GRAMMAR POINTS ===== */
-  .grammar-section {
-    margin-bottom: 24px;
-    border-left: 4px solid var(--sky);
-    padding-left: 16px;
-  }
-  .grammar-section-title {
-    font-size: 14px; font-weight: 700;
-    color: var(--indigo);
-    margin-bottom: 12px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .section-badge {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 22px; height: 22px;
-    background: var(--indigo); color: white;
-    border-radius: 50%; font-size: 11px; font-weight: 700;
-    font-family: 'Poppins', sans-serif;
-  }
+/* RESULT */
+.result{text-align:center;padding:36px 18px;display:none;}
+.result.vis{display:block;}
+.result-emoji{font-size:56px;margin-bottom:14px;}
+.result-score{font-size:44px;font-weight:700;color:var(--indigo);margin-bottom:6px;}
+.result-msg{font-size:14px;color:var(--muted);margin-bottom:22px;}
+.result-details{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:22px;}
+.rd-item{background:#f0f4ff;border-radius:10px;padding:10px 16px;text-align:center;}
+.rd-num{font-size:22px;font-weight:700;color:var(--indigo);}
+.rd-label{font-size:10px;color:var(--muted);margin-top:2px;}
+.btn-retry{padding:11px 24px;background:var(--indigo);color:#fff;border:none;border-radius:11px;font-weight:700;font-size:14px;cursor:pointer;transition:.2s;margin:0 5px;}
+.btn-retry:hover{background:var(--navy);}
+.btn-retry.sec{background:#fff;color:var(--indigo);border:2px solid var(--indigo);}
 
-  .example-block {
-    background: #f8f9ff;
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin-bottom: 12px;
-    border: 1px solid #e8ecf8;
-  }
-  .example-en {
-    font-size: 14px; font-weight: 500;
-    color: var(--navy); line-height: 1.7;
-    margin-bottom: 4px;
-  }
-  .example-en .key {
-    color: var(--indigo); font-weight: 700;
-    background: #dde8ff; padding: 1px 4px; border-radius: 4px;
-  }
-  .example-jp {
-    font-size: 12px; color: var(--text-muted);
-    margin-top: 4px;
-  }
-  .tip-box {
-    background: #fff9e6;
-    border: 1px solid #ffd54f;
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 12px;
-    color: #5d4a00;
-    margin-top: 8px;
-    line-height: 1.6;
-  }
-  .tip-box::before { content: "💡 "; }
+/* EXAM */
+.exam-home{text-align:center;padding:40px 20px;}
+.exam-title{font-size:24px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.exam-sub{font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6;}
+.exam-config{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:24px;}
+.exam-stat{background:#fff;border-radius:12px;padding:14px 20px;box-shadow:var(--sh);text-align:center;min-width:100px;}
+.exam-stat-num{font-size:22px;font-weight:700;color:var(--indigo);}
+.exam-stat-label{font-size:10px;color:var(--muted);margin-top:2px;}
+.start-exam-btn{padding:14px 36px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;transition:.2s;box-shadow:0 4px 16px rgba(61,82,160,.3);}
+.start-exam-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(61,82,160,.4);}
+.exam-q-header{background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;padding:16px 22px;border-radius:14px 14px 0 0;display:flex;align-items:center;justify-content:space-between;margin-bottom:0;}
+.exam-timer{font-size:18px;font-weight:700;font-family:monospace;}
+.exam-q-num{font-size:13px;opacity:.8;}
+.exam-body{background:#fff;border-radius:0 0 14px 14px;padding:22px;box-shadow:var(--sh);}
+.exam-q-section{margin-bottom:24px;padding-bottom:20px;border-bottom:2px solid var(--border);}
+.exam-q-section:last-child{border-bottom:none;margin-bottom:0;}
+.exam-section-title{font-size:12px;font-weight:700;color:var(--sky);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
+.exam-q-item{margin-bottom:18px;padding:14px;background:#f8f9ff;border-radius:10px;border:1px solid var(--border);}
+.exam-q-label{font-size:10px;color:var(--muted);margin-bottom:5px;font-weight:600;}
+.exam-q-text{font-size:14px;font-weight:600;color:var(--navy);line-height:1.6;margin-bottom:10px;}
+.exam-q-opts{display:grid;gap:7px;}
+.exam-opt{padding:9px 13px;border:2px solid var(--border);border-radius:8px;background:#fff;font-family:'Noto Sans JP',sans-serif;font-size:13px;cursor:pointer;text-align:left;transition:.2s;display:flex;align-items:center;gap:8px;}
+.exam-opt:hover{border-color:var(--sky);background:#f0f4ff;}
+.exam-opt.selected{border-color:var(--indigo);background:#eef2ff;}
+.exam-opt.ex-ok{border-color:var(--green);background:#e8f8ed;}
+.exam-opt.ex-ng{border-color:var(--red);background:#fde8ec;}
+.exam-input{width:100%;padding:9px 12px;border:2px solid var(--border);border-radius:8px;font-family:'Noto Sans JP',sans-serif;font-size:13px;outline:none;transition:.2s;}
+.exam-input:focus{border-color:var(--indigo);}
+.exam-input.ex-ok{border-color:var(--green);background:#e8f8ed;}
+.exam-input.ex-ng{border-color:var(--red);background:#fde8ec;}
+.exam-textarea{width:100%;padding:9px 12px;border:2px solid var(--border);border-radius:8px;font-family:'Noto Sans JP',sans-serif;font-size:13px;outline:none;transition:.2s;resize:vertical;min-height:70px;}
+.exam-textarea:focus{border-color:var(--indigo);}
+.exam-ans-area{margin-top:6px;font-size:11px;color:#155724;background:#e8f8ed;padding:6px 10px;border-radius:6px;display:none;}
+.exam-submit{text-align:center;margin-top:22px;}
+.exam-submit-btn{padding:13px 36px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;}
+.exam-submit-btn:hover{transform:translateY(-2px);}
+.exam-result{text-align:center;padding:36px 20px;}
+.exam-result-score{font-size:52px;font-weight:700;color:var(--indigo);margin:12px 0;}
+.exam-result-total{font-size:18px;color:var(--muted);}
+.exam-breakdown{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:20px 0;}
+.ex-bd{background:#fff;border-radius:10px;padding:12px 16px;box-shadow:var(--sh);text-align:center;min-width:110px;}
+.ex-bd-num{font-size:20px;font-weight:700;}
+.ex-bd-label{font-size:10px;color:var(--muted);margin-top:2px;}
+.vocab-card{background:#fff;border-radius:14px;box-shadow:var(--sh);padding:24px;margin-bottom:16px;}
+.vocab-en{font-size:26px;font-weight:700;color:var(--navy);}
+.vocab-pron{font-size:13px;color:var(--muted);margin:4px 0;}
+.vocab-phrase{font-size:15px;color:var(--indigo);margin:10px 0 4px;}
+.vocab-jp-phrase{font-size:13px;color:var(--muted);}
+.vocab-jp{font-size:16px;font-weight:700;color:var(--green);margin-top:10px;}
+.vocab-ex{font-size:13px;font-style:italic;color:#555;margin-top:6px;}
+.vocab-notice{background:#fff9e6;border:1px solid #ffd54f;border-radius:10px;padding:16px;text-align:center;color:#856404;font-size:13px;line-height:1.7;}
 
-  /* ===== FORMULA BOX ===== */
-  .formula-box {
-    background: var(--navy);
-    color: white;
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin: 12px 0;
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    line-height: 1.8;
-  }
-  .formula-box .formula-label {
-    font-size: 10px; letter-spacing: 1.5px; opacity: 0.6;
-    text-transform: uppercase; margin-bottom: 6px;
-  }
-  .formula-box .accent { color: var(--gold-light); font-weight: 700; }
+/* VOCAB */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
+.vc{background:#fff;border-radius:10px;box-shadow:var(--sh);padding:14px;border-left:4px solid var(--gold);}
+.vc-num{font-size:10px;color:var(--muted);font-weight:700;margin-bottom:3px;}
+.vc-en{font-size:16px;font-weight:700;color:var(--navy);}
+.vc-phrase{font-size:11px;color:var(--indigo);margin:4px 0;}
+.vc-jp{font-size:12px;color:var(--text);line-height:1.5;}
 
-  /* ===== AI SECTION ===== */
-  .ai-section {
-    background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
-    border-radius: 16px;
-    padding: 20px;
-    margin-top: 8px;
-    border: 1px solid #d0dafe;
-  }
-  .ai-section-title {
-    font-size: 13px; font-weight: 700;
-    color: var(--indigo); margin-bottom: 14px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .ai-input-row {
-    display: flex; gap: 10px;
-    margin-bottom: 10px;
-  }
-  .ai-input {
-    flex: 1;
-    padding: 10px 14px;
-    border: 2px solid #c5d0f8;
-    border-radius: 10px;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 13px;
-    background: white;
-    outline: none;
-    transition: border 0.2s;
-    resize: none;
-    min-height: 44px;
-  }
-  .ai-input:focus { border-color: var(--indigo); }
-  .ai-btn {
-    padding: 10px 20px;
-    background: var(--indigo);
-    color: white; border: none; border-radius: 10px;
-    font-weight: 700; font-size: 13px; cursor: pointer;
-    font-family: 'Noto Sans JP', sans-serif;
-    transition: all 0.2s; white-space: nowrap;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .ai-btn:hover { background: var(--navy); transform: translateY(-1px); }
-  .ai-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-  .ai-response {
-    background: white;
-    border-radius: 10px;
-    padding: 14px;
-    font-size: 13px;
-    line-height: 1.8;
-    color: var(--text-main);
-    border: 1px solid #d0dafe;
-    min-height: 48px;
-    white-space: pre-wrap;
-    display: none;
-  }
-  .ai-response.visible { display: block; }
-  .ai-loading {
-    display: none; align-items: center; gap: 8px;
-    font-size: 12px; color: var(--text-muted); padding: 8px 0;
-  }
-  .ai-loading.visible { display: flex; }
-  .dot-pulse span {
-    display: inline-block; width: 6px; height: 6px;
-    background: var(--sky); border-radius: 50%; margin: 0 2px;
-    animation: dotPulse 1.2s infinite;
-  }
-  .dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
-  .dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes dotPulse { 0%,80%,100%{transform:scale(0.6);opacity:0.4} 40%{transform:scale(1);opacity:1} }
-
-  /* ===== QUIZ ===== */
-  .quiz-container { }
-  .quiz-progress {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 16px;
-  }
-  .quiz-counter { font-size: 12px; color: var(--text-muted); font-weight: 500; }
-  .progress-bar-wrap {
-    flex: 1; height: 8px; background: var(--border);
-    border-radius: 10px; margin: 0 14px; overflow: hidden;
-  }
-  .progress-bar {
-    height: 100%; background: linear-gradient(90deg, var(--sky), var(--indigo));
-    border-radius: 10px; transition: width 0.4s;
-  }
-  .score-badge {
-    background: var(--gold); color: var(--navy);
-    padding: 3px 10px; border-radius: 20px;
-    font-size: 12px; font-weight: 700; font-family: 'Poppins', sans-serif;
-  }
-
-  .quiz-card {
-    background: #f8f9ff;
-    border-radius: 14px;
-    padding: 22px;
-    border: 1px solid var(--border);
-    margin-bottom: 16px;
-  }
-  .quiz-q-label {
-    font-size: 10px; letter-spacing: 1.5px; font-weight: 700;
-    color: var(--sky); text-transform: uppercase; margin-bottom: 10px;
-    font-family: 'Poppins', sans-serif;
-  }
-  .quiz-q-text {
-    font-size: 16px; font-weight: 600; line-height: 1.7;
-    color: var(--navy); margin-bottom: 6px;
-  }
-  .quiz-q-sub {
-    font-size: 12px; color: var(--text-muted); margin-bottom: 16px;
-  }
-  .quiz-options { display: grid; gap: 10px; }
-  .quiz-option {
-    padding: 12px 16px;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    background: white;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 14px; cursor: pointer;
-    text-align: left;
-    transition: all 0.2s;
-    display: flex; align-items: center; gap: 10px;
-    color: var(--text-main);
-  }
-  .quiz-option:hover:not(:disabled) { border-color: var(--sky); background: #f0f4ff; }
-  .quiz-option.correct { border-color: var(--green); background: #e8f8ed; color: #155724; }
-  .quiz-option.wrong { border-color: var(--red); background: #fde8ec; color: #721c24; }
-  .quiz-option:disabled { cursor: default; }
-  .option-indicator {
-    width: 24px; height: 24px;
-    border-radius: 50%; border: 2px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 700; flex-shrink: 0;
-    font-family: 'Poppins', sans-serif;
-    transition: all 0.2s;
-    color: var(--text-muted);
-  }
-  .quiz-option:hover:not(:disabled) .option-indicator { border-color: var(--sky); color: var(--sky); }
-  .quiz-option.correct .option-indicator { border-color: var(--green); background: var(--green); color: white; }
-  .quiz-option.wrong .option-indicator { border-color: var(--red); background: var(--red); color: white; }
-
-  .quiz-feedback {
-    padding: 14px 16px;
-    border-radius: 10px;
-    font-size: 13px; line-height: 1.7;
-    margin-top: 12px; display: none;
-  }
-  .quiz-feedback.correct { background: #e8f8ed; border: 1px solid #b2dfdb; color: #155724; }
-  .quiz-feedback.wrong { background: #fde8ec; border: 1px solid #f5c6cb; color: #721c24; }
-  .quiz-feedback.visible { display: block; }
-  .quiz-feedback strong { display: block; margin-bottom: 4px; }
-
-  .quiz-nav {
-    display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px;
-  }
-  .btn-next {
-    padding: 10px 24px;
-    background: var(--indigo); color: white;
-    border: none; border-radius: 10px;
-    font-weight: 700; font-size: 14px;
-    cursor: pointer; font-family: 'Noto Sans JP', sans-serif;
-    transition: all 0.2s; display: none;
-  }
-  .btn-next:hover { background: var(--navy); }
-  .btn-next.visible { display: inline-flex; align-items: center; gap: 6px; }
-
-  /* ===== RESULT SCREEN ===== */
-  .result-screen {
-    text-align: center; padding: 40px 20px; display: none;
-  }
-  .result-screen.visible { display: block; }
-  .result-emoji { font-size: 60px; margin-bottom: 16px; }
-  .result-score {
-    font-size: 48px; font-weight: 700;
-    color: var(--indigo); font-family: 'Poppins', sans-serif;
-    margin-bottom: 8px;
-  }
-  .result-msg { font-size: 16px; color: var(--text-muted); margin-bottom: 24px; }
-  .btn-retry {
-    padding: 12px 28px;
-    background: var(--indigo); color: white;
-    border: none; border-radius: 12px;
-    font-weight: 700; font-size: 15px;
-    cursor: pointer; font-family: 'Noto Sans JP', sans-serif;
-    transition: all 0.2s; margin: 0 6px;
-  }
-  .btn-retry:hover { background: var(--navy); }
-  .btn-retry.secondary { background: white; color: var(--indigo); border: 2px solid var(--indigo); }
-
-  /* ===== AI CHECKER ===== */
-  .checker-area {
-    margin-top: 0;
-  }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 768px) {
-    .app-container { flex-direction: column; padding: 12px; }
-    .sidebar { width: 100%; position: static; }
-    .sidebar-section { display: flex; flex-wrap: wrap; }
-    .sidebar-title { width: 100%; }
-    .lesson-btn { width: auto; flex: 1; border-bottom: none; border-right: 1px solid var(--border); border-left: none; border-bottom: 3px solid transparent; }
-    .lesson-btn.active { border-bottom-color: var(--indigo); border-left-color: transparent; }
-    .tab-btn { font-size: 11px; padding: 10px 6px; }
-  }
+@media(max-width:768px){
+  .app{flex-direction:column;padding:10px;}
+  .sidebar{width:100%;position:static;}
+  .sb-sec{display:grid;grid-template-columns:repeat(3,1fr);}
+  .sb-title{grid-column:1/-1;}
+  .lb{border-bottom:1px solid var(--border);border-left:none;border-bottom:2px solid transparent;}
+  .lb.act{border-bottom-color:var(--indigo);}
+}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
-
-<header>
-  <div class="header-inner">
-    <div class="logo">
-      <div class="logo-icon">47</div>
-      <div>
-        <div class="logo-text">英文法マスター</div>
-        <div class="logo-sub">Lessons 21–30 | 比較・関係詞・仮定法</div>
-      </div>
-    </div>
-    <div class="header-progress">
-      <span id="totalXP" class="xp-badge">0 XP</span>
-    </div>
-  </div>
-</header>
-
-<div class="app-container">
-  <!-- SIDEBAR -->
-  <nav class="sidebar">
-    <div class="sidebar-section">
-      <div class="sidebar-title">📊 比較</div>
-      <button class="lesson-btn active" onclick="showLesson('l21')">
-        <span class="lesson-num">21</span>比較 (1)
-      </button>
-      <button class="lesson-btn" onclick="showLesson('l22')">
-        <span class="lesson-num">22</span>比較 (2)
-      </button>
-      <button class="lesson-btn" onclick="showLesson('l23')">
-        <span class="lesson-num">23</span>比較 (3)
-      </button>
-    </div>
-    <div class="sidebar-section">
-      <div class="sidebar-title">🔗 関係詞</div>
-      <button class="lesson-btn" onclick="showLesson('l24')">
-        <span class="lesson-num">24</span>関係詞 (1)
-      </button>
-      <button class="lesson-btn" onclick="showLesson('l25')">
-        <span class="lesson-num">25</span>関係詞 (2)
-      </button>
-      <button class="lesson-btn" onclick="showLesson('l26')">
-        <span class="lesson-num">26</span>関係詞 (3)
-      </button>
-      <button class="lesson-btn" onclick="showLesson('l27')">
-        <span class="lesson-num">27</span>関係詞 (4)
-      </button>
-    </div>
-    <div class="sidebar-section">
-      <div class="sidebar-title">✨ 仮定法</div>
-      <button class="lesson-btn" onclick="showLesson('l28')">
-        <span class="lesson-num">28</span>仮定法 (1)
-      </button>
-      <button class="lesson-btn" onclick="showLesson('l29')">
-        <span class="lesson-num">29</span>仮定法 (2)
-      </button>
-      <button class="lesson-btn" onclick="showLesson('l30')">
-        <span class="lesson-num">30</span>仮定法 (3)
-      </button>
-    </div>
-  </nav>
-
-  <!-- MAIN -->
-  <main class="main-content" id="mainContent"></main>
-</div>
-
-<script>
-// =============================================
-// LESSON DATA
-// =============================================
-const LESSONS = {
-  l21: {
-    num: 21, title: "比較 (1)", jp: "原級・比較級",
-    color: "#3d52a0",
-    desc: "原級（as…as）と比較級（比較級+than）の基本から発展表現まで。",
-    sections: [
-      {
-        title: "A 原級を使った比較 〈as + 原級 + as〉",
-        points: [
-          { en: "My brother is <span class='key'>as tall as</span> my father.", jp: "私の兄は父と同じくらい背が高い。", note: "as+原級+as〜「〜と同じくらい…だ」" },
-          { en: "I don't sing <span class='key'>as well as</span> my sister.", jp: "私は姉ほど上手に歌えない。", note: "not as[so]+原級+as〜「〜ほど…ではない」" },
-          { en: "This room is <span class='key'>twice as large as</span> that one.", jp: "この部屋はあの部屋の2倍の大きさだ。", note: "X times as...as〜「〜のX倍…だ」 (2倍=twice, 半分=half)" },
-          { en: "Call the doctor <span class='key'>as soon as possible</span>!", jp: "できるだけ早く医師を呼べ！", note: "as...as possible / as...as one can「できるだけ〜」" }
-        ],
-        formula: "S + V + <span class='accent'>as</span> + 原級 + <span class='accent'>as</span> + 比較対象"
-      },
-      {
-        title: "B 比較級を使った比較 〈比較級 + than〉",
-        points: [
-          { en: "This stone is <span class='key'>heavier than</span> that one.", jp: "この石はあの石より重い。" },
-          { en: "This house is <span class='key'>much[far] larger than</span> mine.", jp: "この家は私の家よりずっと大きい。", note: "差を強調: much / far / even / still + 比較級" },
-          { en: "This car is <span class='key'>less expensive than</span> that one.", jp: "この車はあの車より安い。", note: "less+原級+than〜「〜ほど…でない」（= not as...as）" },
-        ],
-        formula: "S + V + <span class='accent'>比較級</span> + than + 比較対象"
-      }
-    ]
-  },
-  l22: {
-    num: 22, title: "比較 (2)", jp: "最上級・原級/比較級で最上級の意味",
-    color: "#3d52a0",
-    desc: "最上級の表現と、原級・比較級を使って最上級の意味を表す方法。",
-    sections: [
-      {
-        title: "A 最上級を使った比較",
-        points: [
-          { en: "He is <span class='key'>the fastest sprinter</span> in this school.", jp: "彼はこの学校で最も速いスプリンターだ。", note: "in: 範囲の中 / of: 比較相手を個別に意識" },
-          { en: "She is <span class='key'>by far[much] the best</span> singer in this country.", jp: "彼女はこの国で群を抜いて最高の歌手だ。", note: "by far / much + 最上級「はるかに/抜群に…」" },
-          { en: "This is <span class='key'>one of the nicest rooms</span> in the hotel.", jp: "これはホテルで最も素敵な部屋の1つだ。", note: "one of the + 最上級 + 複数形「最も…な〜の1つ」" },
-        ],
-        formula: "the + <span class='accent'>最上級</span> + in[of] + 範囲"
-      },
-      {
-        title: "B 原級・比較級で最上級の意味を表す",
-        points: [
-          { en: "<span class='key'>No (other) state</span> in the US is <span class='key'>as large as</span> Alaska.", jp: "アラスカほど広い州はアメリカにない。", note: "No(other)+単数形...as[so]+原級+as〜「〜ほど…なものはない」" },
-          { en: "Alaska is <span class='key'>larger than any other state</span> in the US.", jp: "アラスカはアメリカの他のどの州よりも広い。", note: "比較級+than any other+単数形「他のどの〜よりも…だ」" },
-        ]
-      }
-    ]
-  },
-  l23: {
-    num: 23, title: "比較 (3)", jp: "比較級の応用・noを使った比較",
-    color: "#3d52a0",
-    desc: "比較級を使った様々な表現と、noを使った特殊な比較表現。",
-    sections: [
-      {
-        title: "A 比較級を用いたさまざまな表現",
-        points: [
-          { en: "We chose <span class='key'>the smaller of the two</span> puppies.", jp: "私たちは2匹の子犬のうちより小さいほうを選んだ。", note: "2つのうちで〜なほう：the+比較級+of the two" },
-          { en: "The tree is growing <span class='key'>taller and taller</span>.", jp: "木はどんどん高くなっている。", note: "比較級+and+比較級「ますます〜」" },
-          { en: "<span class='key'>The more</span> I study, <span class='key'>the more</span> I know.", jp: "勉強すればするほど、より多くのことを知る。", note: "the+比較級..., the+比較級...「〜すればするほど…」" },
-        ],
-        formula: "<span class='accent'>The more</span> S V, <span class='accent'>the more</span> S V."
-      },
-      {
-        title: "B noを使った比較表現",
-        points: [
-          { en: "The camera is <span class='key'>no bigger than</span> my hand.", jp: "そのカメラは手のひらほどの大きさしかない。", note: "A...no+比較級+than B「同程度にしか…でない（ほんの〜）」" },
-          { en: "Sleeping too much is <span class='key'>no more healthy than</span> eating too much.", jp: "寝すぎは食べすぎと同様に健康的でない。", note: "no more...than〜「〜と同様に…でない」（クジラの構文）" },
-          { en: "He paid me <span class='key'>no more than</span> 3,000 yen.", jp: "彼はたったの3,000円しか払わなかった。", note: "no more than〜「（ほんの）〜しか・だけ」= only" },
-          { en: "She paid me <span class='key'>no less than</span> 30,000 yen.", jp: "彼女は30,000円もの額を払ってくれた。", note: "no less than〜「〜ほども多く」= as many/much as" },
-        ]
-      }
-    ]
-  },
-  l24: {
-    num: 24, title: "関係詞 (1)", jp: "who・which・whose・that",
-    color: "#5563a8",
-    desc: "関係代名詞の主格・目的格・所有格と、thatが特に使われる場合。",
-    sections: [
-      {
-        title: "A who と which（主格）",
-        points: [
-          { en: "I have a friend <span class='key'>who</span> lives in Boston.", jp: "私はボストンに住んでいる友人がいる。", note: "who：先行詞が人。関係詞節中で主語の働きをする。" },
-          { en: "They live in a house <span class='key'>which</span> stands on a hill.", jp: "彼らは丘の上に建つ家に住んでいる。", note: "which：先行詞が人以外。" }
-        ],
-        formula: "先行詞（人）+ <span class='accent'>who</span> + V ／ 先行詞（物）+ <span class='accent'>which</span> + V"
-      },
-      {
-        title: "B whom と which（目的格）",
-        points: [
-          { en: "The man <span class='key'>(whom)</span> I met on the street works at a bank.", jp: "街で会った男性は銀行で働いている。", note: "whom：目的格。目的格の関係代名詞は省略されることが多い。口語ではwhoも使われる。" },
-          { en: "I'm reading a book <span class='key'>(which)</span> I borrowed from the library.", jp: "私は図書館から借りた本を読んでいる。" }
-        ]
-      },
-      {
-        title: "C whose（所有格）",
-        points: [
-          { en: "He has a friend <span class='key'>whose wife</span> is a singer.", jp: "彼は妻が歌手である友人がいる。", note: "whose+名詞の形で使う。先行詞が人でも物でもwhoseを使う。" },
-        ]
-      },
-      {
-        title: "D that（主格／目的格）",
-        points: [
-          { en: "I lent him the money <span class='key'>that</span> was in my pocket.", jp: "私は彼にポケットの中にあったお金を貸した。", note: "that：whichの代わりに使える（主格・目的格）。所有格としては使えない。" },
-        ],
-        tip: "thatが特に使われる場合：①先行詞が人以外で the first, the last, the+最上級など ②先行詞がall, every, any, no ③先行詞が〈人＋人以外のもの〉 ④先行詞が疑問詞who ⑤関係代名詞が節の中で補語のとき"
-      }
-    ]
-  },
-  l25: {
-    num: 25, title: "関係詞 (2)", jp: "前置詞・what・限定/継続用法",
-    color: "#5563a8",
-    desc: "前置詞と関係代名詞、whatの用法、限定用法と継続用法の違い。",
-    sections: [
-      {
-        title: "A 前置詞と関係代名詞",
-        points: [
-          { en: "He is the actor <span class='key'>(who(m)/that)</span> Ann sent a fan letter <span class='key'>to</span>.", jp: "彼はアンがファンレターを送った俳優だ。", note: "前置詞を関係詞節の後ろに置く場合は who/that が使える。前置詞を前に出す場合は whom/which のみ使用可能。" },
-        ],
-        formula: "先行詞 + <span class='accent'>前置詞 + whom/which</span> + S + V（文語体）"
-      },
-      {
-        title: "B what（先行詞を含む関係代名詞）",
-        points: [
-          { en: "<span class='key'>What</span> worries me is the result of the exam.", jp: "私を悩ませているのは試験の結果だ。", note: "what：「〜すること[もの]」。先行詞なしで使う。節全体が主語・目的語・補語になる。" },
-          { en: "This watch is just <span class='key'>what</span> I wanted!", jp: "この時計はまさに私が欲しかったものだ！" }
-        ],
-        formula: "<span class='accent'>what</span> = the thing(s) that〜（先行詞を内包）"
-      },
-      {
-        title: "C 限定用法と継続用法",
-        points: [
-          { en: "He married a woman <span class='key'>who(m)</span> he met at the hospital.", jp: "彼は病院で会った女性と結婚した。", note: "限定用法：先行詞の内容を限定する。" },
-          { en: "He married my sister, <span class='key'>who(m)</span> he met at the hospital.", jp: "彼は私の姉と結婚した。彼女には病院で会った。", note: "継続用法：先行詞の内容を補足説明する。関係代名詞の前にコンマ(,)を入れる。thatは継続用法には使えない！" },
-        ]
-      },
-      {
-        title: "D 継続用法の which の用法",
-        points: [
-          { en: "He wore a brown suit, <span class='key'>which</span> was made in Italy.", jp: "彼はイタリア製のブラウンのスーツを着ていた。", note: "継続用法のwhichは(a)直前の語句・(b)直前の節の全体・(c)直前の文の内容全体を先行詞とすることがある。" },
-        ]
-      }
-    ]
-  },
-  l26: {
-    num: 26, title: "関係詞 (3)", jp: "関係副詞・複合関係詞",
-    color: "#5563a8",
-    desc: "where・when・why・howの関係副詞と、whoever・whateverなどの複合関係詞。",
-    sections: [
-      {
-        title: "A 関係副詞",
-        points: [
-          { en: "This is the hospital <span class='key'>where</span> my aunt works.", jp: "ここは私の叔母が働いている病院だ。", note: "where：「場所」を表す副詞の役割。〈前置詞+which〉で書きかえ可。" },
-          { en: "There was a time <span class='key'>when</span> dinosaurs lived on the earth.", jp: "恐竜が地球上に生きていた時代があった。", note: "when：「時」を表す副詞の役割。" },
-          { en: "Tell me the reason <span class='key'>why</span> you look so happy today.", jp: "今日そんなに幸せそうな理由を教えて。", note: "why：「〜する（理由）」を意味する節を作る。先行詞はreason(s)。" },
-          { en: "That's <span class='key'>how</span> he succeeded in business.", jp: "それが彼がビジネスで成功した方法だ。", note: "how：「〜するやり方[方法]」先行詞なしで使う。※the way howとは言えない。" },
-        ],
-        formula: "先行詞（場所）+ <span class='accent'>where</span>、先行詞（時）+ <span class='accent'>when</span>、先行詞（理由）+ <span class='accent'>why</span>"
-      },
-      {
-        title: "B 複合関係詞",
-        points: [
-          { en: "The club admits <span class='key'>whoever</span> pays the entry fee.", jp: "そのクラブは入場料を払う人は誰でも入れる。", note: "whoever「〜する人はだれでも」/ whichever「〜するものはどれでも」/ whatever「〜するものは何でも」" },
-          { en: "You can order <span class='key'>whatever</span> you like.", jp: "あなたは何でも好きなものを注文できる。" },
-          { en: "I visit my uncle <span class='key'>whenever</span> I go to Osaka.", jp: "大阪に行く時はいつも叔父を訪問する。", note: "whenever「〜する時はいつも」/ wherever「〜するところならどこでも」" },
-        ]
-      }
-    ]
-  },
-  l27: {
-    num: 27, title: "関係詞 (4)", jp: "譲歩の複合関係詞・as/than・what慣用表現",
-    color: "#5563a8",
-    desc: "「〜しようとも」の譲歩表現、関係詞として働くasとthan、whatを使った慣用表現。",
-    sections: [
-      {
-        title: "A 「譲歩」を表す複合関係詞",
-        points: [
-          { en: "<span class='key'>Whoever</span> calls me, I don't want to answer the phone.", jp: "誰が電話してきても、私は出たくない。", note: "whoever = no matter who / whichever = no matter which / whatever = no matter what" },
-          { en: "<span class='key'>However tired</span> she is, she always smiles.", jp: "どんなに疲れていても、彼女はいつも微笑む。", note: "however = no matter how / whenever = no matter when / wherever = no matter where" },
-        ],
-        formula: "<span class='accent'>however</span> + 形容詞/副詞 + S + V「どれほど〜でも」"
-      },
-      {
-        title: "B 関係代名詞の働きをする as と than",
-        points: [
-          { en: "This is the same jacket <span class='key'>as</span> was worn by the actor.", jp: "これはその俳優が着ていたのと同じ上着だ。", note: "as：関係代名詞として節の中で主語・補語・目的語の働きをする。" },
-          { en: "You did more work <span class='key'>than</span> I had expected.", jp: "あなたは私が期待していた以上の仕事をした。", note: "than：後に続く節の中で主語や目的語の働きをする。" },
-        ]
-      },
-      {
-        title: "D what を使った慣用表現",
-        points: [
-          { en: "This music is <span class='key'>what is called</span> \"rap.\"", jp: "この音楽はいわゆるラップというものだ。", note: "what is called「いわゆる〜」" },
-          { en: "He plays the piano, and <span class='key'>what is more</span>, he sings very well.", jp: "彼はピアノを弾くし、そのうえ歌も上手だ。", note: "what is more「そのうえ」/ what is worse「さらに悪いことに」" },
-          { en: "Reading is to the mind <span class='key'>what</span> exercising is to the body.", jp: "読書と心の関係は、運動と体の関係に等しい。", note: "A is to B what C is to D「AのBに対する関係はCのDに対する関係に等しい」" },
-        ]
-      }
-    ]
-  },
-  l28: {
-    num: 28, title: "仮定法 (1)", jp: "仮定法過去・仮定法過去完了",
-    color: "#6b4c9e",
-    desc: "現実と違うことを表す仮定法の基本。仮定法過去と仮定法過去完了の形と意味。",
-    sections: [
-      {
-        title: "A 直説法と仮定法の違い",
-        points: [
-          { en: "If it <span class='key'>rains</span> tomorrow, we <span class='key'>will cancel</span> the picnic.", jp: "明日雨が降れば、ピクニックを中止する。（直説法：実際に起こりうること）" },
-          { en: "If I <span class='key'>had</span> a lot of money, I <span class='key'>would buy</span> an island.", jp: "もし大金があれば、島を買うのに。（仮定法：現実と違う想像）", note: "仮定法：現実とは違うことを表す。話し手が「現実味を感じない」と思った場合に使う。" },
-        ]
-      },
-      {
-        title: "B 仮定法過去（現在の事実と反対）",
-        points: [
-          { en: "If he <span class='key'>were</span> ready, we <span class='key'>would go</span>.", jp: "もし彼の準備ができていれば、私たちは行くのに。", note: "be動詞は人称・数に関係なくwereを使う。口語では1人称単数・3人称単数でwasも使われる。" },
-          { en: "If I <span class='key'>had</span> enough time and money, I <span class='key'>would travel</span> around the world.", jp: "もし時間とお金が十分あれば、世界中を旅するのに。" },
-        ],
-        formula: "If + S + <span class='accent'>動詞の過去形</span>, S + <span class='accent'>would[could/might]</span> + 動詞の原形"
-      },
-      {
-        title: "C 仮定法過去完了（過去の事実と反対）",
-        points: [
-          { en: "If I <span class='key'>had left</span> ten minutes earlier, I <span class='key'>would not have missed</span> the train.", jp: "もし10分早く出発していたら、電車に乗り遅れなかっただろう。", note: "仮定法過去完了：過去の事実とは違うことを表す。「もし〜だったなら、…だっただろう」" },
-        ],
-        formula: "If + S + <span class='accent'>had + 過去分詞</span>, S + <span class='accent'>would[could/might] have + 過去分詞</span>"
-      },
-      {
-        title: "D if節と主節で時が異なる場合",
-        points: [
-          { en: "If I <span class='key'>had taken</span> the medicine then, I <span class='key'>might be</span> fine now.", jp: "あの時薬を飲んでいたなら、今ごろ元気かもしれない。", note: "if節が過去完了（過去の仮定）、主節が仮定法過去（現在の結果）という組み合わせ。" },
-        ]
-      }
-    ]
-  },
-  l29: {
-    num: 29, title: "仮定法 (2)", jp: "wish・as if・未来の仮定法・ifの省略",
-    color: "#6b4c9e",
-    desc: "wishやas ifに続く仮定法、未来の仮定法、そしてifを省略した倒置構文。",
-    sections: [
-      {
-        title: "A wish や as if の後の仮定法",
-        points: [
-          { en: "I wish I <span class='key'>knew</span> her telephone number.", jp: "彼女の電話番号を知っていればなあ。", note: "wish+仮定法過去「〜ならなあ」（願っている時と同時のこと）" },
-          { en: "I wish I <span class='key'>hadn't bought</span> such an expensive bag.", jp: "そんな高いバッグを買わなければよかったなあ。", note: "wish+仮定法過去完了「〜だったらなあ」（願っている時よりも前のこと）" },
-          { en: "He talks <span class='key'>as if he were</span> an expert in economics.", jp: "彼はまるで経済の専門家であるかのように話す。", note: "as if[though]+仮定法過去「まるで〜であるかのように」（主節と同時のこと）" },
-          { en: "You look <span class='key'>as if you had seen</span> a ghost!", jp: "あなたはまるで幽霊を見たかのような顔をしている！", note: "as if[though]+仮定法過去完了「まるで〜であったかのように」（主節より前のこと）" },
-        ],
-        formula: "I wish + S + <span class='accent'>仮定法過去</span>（同時）／ <span class='accent'>仮定法過去完了</span>（以前）"
-      },
-      {
-        title: "B 未来のことを表す仮定法",
-        points: [
-          { en: "If you <span class='key'>were to</span> win the lottery, what <span class='key'>would</span> you do?", jp: "もし宝くじが当たったら、どうしますか？", note: "If S were to+不定詞「もし〜するようなことがあれば/仮に〜すれば」未来の仮定" },
-          { en: "If he <span class='key'>should</span> change his mind, he would call me.", jp: "もし彼が気が変わったなら、私に電話するだろう。", note: "If S should do「もし〜するようなことがあれば」実現可能性が低い" },
-        ]
-      },
-      {
-        title: "C if の省略（倒置）",
-        points: [
-          { en: "<span class='key'>Were</span> I you, I would ask her for a date.", jp: "（もし）私があなたなら、彼女にデートを申し込むのに。", note: "if節のifを省略すると、後のSVは倒置される（疑問文と同じ語順）。were/had/shouldが文頭に出る。" },
-          { en: "<span class='key'>Had</span> we known you were in the hospital, we would have visited you.", jp: "あなたが入院しているとわかっていたら、お見舞いに行ったのに。" },
-          { en: "<span class='key'>Should</span> there be an earthquake, this bookshelf would fall forward.", jp: "もし地震が起きたら、この本棚は前に倒れるだろう。" },
-        ],
-        formula: "<span class='accent'>Were[Had/Should]</span> + S + ..., S + would ... （ifの省略）"
-      }
-    ]
-  },
-  l30: {
-    num: 30, title: "仮定法 (3)", jp: "if節相当表現・慣用表現・ていねい表現",
-    color: "#6b4c9e",
-    desc: "but for / with / otherwise などif節に相当する表現と、仮定法の慣用・ていねい表現。",
-    sections: [
-      {
-        title: "A if節に相当する「もし〜なら」の表現",
-        points: [
-          { en: "<span class='key'>But for</span> dreams, life would have no meaning.", jp: "夢がなければ、人生に意味はないだろう。", note: "but for〜「〜がなければ/〜がなかったら」= without〜" },
-          { en: "<span class='key'>With</span> time, this project would succeed.", jp: "時間があれば、このプロジェクトは成功するだろう。", note: "with〜「〜があれば/〜があったら」" },
-          { en: "I know he is innocent; <span class='key'>otherwise</span> I wouldn't try to save him.", jp: "私は彼が無実だと知っている。そうでなければ彼を助けようとしないだろう。", note: "otherwise「そうでなければ」= if節の代わりになる。" },
-          { en: "<span class='key'>To hear</span> him talk, you would think he knew all about the secret.", jp: "彼の話を聞けば、彼が秘密のすべてを知っていると思うだろう。", note: "不定詞がif節の代わりになる。" },
-        ]
-      },
-      {
-        title: "B 仮定法を使った慣用表現",
-        points: [
-          { en: "<span class='key'>If it were not for</span> music, life would be boring.", jp: "音楽がなければ、人生は退屈だろう。", note: "if it were not for〜「もし〜がなければ」（現在）= but for, without" },
-          { en: "<span class='key'>If it had not been for</span> my seat belt, I would have been killed.", jp: "シートベルトがなかったら、私は死んでいたろう。", note: "if it had not been for〜「もし〜がなかったら」（過去）" },
-          { en: "<span class='key'>It's time</span> you bought a new bicycle.", jp: "もう新しい自転車を買ってもよいころだ。", note: "It's time + 仮定法過去「もう〜してもよいころだ」" },
-          { en: "<span class='key'>If only</span> she were here!", jp: "彼女がここにいさえすればなあ！", note: "if only+仮定法「〜でありさえすれば（それだけでいいのに）なあ」= I wish とほぼ同じ意味" },
-        ]
-      },
-      {
-        title: "C 仮定法を使ったていねいな表現",
-        points: [
-          { en: "It <span class='key'>would</span> be nice if you <span class='key'>could help</span> me with my luggage.", jp: "荷物を手伝っていただければ助かるのですが。", note: "仮定法を使うと、ていねいな表現になる。" },
-          { en: "I <span class='key'>was wondering</span> if you <span class='key'>could use</span> your phone.", jp: "お電話をお借りできないかと思いまして。", note: "wonder/be wonderingを過去形や進行形にすると、さらにていねいな表現になる。" },
-        ],
-        tip: "Would you mind if I...? / Could you...? なども仮定法を使ったていねいな表現。相手への遠慮・配慮を表す。"
-      }
-    ]
-  }
-};
-
-// =============================================
-// QUIZ DATA
-// =============================================
-const QUIZZES = {
-  l21: [
-    { q: "「私の兄は父と同じくらい背が高い。」を英語にすると？", blank: "My brother is ___ tall ___ my father.", options:["as / as","so / as","as / than","more / than"], answer: 0, exp: "as+原級+as〜「〜と同じくらい…だ」。両方asを使います。" },
-    { q: "「この部屋はあの部屋の2倍の大きさだ。」正しいのは？", blank: "", options:["This room is twice as large as that one.","This room is more large than that twice.","This room is as twice large as that one.","This room is two times large than that."], answer: 0, exp: "X times as...as〜「〜のX倍…だ」。2倍はtwice、半分はhalf。" },
-    { q: "比較を強調する語として正しいのは？", blank: "This house is ___ larger than mine.", options:["very","much","more","mostly"], answer: 1, exp: "比較級を強調するにはmuch / far / even / stillを使います。veryは比較級には使えません。" },
-    { q: "「〜ほど…でない」を表す正しい構造は？", blank: "", options:["less + 原級 + than","not as + 原級 + as","both A and B","the + 比較級, the + 比較級"], answer: 1, exp: "not as[so]+原級+as〜「〜ほど…でない」。less+原級+thanも同じ意味で使えます。" },
-    { q: "「できるだけ早く」を英語にすると？", blank: "", options:["as soon as possible","as quickly as much","more soon as possible","so soon as can"], answer: 0, exp: "as...as possible「できるだけ〜」。as...as one canとも言えます。" },
-  ],
-  l22: [
-    { q: "「彼はこの学校で最も速いスプリンターだ。」正しいのは？", blank: "", options:["He is the fastest sprinter in this school.","He is most fast sprinter in this school.","He is the most fast sprinter in this school.","He is faster sprinter than this school."], answer: 0, exp: "最上級は'the + 最上級 + in[of] + 範囲'の形。fastの最上級はfastest。" },
-    { q: "「アラスカほど広い州はアメリカにない。」 ___ に入るのは？", blank: "___ state in the US is as large as Alaska.", options:["Not any","No other","Not every","Not one"], answer: 1, exp: "No (other)+単数形...as[so]+原級+as〜「〜ほど…なものはない」= 最上級の意味を表す。" },
-    { q: "「〜よりも…なものはない」という最上級の意味を比較級で表す文は？", blank: "Alaska is larger than ___ state in the US.", options:["any","any other","every other","all other"], answer: 1, exp: "比較級+than any other+単数形「他のどの〜よりも…だ」＝最上級の意味を表します。" },
-    { q: "最上級を強調するのに使えない語は？", blank: "She is ___ the best singer.", options:["by far","much","very","the very"], answer: 2, exp: "最上級はby far / much / the veryで強調します。veryは単独では使えません（the very+最上級は可）。" },
-  ],
-  l23: [
-    { q: "「ますます〜」を表す表現は？", blank: "The tree is growing ___.", options:["taller and taller","more and more tall","the more tall","much taller"], answer: 0, exp: "比較級+and+比較級「ますます〜」。一音節の比較級はer形を繰り返します。" },
-    { q: "「〜すればするほど…」を表す表現の正しい形は？", blank: "", options:["The more I study, the more I know.","More I study, more I know.","As more I study, as more I know.","The more I study, I know more."], answer: 0, exp: "The+比較級..., the+比較級...「〜すればするほど…」" },
-    { q: "「そのカメラは手のひらほどの大きさしかない」(=ほんの〜) を表すのは？", blank: "The camera is ___ my hand.", options:["no bigger than","not bigger than","no big as","not as big than"], answer: 0, exp: "A...no+比較級+than B「（ほんの）Bと同程度にしか…でない」" },
-    { q: "「30,000円もの額」(= as much as) を表す表現は？", blank: "She paid me ___ 30,000 yen.", options:["no less than","no more than","not less than","not more than"], answer: 0, exp: "no less than〜「〜ほども多く」= as many/much as。not less thanは「少なくとも〜」の意味。" },
-  ],
-  l24: [
-    { q: "「私はボストンに住んでいる友人がいる。」( ___ は人が先行詞・主格)", blank: "I have a friend ___ lives in Boston.", options:["who","which","whom","whose"], answer: 0, exp: "who：先行詞が人で、関係詞節中で主語の働きをする（主格）。" },
-    { q: "先行詞が「人以外」で主格の関係代名詞は？", blank: "They live in a house ___ stands on a hill.", options:["which","who","whom","whose"], answer: 0, exp: "which：先行詞が人以外のとき、主格・目的格として使う。" },
-    { q: "所有格の関係代名詞は？（先行詞・人/物ともに同じ）", blank: "He has a friend ___ wife is a singer.", options:["whose","who's","which","that"], answer: 0, exp: "whose：所有格の関係代名詞。先行詞が人でも物でもwhoseを使う。" },
-    { q: "目的格の関係代名詞で省略できないものは？", blank: "", options:["前置詞の目的語でない目的格のwho(m)","whoの目的格","whichの目的格","前置詞の直後に置かれたwhich"], answer: 3, exp: "前置詞の直後（前置詞+which/whom）は省略できません。前置詞を後ろに置けば省略可能です。" },
-    { q: "thatが特に好まれる先行詞はどれ？", blank: "", options:["the only book","a book","some books","any book"], answer: 0, exp: "the first, the last, the+最上級, the same, the onlyなど特定の1つであることを表す修飾語を伴う場合はthatが好まれる。" },
-  ],
-  l25: [
-    { q: "whatの正しい説明は？", blank: "", options:["先行詞を含む関係代名詞で「〜すること[もの]」を意味する","先行詞が人のときだけ使う","先行詞が物のときだけ使う","継続用法にのみ使う"], answer: 0, exp: "what = the thing(s) that〜。先行詞を含む関係代名詞で、先行詞なしで使います。" },
-    { q: "継続用法でthatを使えるのは？", blank: "", options:["使えない（thatは継続用法不可）","コンマがあるときは使える","先行詞が人以外のとき使える","どんな場合でも使える"], answer: 0, exp: "thatは継続用法には使えません。継続用法にはwho/which（コンマあり）を使います。" },
-    { q: "前置詞を関係詞節の前に出す場合、( ___ )に入るのは？", blank: "He is the actor to ___ Ann sent a fan letter.", options:["whom","who","that","which"], answer: 0, exp: "前置詞の直後には whom（人）またはwhich（物）のみ使えます。who / that は使えません。" },
-    { q: "継続用法のwhichが指せるものは？", blank: "", options:["直前の語句・節・文の内容全体","先行詞（人）のみ","先行詞（物）のみ","直前の文全体のみ"], answer: 0, exp: "継続用法のwhichは(a)直前の語句、(b)直前の節、(c)直前の文の内容全体を先行詞とすることができます。" },
-  ],
-  l26: [
-    { q: "「場所」を表す関係副詞は？", blank: "This is the hospital ___ my aunt works.", options:["where","when","why","how"], answer: 0, exp: "where：「場所」を表す副詞の役割。〈前置詞+which〉で書きかえ可能。" },
-    { q: "「〜する（理由）」を表す関係副詞は？", blank: "Tell me the reason ___ you look so happy.", options:["why","where","when","how"], answer: 0, exp: "why：「〜する（理由）」。先行詞はreason(s)。省略されることもある。" },
-    { q: "howについて正しい説明は？", blank: "", options:["先行詞なしで使い、the way howとは言えない","先行詞がwayのときだけ使う","the way howでも使える","先行詞が必要な関係副詞"], answer: 0, exp: "how：先行詞なしで使う。×the way how → ○the way (in which) / the way that / how" },
-    { q: "「〜する人はだれでも」を意味する複合関係詞は？", blank: "", options:["whoever","whatever","whenever","whichever"], answer: 0, exp: "whoever「〜する人はだれでも」= no matter who。whoever can be replaced with 'anyone who'." },
-    { q: "「いつ〜しても」を意味する複合関係詞は？", blank: "I visit my uncle ___ I go to Osaka.", options:["whenever","wherever","whoever","whatever"], answer: 0, exp: "whenever「〜する時はいつも/いつ〜しても」= no matter when。" },
-  ],
-  l27: [
-    { q: "「どれほど疲れていても」を意味する表現は？", blank: "___ tired she is, she always smiles.", options:["However","Whatever","Whoever","Whenever"], answer: 0, exp: "however+形容詞/副詞+S+V「どれほど〜でも」= no matter how。" },
-    { q: "「what is called」の意味は？", blank: "", options:["いわゆる〜","〜するもの","現在の〜","まるで〜のように"], answer: 0, exp: "what is called「いわゆる〜」。This music is what is called 'rap.'（これはいわゆるラップという音楽だ。）" },
-    { q: "「what is more」の意味は？", blank: "", options:["そのうえ","もっと何か","さらに悪いことに","それどころか"], answer: 0, exp: "what is more「そのうえ」。反対にwhat is worse「さらに悪いことに」もあります。" },
-    { q: "「however」を「no matter〜」で言い換えると？", blank: "", options:["no matter how","no matter what","no matter who","no matter which"], answer: 0, exp: "however = no matter how。similarly: whoever=no matter who, whatever=no matter what。" },
-  ],
-  l28: [
-    { q: "仮定法過去の正しい形は？（現在の事実と反対）", blank: "If he ___ ready, we ___ go.", options:["were / would","is / will","had been / would","was being / could"], answer: 0, exp: "仮定法過去：If+S+動詞の過去形（be動詞はwere）, S+would[could/might]+動詞の原形。現在の事実と反対。" },
-    { q: "仮定法過去完了の正しい形は？（過去の事実と反対）", blank: "If I ___ earlier, I ___ the train.", options:["had left / would not have missed","left / would not miss","had left / would not miss","left / would not have missed"], answer: 0, exp: "仮定法過去完了：If+S+had+過去分詞, S+would[could/might]+have+過去分詞。過去の事実と反対。" },
-    { q: "仮定法で be動詞を使うとき、主語が I や he でも使うのは？", blank: "", options:["were","was","is","be"], answer: 0, exp: "仮定法ではbe動詞は人称・数に関係なくwereを使う（口語では1人称・3人称単数でwasも使われる）。" },
-    { q: "「もし〜だったなら（過去）、今ごろ…だろう（現在）」という混合仮定法の形は？", blank: "", options:["If+had+過去分詞, would+原形","If+過去形, would have+過去分詞","If+had+過去分詞, would have+過去分詞","If+過去形, would+原形"], answer: 0, exp: "if節が仮定法過去完了（過去の仮定）+ 主節が仮定法過去（現在の結果）の混合形。" },
-  ],
-  l29: [
-    { q: "「彼女の電話番号を知っていればなあ。」（今現在の願望）", blank: "I wish I ___ her telephone number.", options:["knew","know","had known","would know"], answer: 0, exp: "wish+仮定法過去「〜ならなあ」。願っている時と同時のことは過去形を使います。" },
-    { q: "「高いバッグを買わなければよかったなあ。」（過去のことへの後悔）", blank: "I wish I ___ such an expensive bag.", options:["hadn't bought","didn't buy","wouldn't buy","haven't bought"], answer: 0, exp: "wish+仮定法過去完了「〜だったらなあ」。願っている時よりも前のことは過去完了を使います。" },
-    { q: "ifの省略による倒置で正しい文は？", blank: "", options:["Were I you, I would ask her.","Was I you, I would ask her.","If were I you, I would ask her.","I were you, I would ask her."], answer: 0, exp: "ifを省略すると後のSVが倒置される。were/had/shouldが文頭に出る形。" },
-    { q: "「もし〜するようなことがあれば」（未来・実現可能性低）という意味は？", blank: "If he ___ change his mind, he would call me.", options:["should","would","could","were to"], answer: 0, exp: "If S should do「もし〜するようなことがあれば」。実現可能性が低いことを表す。" },
-  ],
-  l30: [
-    { q: "「夢がなければ」をif節なしで表すと？", blank: "___ dreams, life would have no meaning.", options:["But for","Without / But for","Except for","Despite"], answer: 0, exp: "but for〜「〜がなければ/なかったら」= without〜。どちらも正解ですが選択肢はBut forのみが正確。" },
-    { q: "「音楽がなければ、人生は退屈だろう。」正しい表現は？", blank: "", options:["If it were not for music, life would be boring.","If it is not for music, life would be boring.","If it was not for music, life would be boring.","Without music, life is boring."], answer: 0, exp: "if it were not for〜「もし〜がなければ」（現在）。= but for / without。" },
-    { q: "「もう〜してもよいころだ」を表す表現は？", blank: "", options:["It's time + 仮定法過去","It's time + 仮定法過去完了","It's time + to不定詞のみ","It's time + 原形"], answer: 0, exp: "It's time+仮定法過去「もう〜してもよいころだ」。It's time you bought a new bicycle.など。" },
-    { q: "「もし彼が気が変わったなら（過去の仮定法完了）」ifを省略した形は？", blank: "___ we known you were in the hospital, we would have visited you.", options:["Had","Were","Should","Did"], answer: 0, exp: "had+過去分詞の仮定法過去完了でifを省略すると、Hadが文頭に出る倒置構文になります。" },
-    { q: "「それとなく依頼する」最もていねいな表現は？", blank: "", options:["I was wondering if you could help me.","Can you help me?","I wonder if you can help me.","Would you help me?"], answer: 0, exp: "wonderを過去進行形にすると、さらにていねいな表現になります。" },
-  ]
-};
-
-// =============================================
-// STATE
-// =============================================
-let currentLesson = 'l21';
-let quizState = {};
-let totalXP = 0;
-
-// =============================================
-// RENDER
-// =============================================
-function showLesson(id) {
-  currentLesson = id;
-  // update sidebar
-  document.querySelectorAll('.lesson-btn').forEach(b => b.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  renderLesson(id);
-}
-
-function renderLesson(id) {
-  const lesson = LESSONS[id];
-  const quizzes = QUIZZES[id] || [];
-
-  quizState[id] = quizState[id] || { idx: 0, score: 0, answered: false, finished: false };
-
-  const html = `
-    <div class="lesson-card">
-      <div class="lesson-header">
-        <div class="lesson-label">Lesson ${lesson.num}</div>
-        <div class="lesson-title">${lesson.title} <span class="jp">${lesson.jp}</span></div>
-        <div class="lesson-desc">${lesson.desc}</div>
-      </div>
-      <div class="tab-bar">
-        <button class="tab-btn active" onclick="switchTab(this,'study-${id}')">📖 解説</button>
-        <button class="tab-btn" onclick="switchTab(this,'quiz-${id}')">✏️ 確認テスト</button>
-        <button class="tab-btn" onclick="switchTab(this,'ai-${id}')">🤖 AI個別質問</button>
-      </div>
-
-      <!-- STUDY TAB -->
-      <div class="tab-content active" id="study-${id}">
-        ${lesson.sections.map((sec, si) => `
-          <div class="grammar-section">
-            <div class="grammar-section-title">
-              <span class="section-badge">${String.fromCharCode(65+si)}</span>
-              ${sec.title}
-            </div>
-            ${sec.formula ? `<div class="formula-box"><div class="formula-label">構造</div>${sec.formula}</div>` : ''}
-            ${sec.points.map(p => `
-              <div class="example-block">
-                <div class="example-en">${p.en}</div>
-                <div class="example-jp">🇯🇵 ${p.jp}</div>
-                ${p.note ? `<div class="tip-box">${p.note}</div>` : ''}
-              </div>
-            `).join('')}
-            ${sec.tip ? `<div class="tip-box">${sec.tip}</div>` : ''}
-          </div>
-        `).join('')}
-      </div>
-
-      <!-- QUIZ TAB -->
-      <div class="tab-content" id="quiz-${id}">
-        ${renderQuiz(id)}
-      </div>
-
-      <!-- AI TAB -->
-      <div class="tab-content" id="ai-${id}">
-        <div class="ai-section checker-area">
-          <div class="ai-section-title">🤖 AIに質問する</div>
-          <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">
-            この文法についてわからないことを何でも質問してください。英作文の添削や例文の説明もできます！
-          </p>
-          <div class="ai-input-row">
-            <textarea class="ai-input" id="aiInput-${id}" placeholder="例：「as if の後ろはなぜ過去形を使うの？」「この英文を添削して」など" rows="2"></textarea>
-            <button class="ai-btn" onclick="askAI('${id}')">
-              <span>送信</span>
-              <span>→</span>
-            </button>
-          </div>
-          <div class="ai-loading" id="aiLoading-${id}">
-            <div class="dot-pulse"><span></span><span></span><span></span></div>
-            <span>AIが回答を考えています...</span>
-          </div>
-          <div class="ai-response" id="aiResponse-${id}"></div>
-        </div>
-      </div>
-    </div>
-  `;
-  document.getElementById('mainContent').innerHTML = html;
-}
-
-function renderQuiz(id) {
-  const qs = QUIZZES[id] || [];
-  const state = quizState[id] || { idx: 0, score: 0, answered: false, finished: false };
-
-  if (state.finished) {
-    const pct = Math.round((state.score / qs.length) * 100);
-    const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : '💪';
-    const msg = pct >= 80 ? '素晴らしい！完璧な理解です！' : pct >= 60 ? 'よくできました！もう一度復習してみよう。' : '復習してもう一度挑戦してみよう！';
-    return `
-      <div class="result-screen visible">
-        <div class="result-emoji">${emoji}</div>
-        <div class="result-score">${state.score} / ${qs.length}</div>
-        <div class="result-msg">${msg}（正解率 ${pct}%）</div>
-        <button class="btn-retry" onclick="retryQuiz('${id}')">🔄 もう一度</button>
-        <button class="btn-retry secondary" onclick="switchTabById('study-${id}')">📖 解説を見る</button>
-      </div>
-    `;
-  }
-
-  const q = qs[state.idx];
-  const progress = state.idx / qs.length * 100;
-
-  return `
-    <div class="quiz-container">
-      <div class="quiz-progress">
-        <span class="quiz-counter">問 ${state.idx + 1} / ${qs.length}</span>
-        <div class="progress-bar-wrap">
-          <div class="progress-bar" style="width:${progress}%"></div>
-        </div>
-        <span class="score-badge">${state.score} 正解</span>
-      </div>
-      <div class="quiz-card">
-        <div class="quiz-q-label">Q${state.idx + 1}</div>
-        <div class="quiz-q-text">${q.q}</div>
-        ${q.blank ? `<div class="quiz-q-sub" style="font-size:14px;color:#444;margin-bottom:12px;"><em>${q.blank}</em></div>` : ''}
-        <div class="quiz-options" id="quizOpts-${id}">
-          ${q.options.map((opt, oi) => `
-            <button class="quiz-option" onclick="selectAnswer('${id}', ${oi})" id="opt-${id}-${oi}">
-              <span class="option-indicator">${String.fromCharCode(65+oi)}</span>
-              ${opt}
-            </button>
-          `).join('')}
-        </div>
-        <div class="quiz-feedback" id="quizFeedback-${id}"></div>
-      </div>
-      <div class="quiz-nav">
-        <button class="btn-next" id="quizNext-${id}" onclick="nextQuestion('${id}')">
-          ${state.idx < qs.length - 1 ? '次の問題 →' : '結果を見る 🎉'}
-        </button>
-      </div>
-    </div>
-  `;
-}
-
-function selectAnswer(id, oi) {
-  const state = quizState[id];
-  if (state.answered) return;
-  state.answered = true;
-
-  const qs = QUIZZES[id];
-  const q = qs[state.idx];
-  const correct = q.answer === oi;
-
-  if (correct) {
-    state.score++;
-    addXP(10);
-  }
-
-  // Disable all options
-  document.querySelectorAll(`#quizOpts-${id} .quiz-option`).forEach((btn, i) => {
-    btn.disabled = true;
-    if (i === q.answer) btn.classList.add('correct');
-    else if (i === oi && !correct) btn.classList.add('wrong');
-  });
-
-  // Show feedback
-  const fb = document.getElementById(`quizFeedback-${id}`);
-  fb.className = `quiz-feedback ${correct ? 'correct' : 'wrong'} visible`;
-  fb.innerHTML = `<strong>${correct ? '✅ 正解！' : '❌ 不正解'}</strong>${q.exp}`;
-
-  // Show next button
-  document.getElementById(`quizNext-${id}`).classList.add('visible');
-}
-
-function nextQuestion(id) {
-  const qs = QUIZZES[id];
-  const state = quizState[id];
-
-  if (state.idx < qs.length - 1) {
-    state.idx++;
-    state.answered = false;
-    // Re-render quiz tab content
-    const tab = document.getElementById(`quiz-${id}`);
-    tab.innerHTML = renderQuiz(id);
-  } else {
-    state.finished = true;
-    state.answered = false;
-    const tab = document.getElementById(`quiz-${id}`);
-    tab.innerHTML = renderQuiz(id);
-  }
-}
-
-function retryQuiz(id) {
-  quizState[id] = { idx: 0, score: 0, answered: false, finished: false };
-  const tab = document.getElementById(`quiz-${id}`);
-  tab.innerHTML = renderQuiz(id);
-}
-
-function switchTab(btn, tabId) {
-  // find all tab-btns and tab-contents in same lesson card
-  const card = btn.closest('.lesson-card');
-  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  card.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(tabId).classList.add('active');
-}
-
-function switchTabById(tabId) {
-  const tab = document.getElementById(tabId);
-  if (!tab) return;
-  const card = tab.closest('.lesson-card');
-  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  card.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  // Find the matching tab-btn
-  card.querySelectorAll('.tab-btn').forEach(b => {
-    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(tabId)) {
-      b.classList.add('active');
-    }
-  });
-  tab.classList.add('active');
-}
-
-// =============================================
-// AI
-// =============================================
-async function askAI(id) {
-  const lesson = LESSONS[id];
-  const input = document.getElementById(`aiInput-${id}`);
-  const loading = document.getElementById(`aiLoading-${id}`);
-  const response = document.getElementById(`aiResponse-${id}`);
-  const btn = input.closest('.ai-section').querySelector('.ai-btn');
-
-  const question = input.value.trim();
-  if (!question) { input.focus(); return; }
-
-  btn.disabled = true;
-  loading.classList.add('visible');
-  response.classList.remove('visible');
-  response.textContent = '';
-
-  const systemPrompt = `あなたは日本人高校生向けの英文法専門の先生です。
-今学習中のレッスン：Lesson ${lesson.num} 「${lesson.title}（${lesson.jp}）」
-
-このレッスンのポイント：
-${lesson.sections.map(s => s.title + '\n' + s.points.map(p => '  例: ' + p.en.replace(/<[^>]+>/g, '') + ' → ' + p.jp).join('\n')).join('\n\n')}
-
-以下のルールで回答してください：
-- 日本語でわかりやすく説明する
-- 具体的な英語の例文を必ず使う
-- なぜその形になるかの理由も説明する
-- 高校生が理解できるよう、専門用語は補足説明する
-- 英作文の添削の場合は、誤りを指摘し正しい形と理由を説明する
-- 回答は簡潔にまとめる（長すぎない）`;
-
-  try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: [{ role: "user", content: question }]
-      })
-    });
-    const data = await res.json();
-    const text = data.content?.map(c => c.text || '').join('') || '回答を取得できませんでした。';
-    response.textContent = text;
-    response.classList.add('visible');
-    addXP(5);
-  } catch (e) {
-    response.textContent = '⚠️ 通信エラーが発生しました。もう一度お試しください。';
-    response.classList.add('visible');
-  }
-
-  loading.classList.remove('visible');
-  btn.disabled = false;
-}
-
-function addXP(amount) {
-  totalXP += amount;
-  document.getElementById('totalXP').textContent = totalXP + ' XP';
-}
-
-// =============================================
-// INIT
-// =============================================
-renderLesson('l21');
-</script>
-</body>
-</html>
