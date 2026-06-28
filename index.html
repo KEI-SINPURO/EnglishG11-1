@@ -887,24 +887,6 @@ const VOCAB = [
   {id:1299,en:"haste",jp:"急ぐこと",isNew:false},
   {id:1300,en:"nap",jp:"うたた寝",isNew:false},
 ];
-// ============================================================
-// VOCAB — システム英単語 5訂版（画像で確認できた単語のみ: 1001-1008）
-// ============================================================
-const VOCAB = [
-  {id:1001,en:"priority",phrase:"give top priority to safety",jp:"優先事項",jp_phrase:"安全を最優先する",pron:"praiɔ́(ː)rəti"},
-  {id:1002,en:"obstacle",phrase:"an obstacle to communication",jp:"障害；じゃま（な物）",jp_phrase:"コミュニケーションの障害",pron:"ábstəkl"},
-  {id:1003,en:"appetite",phrase:"have no appetite",jp:"食欲；欲望（＝desire）（＋for）",jp_phrase:"食欲がない",pron:"ǽpitait"},
-  {id:1004,en:"tension",phrase:"relieve tension",jp:"緊張；（形）張りつめた；（名）時制",jp_phrase:"緊張を緩和する",pron:"ténʃən"},
-  {id:1005,en:"tribe",phrase:"a Native American tribe",jp:"部族；種族",jp_phrase:"アメリカ先住民の部族",pron:"tráib"},
-  {id:1006,en:"budget",phrase:"cut the defense budget",jp:"予算案",jp_phrase:"防衛予算を削減する",pron:"bʌ́dʒit"},
-  {id:1007,en:"campaign",phrase:"the campaign to promote tourism",jp:"運動",jp_phrase:"観光を促進する運動",pron:"kæmpéin"},
-  {id:1008,en:"sorrow",phrase:"joy and sorrow",jp:"悲しみ",jp_phrase:"喜びと悲しみ",pron:"sórou"},
-];
-// ※ 1009以降は画像で確認できなかったため未登録。
-
-// ============================================================
-// GRAMMAR DATA (全10レッスン 教科書精読データ)
-// ============================================================
 const LESSONS_DATA = {
   l21:{num:21,title:"比較 (1)",jp:"原級・比較級",color:"#3d52a0",
     desc:"規則変化：-er,-est型／more,most型。不規則：good/well→better→best など。",
@@ -1722,34 +1704,6 @@ const QUIZ_BANK = {
   ],
 };
 
-// ============================================================
-// EXAM CONFIG
-// ============================================================
-const EXAM_CONFIG = {
-  vocab_count: 1,     // 英単語 1問×15点
-  mc_count: 2,        // 四択 2問×10点
-  fill_count: 2,      // 穴埋め 2問×10点
-  sort_count: 3,      // 並び替え 3問×5点
-  write_count: 3,     // ライティング 3問×5点
-  twist_count: 3,     // ひねり 3問×5点
-  vocab_pts: 15,
-  mc_pts: 10,
-  fill_pts: 10,
-  sort_pts: 5,
-  write_pts: 5,
-  twist_pts: 5,
-  total: 15+20+20+15+15+15  // = 100点
-};
-// ================================================================
-// 期末テスト配分
-//   英単語      15問 × 1点 = 15点
-//   四択問題    10問 × 2点 = 20点
-//   穴埋め問題  10問 × 2点 = 20点
-//   並び替え問題  5問 × 3点 = 15点
-//   ライティング  5問 × 3点 = 15点
-//   ひねり問題    5問 × 3点 = 15点
-//   合計                    100点
-// ================================================================
 
 // ── STATE ────────────────────────────────────────────────────────
 let totalXP   = 0;
