@@ -230,6 +230,7 @@ header{background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;p
 .exam-fb{font-size:11px;padding:6px 9px;border-radius:6px;margin-top:6px;display:none;}
 .exam-fb.ok{background:#e8f8ed;color:#155724;border:1px solid #b2dfdb;}
 .exam-fb.ng{background:#fde8ec;color:#721c24;border:1px solid #f5c6cb;}
+.exam-fb.partial{background:#fff9e6;color:#856404;border:1px solid #ffd54f;}
 .exam-fb.vis{display:block;}
 .exam-submit-wrap{text-align:center;margin-top:20px;}
 .exam-submit-btn{padding:12px 32px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;border:none;border-radius:11px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s;}
@@ -1239,7 +1240,10 @@ function renderQuiz(id) {
 
   let ansHtml = '';
   if (q.type === 'mc') {
-    ansHtml = `<div class="qopts">${q.opts.map((o,i)=>`
+    const correctText = q.opts[q.ans];
+    const shuffledOpts = shuffle([...q.opts]);
+    const newAns = shuffledOpts.indexOf(correctText);
+    ansHtml = `<div class="qopts" data-correct="${newAns}">${shuffledOpts.map((o,i)=>`
       <button class="qopt" onclick="answerMC('${id}',${i})">
         <span class="opt-ind">${String.fromCharCode(65+i)}</span>${o}
       </button>`).join('')}</div>`;
@@ -1327,13 +1331,15 @@ function showFeedback(id, correct, exp, model) {
 function answerMC(id, idx) {
   const st = quizState[id];
   if (st.answered) return;
-  const q = QUIZ_BANK[id][st.idx];
+  const qopts = document.querySelector(`#qz-${id} .qopts`);
+  const correctIdx = parseInt(qopts?.dataset.correct ?? 0);
   document.querySelectorAll(`#qz-${id} .qopt`).forEach((b,i) => {
     b.disabled = true;
-    if (i === q.ans) b.classList.add('ok');
-    else if (i === idx && idx !== q.ans) b.classList.add('ng');
+    if (i === correctIdx) b.classList.add('ok');
+    else if (i === idx && idx !== correctIdx) b.classList.add('ng');
   });
-  showFeedback(id, idx === q.ans, q.exp, null);
+  const q = QUIZ_BANK[id][st.idx];
+  showFeedback(id, idx === correctIdx, q.exp, null);
 }
 
 function answerFill(id) {
@@ -1549,8 +1555,8 @@ function renderVocabQuiz() {
     <div class="qcard">
       <div class="qlbl">単語クイズ</div>
       <div class="qtext" style="font-size:13px;white-space:pre-wrap;">${q.q}</div>
-      <div class="qopts">${q.opts.map((o,i)=>`
-        <button class="qopt" onclick="answerVQ(${i})">
+      <div class="qopts" data-correct-ans="${encodeURIComponent(q.ans)}">${shuffle([...q.opts]).map((o,i)=>`
+        <button class="qopt" onclick="answerVQ(this)" data-opt="${encodeURIComponent(o)}">
           <span class="opt-ind">${String.fromCharCode(65+i)}</span>${o}
         </button>`).join('')}</div>
       <div class="qfb" id="vqfb"></div>
@@ -1558,20 +1564,22 @@ function renderVocabQuiz() {
     <div class="qnav"><button class="btn-next" id="vqnext" onclick="nextVQ()">次の問題 →</button></div>`;
 }
 
-function answerVQ(idx) {
+function answerVQ(btn) {
   if (vqState.answered) return;
   vqState.answered = true;
   const q = vqState.bank[vqState.idx];
-  const correct = q.opts[idx] === q.ans;
-  document.querySelectorAll('#vocabQuizContent .qopt').forEach((b,i) => {
+  const selectedText = decodeURIComponent(btn.dataset.opt || '');
+  const correct = selectedText === q.ans;
+  document.querySelectorAll('#vocabQuizContent .qopt').forEach(b => {
     b.disabled = true;
-    if (q.opts[i] === q.ans) b.classList.add('ok');
-    else if (i === idx && !correct) b.classList.add('ng');
+    const optText = decodeURIComponent(b.dataset.opt || '');
+    if (optText === q.ans) b.classList.add('ok');
+    else if (b === btn && !correct) b.classList.add('ng');
   });
   const fb = document.getElementById('vqfb');
-  const btn = document.getElementById('vqnext');
+  const nextBtn = document.getElementById('vqnext');
   if (fb) { fb.className = `qfb ${correct?'ok':'ng'} vis`; fb.innerHTML = `<strong>${correct?'✅ 正解！':'❌ 不正解'}</strong>${q.exp}`; }
-  if (btn) btn.classList.add('vis');
+  if (nextBtn) nextBtn.classList.add('vis');
   if (correct) { vqState.score++; addXP(10); }
 }
 
@@ -1893,16 +1901,20 @@ function renderExamPaper() {
       </div>`;
   };
 
-  const renderMCItem = (q, idx) => `
-    <div class="exam-qitem" id="eq-mc-${idx}">
+  const renderMCItem = (q, idx) => {
+    const correctText = q.opts[q.ans];
+    const shuffledOpts = shuffle([...q.opts]);
+    return `
+    <div class="exam-qitem" id="eq-mc-${idx}" data-correct="${encodeURIComponent(correctText)}">
       <div class="exam-q-lbl">四択問題 (2点) — 問${idx+1}</div>
       <div class="exam-qtext">${q.q}${q.blank?'\n'+q.blank:''}</div>
-      <div class="exam-opts">${q.opts.map((o,i)=>`
-        <button class="exam-opt" onclick="selExamOpt('mc',${idx},${i},this)">
+      <div class="exam-opts">${shuffledOpts.map((o,i)=>`
+        <button class="exam-opt" onclick="selExamOptText('mc',${idx},this)" data-opt="${encodeURIComponent(o)}">
           <span class="exam-opt-ind">${String.fromCharCode(65+i)}</span>${o}
         </button>`).join('')}</div>
       <div class="exam-fb" id="efb-mc-${idx}"></div>
     </div>`;
+  };
 
   const renderFillItem = (q, idx) => {
     const blanks = (q.blank.match(/_+/g)||[]).length;
@@ -1996,6 +2008,16 @@ function selExamOpt(cat, idx, optIdx, btn) {
   examState.answers[cat][idx] = optIdx;
 }
 
+// シャッフル後の選択肢はテキストで照合
+function selExamOptText(cat, idx, btn) {
+  if (examState.submitted) return;
+  const wrap = document.getElementById(`eq-${cat}-${idx}`);
+  wrap.querySelectorAll('.exam-opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  if (!examState.answers[cat]) examState.answers[cat] = {};
+  examState.answers[cat][idx] = decodeURIComponent(btn.dataset.opt);
+}
+
 function moveExamChip(cat, idx, btn, dir) {
   if (examState.submitted) return;
   if (dir === 'slot') {
@@ -2049,13 +2071,28 @@ async function submitExam() {
 
   // ── 四択（10問×2点）──
   es.mcQs.forEach((q, i) => {
-    const a = es.answers.mc?.[i] ?? -1;
-    const ok = a === q.ans;
-    showExamFB('mc', i, ok, q.exp, null, q.ans);
+    const selectedText = es.answers.mc?.[i] ?? null;
+    const correctText = q.opts[q.ans];
+    const ok = selectedText === correctText;
+    // DOM上で正解・不正解ボタンを色付け
+    const wrap = document.getElementById(`eq-mc-${i}`);
+    if (wrap) {
+      wrap.querySelectorAll('.exam-opt').forEach(btn => {
+        btn.disabled = true;
+        const optText = decodeURIComponent(btn.dataset.opt || '');
+        if (optText === correctText) btn.classList.add('ex-ok');
+        else if (btn.classList.contains('sel') && !ok) btn.classList.add('ex-ng');
+      });
+    }
+    const fb = document.getElementById(`efb-mc-${i}`);
+    if (fb) {
+      fb.className = `exam-fb ${ok?'ok':'ng'} vis`;
+      fb.innerHTML = `${ok?'✅ 正解':'❌ 不正解'}：${q.exp}${!ok?'<br>正解：'+correctText:''}`;
+    }
     if (ok) { total += 2; breakdown.mc += 2; }
   });
 
-  // ── 穴埋め（10問×2点）──
+  // ── 穴埋め（10問×2点・全空欄正解で2点）──
   es.fillQs.forEach((q, i) => {
     const answers = Array.isArray(q.ans) ? q.ans : [q.ans];
     const blanks = (q.blank.match(/_+/g)||[]).length;
@@ -2178,35 +2215,48 @@ async function submitExam() {
 // ── AI採点関数 ──
 async function aiGradeWriting(items, type) {
   const isKaso = (type === 'twist');
+
   const sys = isKaso
     ? `あなたは英語教師です。仮定法の英作文を採点してください。
+
+重要な採点方針：
+- 模範解答と全く同じでなくても、文法的に正しく意味が同等であれば【満点（3点）】を与えてください。
+- 英語では同じ意味を複数の正しい表現で言えるため、模範解答はあくまで参考です。
+- 仮定法の核となる形（if節の時制・主節のwould/could＋原形 or have＋過去分詞）が正しければ満点を与えてください。
+
 採点基準（3点満点）：
-3点：仮定法の形が完全に正しく、意味も正確
-2点：仮定法の形はほぼ正しいが小さなミスがある
-1点：仮定法の概念は理解しているが形に誤りがある
+3点：仮定法の形が正しく、意味も正確（模範解答と同等の表現も満点）
+2点：仮定法の概念は合っているが、時制や助動詞に小さなミスがある
+1点：仮定法を使おうとしているが、形に大きな誤りがある
 0点：仮定法になっていない、または未回答
 
-各問題についてJSON形式で返してください：
-{"results":[{"idx":問題番号,"score":点数,"feedback":"日本語で1〜2文のフィードバック"}]}`
+各問題についてJSON形式のみで返してください（説明文不要）：
+{"results":[{"idx":問題番号,"score":点数,"feedback":"日本語で1〜2文。満点の場合は何が良かったかを具体的に褒める"}]}`
     : `あなたは英語教師です。英作文を採点してください。
+
+重要な採点方針：
+- 模範解答と全く同じでなくても、文法的に正しく意味が同等であれば【満点（3点）】を与えてください。
+- 英語では同じ内容を複数の正しい表現で書けるため、模範解答はあくまで参考です。
+- スペルミスが1箇所だけの場合は2点（内容が正しければ）を目安にしてください。
+
 採点基準（3点満点）：
-3点：文法・意味ともに完全に正しい
-2点：意味は通じるが小さな文法ミスがある
-1点：意味はわかるが文法の誤りが多い
+3点：文法・意味ともに正しい（模範解答と同等の表現も満点）
+2点：意味は通じるが小さな文法ミスまたはスペルミスがある
+1点：意味はわかるが文法の誤りが複数ある
 0点：著しく不正確、または未回答
 
-各問題についてJSON形式で返してください：
-{"results":[{"idx":問題番号,"score":点数,"feedback":"日本語で1〜2文のフィードバック"}]}`;
+各問題についてJSON形式のみで返してください（説明文不要）：
+{"results":[{"idx":問題番号,"score":点数,"feedback":"日本語で1〜2文。満点の場合は何が良かったかを具体的に褒める"}]}`;
 
   const content = items.map(it => isKaso
-    ? `問題${it.idx}：「${it.question}」→ 解答：「${it.userAns}」`
-    : `問題${it.idx}：設問「${it.question}」→ 解答：「${it.userAns}」`
-  ).join('\n');
+    ? `問題${it.idx}：\n状況：「${it.question}」\n文法ポイント：${it.key}\n模範解答：「${it.model}」\n生徒の解答：「${it.userAns}」`
+    : `問題${it.idx}：\n設問：「${it.question}」\n模範解答：「${it.model}」\n生徒の解答：「${it.userAns}」`
+  ).join('\n\n');
 
   try {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({model:"claude-sonnet-4-6", max_tokens:1000,
+      body: JSON.stringify({model:"claude-sonnet-4-6", max_tokens:1500,
         system: sys,
         messages:[{role:"user", content}]})
     });
@@ -2216,7 +2266,6 @@ async function aiGradeWriting(items, type) {
     const parsed = JSON.parse(clean);
     return parsed.results;
   } catch(e) {
-    // エラー時は全問2点で返す
     return items.map(it => ({idx:it.idx, score:2, feedback:'採点中にエラーが発生しました。模範解答と照らし合わせてご確認ください。'}));
   }
 }
