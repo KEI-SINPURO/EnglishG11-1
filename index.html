@@ -217,6 +217,8 @@ header{background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;p
 .exam-opt.ex-ok .exam-opt-ind{border-color:var(--green);background:var(--green);color:#fff;}
 .exam-opt.ex-ng .exam-opt-ind{border-color:var(--red);background:var(--red);color:#fff;}
 .exam-input{width:100%;padding:8px 11px;border:2px solid var(--border);border-radius:7px;font-size:12px;outline:none;transition:.2s;font-family:inherit;}
+.exam-select{padding:5px 9px;border:2px solid var(--indigo);border-radius:6px;font-size:13px;font-weight:600;color:var(--indigo);background:#f0f4ff;margin:0 3px;cursor:pointer;font-family:inherit;}
+.exam-select:focus{outline:none;border-color:var(--navy);}
 .exam-input:focus{border-color:var(--indigo);}
 .exam-input.ex-ok{border-color:var(--green);background:#e8f8ed;}
 .exam-input.ex-ng{border-color:var(--red);background:#fde8ec;}
@@ -244,6 +246,42 @@ header{background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;p
 .ex-bd{background:#f0f4ff;border-radius:9px;padding:10px 14px;text-align:center;min-width:85px;}
 .ex-bd-num{font-size:18px;font-weight:700;color:var(--indigo);}
 .ex-bd-lbl{font-size:10px;color:var(--muted);margin-top:2px;}
+
+/* 成績表（苦手分野アドバイス） */
+.report-card{background:#f8f9ff;border-radius:14px;padding:20px;margin-top:20px;text-align:left;border:1px solid var(--border);}
+.report-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.topic-row{margin-bottom:14px;}
+.topic-row:last-child{margin-bottom:0;}
+.topic-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.topic-name{font-size:13px;font-weight:700;color:var(--navy);}
+.topic-pct{font-size:13px;font-weight:700;}
+.topic-pct.good{color:var(--green);}
+.topic-pct.mid{color:#e08f00;}
+.topic-pct.bad{color:var(--red);}
+.topic-bar-wrap{height:9px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:6px;}
+.topic-bar{height:100%;border-radius:10px;transition:.5s;}
+.topic-bar.good{background:linear-gradient(90deg,#5cd68a,var(--green));}
+.topic-bar.mid{background:linear-gradient(90deg,#ffd166,#e08f00);}
+.topic-bar.bad{background:linear-gradient(90deg,#ff8a8a,var(--red));}
+.topic-advice{font-size:11.5px;color:var(--muted);line-height:1.7;background:#fff;border-radius:8px;padding:9px 11px;border:1px solid var(--border);}
+.topic-advice b{color:var(--navy);}
+.topic-wrong{margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);}
+.report-overall{font-size:12px;color:var(--navy);background:#eef2ff;border-radius:8px;padding:10px 13px;margin-bottom:16px;line-height:1.7;}
+
+
+/* 実際の期末テスト形式 */
+.exam-passage{font-size:13px;line-height:2.4;color:var(--navy);font-weight:500;margin-bottom:8px;}
+.blank-lbl{font-weight:700;color:var(--indigo);font-size:12px;margin-right:2px;}
+.exam-wordlist{font-size:12px;color:var(--indigo);background:#eef2ff;border-radius:7px;padding:7px 11px;font-weight:600;line-height:1.8;}
+.exam-sentence{font-size:13px;line-height:2.3;color:var(--navy);font-weight:500;}
+.exam-blank{display:inline-block;width:78px;padding:3px 6px;border:none;border-bottom:2px solid var(--indigo);background:#f0f4ff;font-size:13px;text-align:center;font-family:inherit;margin:0 3px;border-radius:4px 4px 0 0;outline:none;color:var(--navy);}
+.exam-blank:focus{background:#e0e8ff;border-bottom-color:var(--navy);}
+.exam-blank.wide{width:min(100%,300px);text-align:left;}
+.exam-blank.ex-ok{background:#e8f8ed;border-bottom-color:var(--green);}
+.exam-blank.ex-ng{background:#fde8ec;border-bottom-color:var(--red);}
+.exam-frame{font-size:13px;color:var(--navy);font-weight:600;margin:4px 0 6px;line-height:1.8;}
+.exam-note-list{font-size:11px;color:#856404;background:#fff9e6;border:1px solid #ffd54f;border-radius:6px;padding:5px 9px;margin-bottom:8px;line-height:1.7;}
+.exam-dir{display:inline-block;font-size:11px;font-weight:700;color:#5a21a8;background:#f3e8ff;border-radius:6px;padding:1px 7px;margin-left:4px;}
 
 @media(max-width:720px){
   .app{flex-direction:column;padding:10px;}
@@ -957,7 +995,7 @@ const LESSONS_DATA = {
 };
 
 // ================================================================
-// QUIZ BANK（元のコードと同じ内容をそのまま保持）
+// QUIZ BANK
 // ================================================================
 const QUIZ_BANK = {
   l21:[
@@ -972,10 +1010,10 @@ const QUIZ_BANK = {
     {type:"sort",diff:2,q:"「私はあなたと同じくらいたくさんの本を持っている」になるよう並べ替えなさい。",words:["I","have","as","many","books","as","you"],ans:"I have as many books as you",exp:"〈as＋形容詞/副詞＋as〜〉の語順。"},
     {type:"sort",diff:2,q:"「木はどんどん高くなっている」になるよう並べ替えなさい。",words:["The","tree","is","growing","taller","and","taller"],ans:"The tree is growing taller and taller",exp:"〈比較級＋and＋比較級〉「ますます〜」"},
     {type:"sort",diff:3,q:"「彼女は私より3歳年下だ」になるよう並べ替えなさい。",words:["She","is","three","years","younger","than","me"],ans:"She is three years younger than me",exp:"〈数＋比較級＋than〜〉で差を表す。"},
-    {type:"write",diff:2,q:"次の日本語を英語にしなさい。\n「ヘンリーはこのクラスで2番目に背が高い生徒だ。」",hint:"the second tallest ... を使う",model:"Henry is the second tallest student in this class.",exp:"〈the＋序数＋最上級＋単数名詞〉の構造。"},
+    {type:"write",diff:2,q:"次の日本語を英語にしなさい。\n「この本はあの本の3倍の厚さだ。」",hint:"three times as ... as を使う",model:"This book is three times as thick as that one.",exp:"〈倍数詞＋as＋原級＋as〜〉「〜のX倍…だ」"},
     {type:"write",diff:2,q:"次の日本語を英語にしなさい。\n「この建物はあの建物の半分の大きさだ。」",hint:"half as ... as を使う",model:"This building is half as large[big] as that one.",exp:"〈half as＋原級＋as〜〉「〜の半分の…だ」"},
-    {type:"write",diff:3,q:"次の日本語を英語にしなさい。\n「人間は知性においてゴリラよりも優れている。」",hint:"superior to を使う（thanではない）",model:"Humans are superior to gorillas in intelligence.",exp:"〈superior to〜〉「〜より優れている」はtoを使う。thanではない。"},
-    {type:"twist",diff:3,q:"【書き換え】「Mt. Fuji is the highest mountain in Japan.」を\n「比較級＋than any other＋単数名詞」を使って書き換えなさい。",hint:"higher than any other mountain を使う",model:"Mt. Fuji is higher than any other mountain in Japan.",exp:"最上級→比較級による最上級表現への書き換え。"},
+    {type:"write",diff:3,q:"次の日本語を英語にしなさい。\n「この家は私の家よりずっと大きい。」",hint:"much[far] largerを使う（差の強調）",model:"This house is much larger than mine.",exp:"〈much/far＋比較級＋than〜〉「はるかに〜」で差を強調する。"},
+    {type:"twist",diff:3,q:"【ひねり】「彼は私よりたくさんの本を持っている。」を\n比較級を使って英語にしなさい。",hint:"more books than を使う",model:"He has more books than me.",exp:"〈比較級＋than〜〉「〜より…だ」の基本形。"},
     {type:"twist",diff:3,q:"【ひねり】「彼は私の父と同じくらい背が高くない。」を\nnot as ... as を使って英語にしなさい。",hint:"not as tall as を使う",model:"He is not as[so] tall as my father.",exp:"not as[so]＋原級＋as〜「〜ほど…ではない」"},
     {type:"twist",diff:3,q:"【ひねり】「彼女はあいかわらず元気そうに見える。」を\nas ... as ever を使って英語にしなさい。",hint:"as cheerful as ever",model:"She looks as cheerful as ever.",exp:"〈as＋形容詞＋as ever〉「あいかわらず〜」"},
   ],
@@ -1021,7 +1059,7 @@ const QUIZ_BANK = {
     {type:"mc",diff:1,q:"「私にはボストンに住んでいる友人がいる」先行詞が人・主格の関係代名詞は？",blank:"I have a friend ___ lives in Boston.",opts:["who","which","whom","whose"],ans:0,exp:"who：先行詞が人で、主格（関係詞節中の動詞の主語）。"},
     {type:"mc",diff:1,q:"先行詞が「物」で主格の関係代名詞は？",blank:"They live in a house ___ stands on a hill.",opts:["which","who","whom","whose"],ans:0,exp:"which：先行詞が人以外（物・動物など）で主格。"},
     {type:"mc",diff:2,q:"所有格の関係代名詞を選びなさい。（先行詞が人）",blank:"He has a friend ___ wife is a singer.",opts:["whose","who's","which","that"],ans:0,exp:"whose：所有格の関係代名詞。先行詞が人でも物でもwhoseを使う。"},
-    {type:"mc",diff:2,q:"前置詞の直後に置ける関係代名詞の正しい組み合わせは？",blank:"He is the actor to ___ Ann sent a fan letter.",opts:["whom（のみ）","who","that","whom または which"],ans:0,exp:"前置詞の直後（前置詞＋...）に来る場合は人ならwhom、物ならwhich。thatは使えない。"},
+    {type:"mc",diff:2,q:"(　)に入る正しい語を選びなさい。（先行詞が人・目的格）",blank:"The woman ___ I spoke to yesterday is my teacher.",opts:["whom","whose","which","what"],ans:0,exp:"目的格の関係代名詞whom（先行詞が人）。省略も可能。"},
     {type:"mc",diff:3,q:"(　)に入る正しい語を選びなさい。",blank:"This is the ___ book I have ever read.",opts:["that","which","who","what"],ans:0,exp:"the onlyなどの特定の修飾語を伴う場合はthatが好まれる。"},
     {type:"fill",diff:1,q:"（　）に入る語を書きなさい。（先行詞が人・目的格）",blank:"The man ___ I met on the street works at a bank.",ans:["whom","who","that"],hint:"目的格の関係代名詞（省略も可）",exp:"目的格の関係代名詞：who(m)/that（省略も可）。"},
     {type:"fill",diff:2,q:"（　）に入る語を書きなさい。（先行詞が物・所有格）",blank:"I'm looking for a book ___ subject is jazz.",ans:["whose"],hint:"所有格",exp:"whose：先行詞が物でも使える所有格の関係代名詞。"},
@@ -1029,18 +1067,19 @@ const QUIZ_BANK = {
     {type:"sort",diff:2,q:"「私が昨日買ったCDはどこですか？」になるよう並べ替えなさい。",words:["Where","is","the","CD","I","bought","yesterday"],ans:"Where is the CD I bought yesterday",exp:"目的格の関係代名詞thatが省略されている形。"},
     {type:"sort",diff:2,q:"「私はポケットの中にあったお金を彼に貸した」になるよう並べ替えなさい。",words:["I","lent","him","the","money","that","was","in","my","pocket"],ans:"I lent him the money that was in my pocket",exp:"that（主格）が先行詞the moneyを修飾。"},
     {type:"sort",diff:3,q:"「彼は妻が歌手である友人がいる」になるよう並べ替えなさい。",words:["He","has","a","friend","whose","wife","is","a","singer"],ans:"He has a friend whose wife is a singer",exp:"whose（所有格）＋名詞の形。"},
-    {type:"write",diff:2,q:"次の日本語を英語にしなさい。\n「これは私が生まれた都市だ」（前置詞を後ろに置く形）",hint:"This is the city ... I was born in.",model:"This is the city (which[that]) I was born in.",exp:"前置詞を後ろに置く形では関係代名詞の省略も可。"},
-    {type:"write",diff:2,q:"次の日本語を英語にしなさい。\n「これは私が生まれた都市だ」（前置詞を前に出す文語体）",hint:"... in which I was born.",model:"This is the city in which I was born.",exp:"前置詞＋which（文語体）。"},
+    {type:"write",diff:2,q:"次の日本語を英語にしなさい。\n「あの丘の上に建つ家に彼らは住んでいる」（which＋主格を使う）",hint:"They live in a house which ...",model:"They live in a house which stands on that hill.",exp:"先行詞（物）＋主格の関係代名詞which。"},
+    {type:"write",diff:2,q:"次の日本語を英語にしなさい。\n「彼は妻がピアニストである友人がいる」（whoseを使う）",hint:"He has a friend whose wife ...",model:"He has a friend whose wife is a pianist.",exp:"〈whose＋名詞〉で所有格の意味を表す。"},
     {type:"write",diff:3,q:"次の日本語を英語にしなさい。\n「私には姉が一人います。その姉はピアノがとても上手です。」を関係代名詞を使って1文にしなさい。",hint:"I have a sister who ...",model:"I have a sister who[that] plays the piano very well.",exp:"先行詞（a sister）を修飾する限定用法の関係代名詞節。"},
     {type:"twist",diff:3,q:"【ひねり】「彼は今の彼でなかった10年前の人物ではない」を英語にしなさい。（thatが補語となる場合）",hint:"the man that he was ten years ago",model:"He is not the man that he was ten years ago.",exp:"thatが補語となっている場合（Eのケース）。先行詞は「人の性質や状態」。"},
-    {type:"twist",diff:3,q:"【ひねり】「私の母が探していた鍵を見つけた」を英語にしなさい。\n（群動詞の前置詞に注意）",hint:"the key (which) ... had been looking for",model:"My mother found the key (which[that]) she had been looking for.",exp:"群動詞（look for）の前置詞は前に出さない。"},
+    {type:"twist",diff:3,q:"【ひねり】「これは私が昨日買った唯一の本だ」を英語にしなさい。\n（the onlyを使い、thatが好まれる場合に注意）",hint:"the only book that ...",model:"This is the only book that I bought yesterday.",exp:"the onlyなど特定の1つを示す修飾語を伴う場合はthatが好まれる。"},
     {type:"twist",diff:3,q:"【ひねり】「彼が書いた本はすべて有名だ」を英語にしなさい。（all を先行詞にする）",hint:"All the books that he wrote ...",model:"All the books that he wrote are famous.",exp:"先行詞がall, every, any, noを伴う場合はthatが好まれる。"},
   ],
   l25:[
-    {type:"mc",diff:1,q:"(　)に入る正しい語を選びなさい。",blank:"___ worries me is the result of the exam.",opts:["What","That","Which","It"],ans:0,exp:"先行詞を含む関係代名詞whatは300c〜すること[もの]300dを意味し、先行詞なしで使う。"},
+    {type:"mc",diff:1,q:"(　)に入る正しい語を選びなさい。",blank:"They couldn't believe ___ they saw.",opts:["what","that","which","it"],ans:0,exp:"先行詞を含む関係代名詞whatは「〜すること[もの]」を意味し、ここでは動詞believeの目的語になっている。"},
     {type:"mc",diff:2,q:"(　)に入る正しい語を選びなさい。",blank:"He married my sister, ___ he met at the hospital.",opts:["whom","that","what","whose"],ans:0,exp:"継続用法はコンマ＋who(m)/which。thatは継続用法には使えない。"},
     {type:"mc",diff:2,q:"前置詞を前に出すとき ( ___ ) に入るのは？",blank:"He is the actor to ___ Ann sent a fan letter.",opts:["whom","who","that","what"],ans:0,exp:"前置詞の直後は whom（人）または which（物）のみ。who・that は使えない。"},
     {type:"mc",diff:3,q:"(　)に入る正しい語を選びなさい。",blank:"He said he wasn't afraid of ghosts, ___ wasn't true.",opts:["which","that","what","who"],ans:0,exp:"継続用法のwhichは直前の節・文の内容全体を先行詞にできる。thatは継続用法不可。"},
+    {type:"mc",diff:2,q:"(　)に入る正しい語を選びなさい。",blank:"This watch is just ___ I wanted!",opts:["what","that","which","who"],ans:0,exp:"whatは補語にもなれる（先行詞を含む関係代名詞）。"},
     {type:"fill",diff:1,q:"「私を悩ませているのは試験の結果だ」（　）を埋めなさい。",blank:"___ worries me is the result of the exam.",ans:["What"],hint:"先行詞を含む関係代名詞",exp:"What（＝the thing that）を使って節全体が主語になる。"},
     {type:"fill",diff:2,q:"「彼はイタリア製のブラウンのスーツを着ていた」（継続用法）（　）を埋めなさい。",blank:"He wore a brown suit, ___ was made in Italy.",ans:["which"],hint:"継続用法のwhich",exp:"コンマ＋which（継続用法）。先行詞はa brown suit。"},
     {type:"fill",diff:2,q:"（　）に入る語を書きなさい。",blank:"They couldn't believe ___ they saw.",ans:["what"],hint:"「〜したもの」",exp:"what（＝the thing that）が動詞believeの目的語になる。"},
@@ -1057,8 +1096,8 @@ const QUIZ_BANK = {
   l26:[
     {type:"mc",diff:1,q:"「場所」を表す関係副詞は？",blank:"This is the hospital ___ my aunt works.",opts:["where","when","why","how"],ans:0,exp:"where：「場所」を表す副詞の役割。"},
     {type:"mc",diff:1,q:"「理由」を表す関係副詞は？",blank:"Tell me the reason ___ you look so happy.",opts:["why","where","when","how"],ans:0,exp:"why：「〜する(理由)」。先行詞はreason(s)。"},
-    {type:"mc",diff:2,q:"(　)に入る正しい語を選びなさい。",blank:"That's ___ he succeeded in business.",opts:["how","where","when","why"],ans:0,exp:"how：300c〜するやり方300d先行詞なしで使う。×the way how"},
-    {type:"mc",diff:2,q:"(　)に入る正しい語を選びなさい。",blank:"The club admits ___ pays the entry fee.",opts:["whoever","whatever","whenever","whichever"],ans:0,exp:"whoever300c〜する人はだれでも300d= no matter who"},
+    {type:"mc",diff:2,q:"(　)に入る正しい語を選びなさい。",blank:"That's ___ he succeeded in business.",opts:["how","where","when","why"],ans:0,exp:"how：「〜するやり方」先行詞なしで使う。×the way how"},
+    {type:"mc",diff:2,q:"(　)に入る正しい語を選びなさい。",blank:"The club admits ___ pays the entry fee.",opts:["whoever","whatever","whenever","whichever"],ans:0,exp:"whoever「〜する人はだれでも」= no matter who"},
     {type:"mc",diff:3,q:"「case, point, situationなど」も先行詞になれる関係副詞は？",blank:"",opts:["where","when","why","how"],ans:0,exp:"whereは場所以外にも場合・状況・立場などを表す語も先行詞となる。"},
     {type:"fill",diff:1,q:"「恐竜が地球上に生きていた時代があった」（　）を埋めなさい。",blank:"There was a time ___ dinosaurs lived on the earth.",ans:["when"],hint:"「時」を表す関係副詞",exp:"when：「時」を表す副詞の役割。"},
     {type:"fill",diff:2,q:"「休日には、好きな時間に起きることができる」（　）を埋めなさい。",blank:"On holidays, we can get up ___ we want to.",ans:["whenever"],hint:"「〜する時ならいつでも」",exp:"whenever「〜する時ならいつでも」"},
@@ -1349,11 +1388,18 @@ function answerFill(id) {
   const answers = Array.isArray(q.ans) ? q.ans : [q.ans];
   let allOk = true;
   const blanks = (q.blank.match(/_+/g)||[]).length;
+  // 空欄が1つで、answersがフラットな文字列配列の場合は「どれか1つで正解」として扱う
+  const isFlatMultiAnswer = blanks === 1 && answers.length > 1 && answers.every(a => typeof a === 'string');
   for (let i = 0; i < blanks; i++) {
     const input = document.getElementById(`fi-${id}-${i}`);
     if (!input) continue;
     const val = input.value.trim().toLowerCase();
-    const correctAns = answers[i] ? (Array.isArray(answers[i]) ? answers[i] : [answers[i]]) : [answers[0]];
+    let correctAns;
+    if (isFlatMultiAnswer) {
+      correctAns = answers;
+    } else {
+      correctAns = answers[i] ? (Array.isArray(answers[i]) ? answers[i] : [answers[i]]) : [answers[0]];
+    }
     const ok = correctAns.some(a => val === a.toLowerCase());
     input.classList.add(ok ? 'ok' : 'ng');
     input.disabled = true;
@@ -1596,168 +1642,264 @@ function retryVQ() {
 }
 
 // ================================================================
-// 期末テスト構成
-// 英単語：AI生成5穴文章×3セット（各5点）= 15点
-// 四択：10問×2点 = 20点（意味問除外）
-// 穴埋め：10問×2点 = 20点（意味問除外）
-// 並び替え：5問×3点 = 15点
-// ライティング：5問×3点 = 15点（AI採点）
-// ひねり（仮定法）：5問×3点 = 15点（AI採点）
-// 合計：100点
+// 期末テスト構成（実際の期末テストに合わせた Section 1〜6）
+//   Section 1  単語穴埋め（(A)〜(E)の5空所×3題、番号選択）
+//   Section 2  四択20問（比較5・関係詞10・仮定法5）
+//   Section 3  日本文に合う英文（カッコ補充・完答）10問
+//   Section 4  並べ替え 5問
+//   Section 5  Aとほぼ同じ意味の文に書き換え（指示付き）5問 …AI採点
+//   Section 6  和文英訳（注意書き付き）4問 …AI採点
+// ★配点は EXAM_CFG の pts を変えるだけで調整できます。
 // ================================================================
+const EXAM_CFG = {
+  vocab:  {sets:3, blanks:5, pts:1},                              // 1空所1点 → 15点
+  mc:     {n:20, pts:1, mix:{comparison:5, relative:10, conditional:5}},  // 20点
+  fill:   {n:10, pts:2, mix:{comparison:3, relative:4,  conditional:3}},  // 完答 20点
+  sort:   {n:5,  pts:3},                                          // 15点
+  rewrite:{n:5,  pts:2, mix:{comparison:2, relative:1,  conditional:2}},  // 10点（AI）
+  trans:  {n:4,  pts:5, mix:{comparison:1, relative:2,  conditional:1}},  // 20点（AI）
+};
+const EXAM_MAX = EXAM_CFG.vocab.sets*EXAM_CFG.vocab.blanks*EXAM_CFG.vocab.pts
+  + EXAM_CFG.mc.n*EXAM_CFG.mc.pts + EXAM_CFG.fill.n*EXAM_CFG.fill.pts
+  + EXAM_CFG.sort.n*EXAM_CFG.sort.pts + EXAM_CFG.rewrite.n*EXAM_CFG.rewrite.pts
+  + EXAM_CFG.trans.n*EXAM_CFG.trans.pts;
 
-// ── 仮定法ひねり問題データ（L28〜L30） ──
-const KASO_TWIST_BANK = [
-  {jp:"I like these shoes but they're too expensive, so I'm not going to buy them.",stem:"If ______________________________________.",model:"If they were not so expensive, I would buy them.",key:"仮定法過去（現在の事実の反対）：be動詞はwere、主節はwould＋原形"},
-  {jp:"I don't have a car, so I have to take the bus to work.",stem:"If ______________________________________.",model:"If I had a car, I would not have to take the bus to work.",key:"仮定法過去：if節に過去形、主節にwould＋原形"},
-  {jp:"He didn't study for the exam, so he failed it.",stem:"If ______________________________________.",model:"If he had studied for the exam, he would not have failed it.",key:"仮定法過去完了：if節にhad＋過去分詞、主節にwould have＋過去分詞"},
-  {jp:"I'm afraid of dogs, so I don't visit my friend's house.",stem:"If ______________________________________.",model:"If I were not afraid of dogs, I would visit my friend's house.",key:"仮定法過去：be動詞はwere（否定形）"},
-  {jp:"We didn't leave early, so we missed the flight.",stem:"If ______________________________________.",model:"If we had left early, we would not have missed the flight.",key:"仮定法過去完了：過去の事実と反対の仮定"},
-  {jp:"She doesn't know how to cook, so she eats out every day.",stem:"If ______________________________________.",model:"If she knew how to cook, she would not eat out every day.",key:"仮定法過去：現在の事実と反対の仮定"},
-  {jp:"I forgot his birthday, so I didn't send him a gift.",stem:"If ______________________________________.",model:"If I had not forgotten his birthday, I would have sent him a gift.",key:"仮定法過去完了：否定形のif節＋would have＋過去分詞"},
-  {jp:"He is too tired, so he can't finish the project tonight.",stem:"If ______________________________________.",model:"If he were not too tired, he could finish the project tonight.",key:"仮定法過去：主節にcould＋原形"},
-  {jp:"I didn't bring my passport, so I couldn't board the flight.",stem:"If ______________________________________.",model:"If I had brought my passport, I could have boarded the flight.",key:"仮定法過去完了：主節にcould have＋過去分詞"},
-  {jp:"She is busy, so she can't come to the party.",stem:"If ______________________________________.",model:"If she were not busy, she could come to the party.",key:"仮定法過去：be動詞はwere（否定形）"},
-  {jp:"We didn't have enough information, so we made the wrong decision.",stem:"If ______________________________________.",model:"If we had had enough information, we would not have made the wrong decision.",key:"仮定法過去完了：had＋過去分詞（hadが2回続く点に注意）"},
-  {jp:"I don't have his phone number, so I can't call him.",stem:"If ______________________________________.",model:"If I had his phone number, I could call him.",key:"仮定法過去：if節に過去形、主節にcould＋原形"},
-  {jp:"He didn't wear a seatbelt, so he was badly injured in the accident.",stem:"If ______________________________________.",model:"If he had worn a seatbelt, he would not have been badly injured in the accident.",key:"仮定法過去完了：受け身（have been injured）の過去分詞形に注意"},
-  {jp:"I'm not confident in my English, so I don't talk to foreigners.",stem:"If ______________________________________.",model:"If I were confident in my English, I would talk to foreigners.",key:"仮定法過去：be動詞はwere"},
-  {jp:"She didn't take my advice, so she made the same mistake again.",stem:"If ______________________________________.",model:"If she had taken my advice, she would not have made the same mistake again.",key:"仮定法過去完了：過去の事実と反対の仮定"},
-  {jp:"I don't have a key, so I can't unlock the door.",stem:"If ______________________________________.",model:"If I had a key, I could unlock the door.",key:"仮定法過去：if節に過去形、主節にcould＋原形"},
-  {jp:"She didn't wake up early, so she missed the bus.",stem:"If ______________________________________.",model:"If she had woken up early, she would not have missed the bus.",key:"仮定法過去完了：過去の事実と反対の仮定"},
-  {jp:"I'm not rich, so I can't buy that car.",stem:"If ______________________________________.",model:"If I were rich, I could buy that car.",key:"仮定法過去：be動詞はwere"},
-  {jp:"He didn't bring his umbrella, so he got soaked.",stem:"If ______________________________________.",model:"If he had brought his umbrella, he would not have gotten soaked.",key:"仮定法過去完了：過去の事実と反対の仮定"},
-  {jp:"We don't have a map, so we can't find the way.",stem:"If ______________________________________.",model:"If we had a map, we could find the way.",key:"仮定法過去：if節に過去形、主節にcould＋原形"},
+const tagT = (topic, arr) => arr.map(q => ({...q, topic}));
+const normEn = s => String(s||'').toLowerCase().replace(/[“”"]/g,'').replace(/\s+/g,' ').replace(/\s+([,.!?])/g,'$1').trim();
+
+// ── Section 1：静的セット（AI生成に失敗したときの予備） ──
+const VOCAB_STATIC_SETS = [
+  {sentence:"Our school is planning a health project for next month. To make it successful, we need to ( A ) the new exercise program in every class. Taking the first step requires a lot of ( B ) from both teachers and students. It is ( C ) that everyone understands the project's purpose. Students should eat enough ( D ) to stay healthy and build strong muscles. If you agree with the plan, you should ( E ) support it.",
+   words:["crucial","initiative","absolutely","implement","protein"], answers:["implement","initiative","crucial","protein","absolutely"]},
+  {sentence:"Many animals are in danger of ( A ) because of environmental problems. To protect ( B ), governments and organizations are working together. In some areas, food and water are still ( C ), allowing animals to live comfortably. Scientists must ( D ) detailed plans to solve these issues. Without quick action, the number of endangered species could ( E ) into a serious crisis.",
+   words:["extinction","plunge","elaborate","abundant","wildlife"], answers:["extinction","wildlife","abundant","elaborate","plunge"]},
+  {sentence:"Many cities are facing environmental challenges. To understand public opinion, the local government conducted a ( A ) on waste reduction policies. The campaign helped ( B ) public awareness of environmental issues. However, some people are ( C ) to change their daily habits. To improve the situation, authorities must ( D ) environmental regulations more strictly. As a result, the city hopes to create a more ( E ) and sustainable society.",
+   words:["arouse","poll","enforce","submit","reluctant","stable"], answers:["poll","arouse","reluctant","enforce","stable"]},
 ];
 
-// ── 第2問：仮定法書き換え（四択）バンク ──
-const CONDITIONAL_MC_BANK = [
-  {diff:2,q:"I failed the word test yesterday.",blank:"If I (___) hard, I (___) the test then.",opts:["had studied / would have passed","studied / would pass","study / will pass","have studied / passed"],ans:0,exp:"過去の事実と反対の仮定（仮定法過去完了）：if節=had＋過去分詞、主節=would have＋過去分詞。"},
-  {diff:1,q:"I'm not good at cooking, so I don't make dinner for you.",blank:"If I (___) good at cooking, I (___) dinner for you.",opts:["were / would make","am / will make","had been / would have made","was / make"],ans:0,exp:"現在の事実と反対の仮定（仮定法過去）：be動詞はwereを使う。"},
-  {diff:2,q:"I didn't bring an umbrella, so I got wet in the rain.",blank:"If I (___) an umbrella, I (___) wet in the rain.",opts:["had brought / would not have gotten","brought / would not get","bring / will not get","have brought / did not get"],ans:0,exp:"仮定法過去完了：過去の事実と反対の仮定。"},
-  {diff:2,q:"He doesn't exercise regularly, so he isn't very healthy.",blank:"If he (___) regularly, he (___) healthier.",opts:["exercised / would be","exercises / will be","had exercised / would have been","exercise / is"],ans:0,exp:"仮定法過去：現在の事実と反対の仮定。"},
-  {diff:3,q:"I didn't know her phone number, so I couldn't call her.",blank:"If I (___) her phone number, I (___) her.",opts:["had known / could have called","knew / could call","know / can call","have known / called"],ans:0,exp:"仮定法過去完了：could have＋過去分詞で「〜できたのに」。"},
-  {diff:2,q:"She doesn't have a car, so she can't drive to work.",blank:"If she (___) a car, she (___) to work.",opts:["had / could drive","has / can drive","had had / could have driven","have / drives"],ans:0,exp:"仮定法過去：if節に過去形、主節にcould＋原形。"},
-  {diff:3,q:"I spent all my money, so I couldn't buy the ticket.",blank:"If I (___) my money, I (___) the ticket.",opts:["had not spent / could have bought","did not spend / could buy","do not spend / can buy","have not spent / bought"],ans:0,exp:"仮定法過去完了：否定形のif節に注意。"},
-  {diff:2,q:"We live far from the station, so we are often late.",blank:"If we (___) near the station, we (___) often late.",opts:["lived / would not be","live / will not be","had lived / would not have been","living / are not"],ans:0,exp:"仮定法過去：現在の事実と反対の仮定。"},
-  {diff:3,q:"He didn't wear a helmet, so he got injured.",blank:"If he (___) a helmet, he (___) injured.",opts:["had worn / would not have gotten","wore / would not get","wears / will not get","has worn / did not get"],ans:0,exp:"仮定法過去完了：過去の事実と反対の仮定。"},
-  {diff:2,q:"I'm busy today, so I can't help you.",blank:"If I (___) busy today, I (___) you.",opts:["were not / could help","am not / can help","had not been / could have helped","was not / help"],ans:0,exp:"仮定法過去：be動詞はwere（否定形）。"},
-  {diff:3,q:"She didn't practice enough, so she lost the match.",blank:"If she (___) enough, she (___) the match.",opts:["had practiced / would not have lost","practiced / would not lose","practices / will not lose","has practiced / did not lose"],ans:0,exp:"仮定法過去完了：過去の事実と反対の仮定。"},
-  {diff:2,q:"I don't speak French, so I can't talk to him.",blank:"If I (___) French, I (___) to him.",opts:["spoke / could talk","speak / can talk","had spoken / could have talked","spoken / talk"],ans:0,exp:"仮定法過去：if節に過去形、主節にcould＋原形。"},
-  {diff:3,q:"We didn't check the weather, so we got caught in the storm.",blank:"If we (___) the weather, we (___) caught in the storm.",opts:["had checked / would not have gotten","checked / would not get","check / will not get","have checked / did not get"],ans:0,exp:"仮定法過去完了：過去の事実と反対の仮定。"},
-  {diff:2,q:"He is lazy, so he doesn't get good grades.",blank:"If he (___) lazy, he (___) good grades.",opts:["were not / would get","is not / will get","had not been / would have gotten","was not / gets"],ans:0,exp:"仮定法過去：be動詞はwere（否定形）。"},
-  {diff:3,q:"I didn't save any money, so I couldn't travel abroad.",blank:"If I (___) some money, I (___) abroad.",opts:["had saved / could have traveled","saved / could travel","save / can travel","have saved / traveled"],ans:0,exp:"仮定法過去完了：could have＋過去分詞で「〜できたのに」。"},
-  {diff:1,q:"He doesn't have a key, so he can't unlock the door.",blank:"If he (___) a key, he (___) the door.",opts:["had / could unlock","has / can unlock","had had / could have unlocked","have / unlocks"],ans:0,exp:"仮定法過去：if節に過去形、主節にcould＋原形。"},
-  {diff:2,q:"I'm not rich, so I can't buy that car.",blank:"If I (___) rich, I (___) that car.",opts:["were / could buy","am / can buy","had been / could have bought","was / buy"],ans:0,exp:"仮定法過去：be動詞はwere。"},
+// ── Section 2：四択バンク（実際の問題形式：番号1〜4を選ぶ） ──
+const S2_COMPARISON = [
+  {q:"No other country in the world is as ( ) as Japan.",opts:["cleaner","more cleaner","cleanest","clean"],ans:3,exp:"〈No other＋単数名詞…as＋原級＋as〜〉。as〜asの間は原級（clean）。"},
+  {q:"His house is ( ) mine.",opts:["as twice big as","twice big as","twice as big as","as big as twice"],ans:2,exp:"倍数表現は〈倍数詞＋as＋原級＋as〉の語順。"},
+  {q:"I finished the job ( ) because she helped me.",opts:["much sooner","sooner and sooner","all the sooner","sooner than"],ans:2,exp:"〈all the＋比較級＋because〜〉「〜なのでそれだけいっそう…」。"},
+  {q:"To our surprise, the stadium was filled with ( ) 50,000 spectators.",opts:["no more than","no less than","not more than","not less than"],ans:1,exp:"〈no less than〜〉「〜も（多くの）」＝as many as。驚きを表す文脈。"},
+  {q:"The more people we have at the party, ( ) fun we will have.",opts:["more","the more","less","the fewer"],ans:1,exp:"〈The＋比較級…, the＋比較級…〉「〜すればするほど…」。"},
+  {q:"My sister is three years ( ) than I.",opts:["old","older","oldest","more old"],ans:1,exp:"〈数＋比較級＋than〉で差を表す。"},
+  {q:"This is ( ) interesting book I have ever read.",opts:["more","the most","most of","as"],ans:1,exp:"最上級〈the most＋形容詞〉の形。"},
+  {q:"He can't even write a simple letter, ( ) a novel.",opts:["much more","much less","as well as","no less"],ans:1,exp:"〈much[still] less〉「ましてや…ない」。否定文のあとに続ける。"},
+  {q:"The drama was not so much a tragedy ( ) a comedy.",opts:["than","as","but","to"],ans:1,exp:"〈not so much A as B〉「AというよりむしろB」。"},
+  {q:"Nothing is ( ) precious as time.",opts:["more","most","less","as"],ans:3,exp:"〈Nothing is as[so]＋原級＋as〜〉で最上級の意味を表す。"},
+  {q:"A whale is no more a fish ( ) a horse is.",opts:["than","as","that","so"],ans:0,exp:"〈A is no more…than B〉「Bと同様にAも…でない」（クジラの構文）。"},
+  {q:"The tree is growing ( ) every year.",opts:["taller and taller","more tall and more tall","the taller","tallest"],ans:0,exp:"〈比較級＋and＋比較級〉「ますます〜」。"},
+  {q:"Tom is ( ) of the two brothers.",opts:["the taller","the tallest","the most tall","more tall"],ans:0,exp:"〈the＋比較級＋of the two〉「2つのうちより〜なほう」。"},
+  {q:"This watch is ( ) more expensive than that one.",opts:["very","much","too","so"],ans:1,exp:"比較級の強調はmuch/far/still/even。veryは使えない。"},
+  {q:"There were ( ) than ten people in the room, so it was almost empty.",opts:["not more","no less","not less","much more"],ans:0,exp:"〈not more than〜〉「多くても〜」（上限）。"},
+  {q:"I like him all the ( ) because he is honest.",opts:["better","best","good","well"],ans:0,exp:"〈all the＋比較級＋because〜〉「〜なのでますます」。"},
+  {q:"Our new house is ( ) as large as the old one.",opts:["twice","two","second","double times"],ans:0,exp:"〈倍数詞＋as＋原級＋as〉。2倍はtwice。"},
 ];
-
-// ── 比較（L21〜L23）：四択バンク ──
-const COMPARISON_MC_BANK = [
-  {diff:1,q:"Tom is 175cm tall. His brother is also 175cm tall.",blank:"Tom is (___) tall (___) his brother.",opts:["as / as","so / as","as / than","more / than"],ans:0,exp:"〈as＋原級＋as〜〉「〜と同じくらい…だ」。"},
-  {diff:2,q:"This laptop costs $500. That laptop costs $1,000.",blank:"That laptop is (___) this one.",opts:["twice as expensive as","as twice expensive as","two times expensive than","twice expensive as"],ans:0,exp:"〈倍数詞＋as＋原級＋as〉「〜のX倍…だ」。"},
-  {diff:2,q:"No mountain in Japan is taller than Mt. Fuji.",blank:"Mt. Fuji is (___) mountain in Japan.",opts:["the tallest","taller than","as tall as","much tall"],ans:0,exp:"最上級〈the＋最上級〉で「最も〜だ」を表す。"},
-  {diff:2,q:"Beth has 20 books. Anna has 10 books.",blank:"Beth has (___) as many books as Anna.",opts:["twice","two times as","double","as twice"],ans:0,exp:"〈倍数詞＋as many＋名詞＋as〉の語順。"},
-  {diff:1,q:"Jack is 20 years old. His sister is 23 years old.",blank:"Jack is (___) his sister.",opts:["three years younger than","younger three years than","as young as three years","three young years than"],ans:0,exp:"〈数＋比較級＋than〜〉で差を表す。"},
-  {diff:1,q:"Mike runs faster than anyone else in the class.",blank:"Mike is (___) runner in the class.",opts:["the fastest","faster","as fast as","the fast"],ans:0,exp:"最上級は必ずtheをつける。"},
-  {diff:3,q:"This problem is harder than every other problem in the test.",blank:"This is (___) difficult problem in the test.",opts:["the most","more","as","so"],ans:0,exp:"最上級〈the most＋形容詞〉の形。"},
-  {diff:1,q:"I have $50. You have $50 too.",blank:"I have (___) money as you.",opts:["as much","as many","so much","much as"],ans:0,exp:"不可算名詞にはas much＋名詞＋asを使う。"},
-  {diff:2,q:"Sara studies harder every day than the day before.",blank:"Sara studies (___).",opts:["harder and harder","more hard and hard","hardly and hardly","harder than harder"],ans:0,exp:"〈比較級＋and＋比較級〉「ますます〜」。"},
-  {diff:3,q:"\"The more you practice, the better you become.\" Which structure is used here?",blank:"",opts:["The + comparative ..., the + comparative ...","As + adjective + as","Comparative + than","Superlative + in"],ans:0,exp:"〈the＋比較級…, the＋比較級…〉「〜すればするほど…」の構文。"},
+const S2_RELATIVE = [
+  {q:"I was surprised to see the people and their dogs ( ) were occupying the park.",opts:["which","who","that","whose"],ans:2,exp:"先行詞が〈人＋人以外〉のときの関係代名詞はthat。"},
+  {q:"I'm looking for a person ( ) name is John Smith.",opts:["which","who","that","whose"],ans:3,exp:"〈whose＋名詞〉所有格の関係代名詞。"},
+  {q:"We must learn about the various ways ( ) we can make planet Earth a better place.",opts:["for which","in which","on which","to which"],ans:1,exp:"the way in which〜「〜する方法」。"},
+  {q:"This camera is exactly ( ) I wanted.",opts:["what","that","which","whose"],ans:0,exp:"補語になる関係代名詞what（先行詞を含む）。"},
+  {q:"Last year, he published a novel, ( ) sold very well.",opts:["which","that","what","who"],ans:0,exp:"コンマのある継続用法ではthatは使えない。先行詞が物→which。"},
+  {q:"A photo will be given to ( ) buys the book.",opts:["whoever","whatever","whichever","wherever"],ans:0,exp:"toの目的語になる名詞節を作る〈whoever＋V〉「〜する人はだれでも」。"},
+  {q:"These are good reasons ( ) you should learn a foreign language.",opts:["where","when","why","how"],ans:2,exp:"先行詞がreasonのときの関係副詞はwhy。"},
+  {q:"There are some cases ( ) honesty does not pay.",opts:["whom","which","that","where"],ans:3,exp:"case（場合）は状況を表す先行詞。関係副詞where。"},
+  {q:"Today is the day ( ) I will never forget.",opts:["what","where","which","when"],ans:2,exp:"forgetの目的語が欠けている→目的格のwhich。"},
+  {q:"I want a room of my own, ( ) small it is.",opts:["no matter what","no matter how","no matter which","no matter who"],ans:1,exp:"〈no matter how＋形容詞＋S＋V〉＝however「どれほど〜でも」。"},
+  {q:"The girl ( ) is playing the piano is my sister.",opts:["who","whom","whose","which"],ans:0,exp:"先行詞が人で主格→who。"},
+  {q:"This is the house ( ) roof is painted red.",opts:["who","which","whose","that"],ans:2,exp:"〈whose＋名詞〉は先行詞が物でも使える所有格。"},
+  {q:"The man ( ) I met yesterday is a doctor.",opts:["whom","whose","where","what"],ans:0,exp:"metの目的語が欠けている→目的格whom。"},
+  {q:"He is not the man ( ) he was ten years ago.",opts:["who","which","that","what"],ans:2,exp:"補語になる関係代名詞はthat（先行詞は人の性質・状態）。"},
+  {q:"He married my sister, ( ) he met at the hospital.",opts:["that","whom","what","whose"],ans:1,exp:"継続用法（コンマあり）ではthat不可。目的格のwhom。"},
+  {q:"I remember the day ( ) we first met.",opts:["where","when","why","how"],ans:1,exp:"先行詞が「時」→関係副詞when。"},
+  {q:"That's ( ) he succeeded in business.",opts:["why","how","what","which"],ans:1,exp:"That's how〜「それが〜したやり方だ」。howは先行詞なしで使う。"},
+  {q:"She said she was busy, ( ) was not true.",opts:["what","that","which","who"],ans:2,exp:"継続用法のwhichは前の節全体を先行詞にできる。"},
+  {q:"( ) you may say, I won't change my mind.",opts:["Whatever","However","Whoever","Whenever"],ans:0,exp:"whatever＝no matter what「何が〜しようとも」。"},
+  {q:"( ) hard he tried, he couldn't solve the problem.",opts:["However","Whatever","Whoever","Whichever"],ans:0,exp:"〈however＋形容詞/副詞＋S＋V〉「どれほど〜でも」。"},
+  {q:"You can sit ( ) you like.",opts:["whenever","wherever","whoever","whatever"],ans:1,exp:"wherever「〜するところならどこでも」。"},
+  {q:"He plays the piano, and ( ) is more, he sings very well.",opts:["which","that","what","it"],ans:2,exp:"what is more「そのうえ」。"},
+  {q:"He is the same age ( ) I am.",opts:["as","that","which","what"],ans:0,exp:"〈the same…as〜〉のasは関係代名詞の働き。"},
+  {q:"The woman to ( ) I spoke is my teacher.",opts:["who","whom","that","which"],ans:1,exp:"前置詞の直後に置けるのはwhom（人）/which（物）のみ。"},
+  {q:"Everything ( ) he said was true.",opts:["what","which","that","who"],ans:2,exp:"先行詞にall/every/anyなどが付くときはthatが好まれる。"},
+  {q:"Show me ( ) you have in your pocket.",opts:["that","what","which","whose"],ans:1,exp:"先行詞を含む関係代名詞what「〜するもの」。"},
+  {q:"This is the hospital in ( ) my mother works.",opts:["that","which","where","what"],ans:1,exp:"〈前置詞＋which〉。前置詞の直後にthatは置けない。"},
 ];
-
-// ── 関係詞（L24〜L27）：四択バンク ──
-const RELATIVE_MC_BANK = [
-  {diff:1,q:"I have a friend. She lives in Boston.",blank:"I have a friend (___) lives in Boston.",opts:["who","which","whom","whose"],ans:0,exp:"先行詞が人で主格の関係代名詞はwho。"},
-  {diff:1,q:"This is the house. It stands on a hill.",blank:"This is the house (___) stands on a hill.",opts:["which","who","whom","whose"],ans:0,exp:"先行詞が物で主格の関係代名詞はwhich。"},
-  {diff:2,q:"He has a friend. Her husband is a doctor.",blank:"He has a friend (___) husband is a doctor.",opts:["whose","who's","which","that"],ans:0,exp:"所有格の関係代名詞はwhose。"},
-  {diff:2,q:"This is the book. I bought it yesterday.",blank:"This is the book (___) I bought yesterday.",opts:["that","what","whose","where"],ans:0,exp:"目的格の関係代名詞は省略可能だが、選択肢ではthatが適切。"},
-  {diff:2,q:"Tell me the reason. You look so happy.",blank:"Tell me the reason (___) you look so happy.",opts:["why","where","when","how"],ans:0,exp:"先行詞がreasonの場合はwhyを使う。"},
-  {diff:2,q:"This is the hospital. My aunt works there.",blank:"This is the hospital (___) my aunt works.",opts:["where","which","that","when"],ans:0,exp:"先行詞が場所の場合は関係副詞whereを使う。"},
-  {diff:2,q:"I don't know what he said, but I couldn't believe it.",blank:"I couldn't believe (___) he said.",opts:["what","that","which","who"],ans:0,exp:"先行詞を含む関係代名詞whatを使う。"},
-  {diff:3,q:"She married a man. She met him at a party.",blank:"She married a man (___) she met at a party.",opts:["whom","whose","where","what"],ans:0,exp:"目的格の関係代名詞whom（省略も可）。"},
-  {diff:2,q:"On holidays, I can get up at any time I want.",blank:"On holidays, I can get up (___) I want.",opts:["whenever","wherever","whichever","whoever"],ans:0,exp:"wheneverは「〜する時ならいつでも」を表す。"},
-  {diff:2,q:"No matter what happens, I will support you.",blank:"(___) happens, I will support you.",opts:["Whatever","However","Whoever","Whenever"],ans:0,exp:"whatever＝no matter what「何が〜しようとも」。"},
+const S2_CONDITIONAL = [
+  {q:"If you were president, what ( ) you do to advance the interest of science?",opts:["did","may","will","would"],ans:3,exp:"仮定法過去：if節が過去形→主節はwould＋原形。疑問文でもwouldを使う。"},
+  {q:"Everyone except the boss wished the meeting ( ) over soon.",opts:["be","will be","would be","has been"],ans:2,exp:"wish＋仮定法（主節の時制に合わせてwould be）。"},
+  {q:"Bob would have succeeded ( ) a little more patience.",opts:["with","without","if","if only"],ans:0,exp:"〈with＋名詞〉「〜があれば」。would have＋過去分詞と呼応。"},
+  {q:"It's about time we ( ) rid of all the old furniture.",opts:["get","got","had gotten","should get"],ans:1,exp:"〈It's (about) time＋仮定法過去〉「もう〜してもよい頃だ」。"},
+  {q:"Half a century ago, few people ( ) that AI robots could be put to practical use.",opts:["expect","have expected","had expected","would have expected"],ans:3,exp:"主語に仮定の意味（50年前なら）が含まれる→would have＋過去分詞。"},
+  {q:"If I ( ) you, I would accept the offer.",opts:["am","were","had been","would be"],ans:1,exp:"仮定法過去：be動詞はwere。"},
+  {q:"If she had studied harder, she ( ) the exam.",opts:["would pass","would have passed","will pass","passed"],ans:1,exp:"仮定法過去完了：would have＋過去分詞。"},
+  {q:"I wish I ( ) a car now.",opts:["have","had","had had","would have"],ans:1,exp:"I wish＋仮定法過去（今の願望）。"},
+  {q:"He talks as if he ( ) everything.",opts:["knows","knew","had known","know"],ans:1,exp:"as if＋仮定法過去（主節と同時）。"},
+  {q:"( ) I known the truth, I would have told you.",opts:["If","Were","Had","Should"],ans:2,exp:"Had＋S＋過去分詞…＝If＋S＋had＋過去分詞…（ifの省略・倒置）。"},
+  {q:"( ) it not for your help, I would fail.",opts:["Were","Had","If","Should"],ans:0,exp:"Were it not for〜＝If it were not for〜（倒置）。"},
+  {q:"I wish I ( ) harder when I was a student.",opts:["studied","had studied","would study","study"],ans:1,exp:"I wish＋仮定法過去完了（過去への後悔）。"},
+  {q:"If you ( ) to win the lottery, what would you do?",opts:["are","were","will","would"],ans:1,exp:"〈if S were to＋原形〉未来の仮定。"},
+  {q:"( ) your advice, I would have failed.",opts:["But for","Because","Unless","Although"],ans:0,exp:"But for〜「〜がなかったら」。"},
+  {q:"If he ( ) change his mind, please let me know.",opts:["should","would","were","had"],ans:0,exp:"〈If S should＋原形〉「万一〜なら」。"},
+  {q:"It's high time you ( ) to bed.",opts:["go","went","will go","have gone"],ans:1,exp:"〈It's (high) time＋仮定法過去〉。"},
+  {q:"I would have called you if I ( ) your number.",opts:["know","knew","had known","have known"],ans:2,exp:"仮定法過去完了：if節＝had＋過去分詞。"},
+  {q:"Would you mind if I ( ) the window?",opts:["open","opened","will open","am opening"],ans:1,exp:"〈Would you mind if I＋過去形〉ていねいな許可。"},
+  {q:"If it ( ) not for the rain, we could go on a picnic.",opts:["were","would be","has been","had been"],ans:0,exp:"If it were not for〜「〜がなければ」（現在）。"},
+  {q:"I wish I ( ) fly like a bird.",opts:["can","could","would","had"],ans:1,exp:"I wish＋could（仮定法過去）「〜できたらなあ」。"},
 ];
+const S2_BANK = tagT('comparison',S2_COMPARISON).concat(tagT('relative',S2_RELATIVE)).concat(tagT('conditional',S2_CONDITIONAL));
 
-// ── 比較（L21〜L23）：穴埋めバンク ──
-const COMPARISON_FILL_BANK = [
-  {diff:1,q:"Tom is 175cm tall. His brother is also 175cm tall.",blank:"Tom is _____ tall _____ his brother.",ans:[["as"],["as"]],exp:"〈as＋原級＋as〜〉「〜と同じくらい…だ」。"},
-  {diff:2,q:"This bag costs $20. That bag costs $40.",blank:"That bag is _____ as expensive _____ this one.",ans:[["twice"],["as"]],exp:"〈倍数詞＋as＋原級＋as〉「〜のX倍…だ」。"},
-  {diff:2,q:"No mountain in Japan is taller than Mt. Fuji.",blank:"Mt. Fuji is _____ mountain in Japan.",ans:[["the tallest"]],exp:"最上級〈the＋最上級〉で「最も〜だ」を表す。"},
-  {diff:2,q:"Beth has 20 books. Anna has 10 books.",blank:"Beth has _____ as many books _____ Anna.",ans:[["twice"],["as"]],exp:"〈倍数詞＋as many＋名詞＋as〉の語順。"},
-  {diff:1,q:"Jack is 20 years old. His sister is 23 years old.",blank:"Jack is three years _____ than his sister.",ans:[["younger"]],exp:"〈数＋比較級＋than〜〉で差を表す。"},
-  {diff:1,q:"Mike runs faster than anyone else in the class.",blank:"Mike is the _____ runner in the class.",ans:[["fastest"]],exp:"最上級は必ずtheをつける。"},
-  {diff:3,q:"This problem is harder than every other problem in the test.",blank:"This is _____ difficult problem in the test.",ans:[["the most"]],exp:"最上級〈the most＋形容詞〉の形。"},
-  {diff:1,q:"I have $50. You have $50 too.",blank:"I have _____ much money _____ you.",ans:[["as"],["as"]],exp:"不可算名詞にはas much＋名詞＋asを使う。"},
-  {diff:2,q:"Sara studies harder every day than the day before.",blank:"Sara studies _____ and _____.",ans:[["harder"],["harder"]],exp:"〈比較級＋and＋比較級〉「ますます〜」。"},
-  {diff:2,q:"He is much taller than his father.",blank:"He is _____ taller than his father.",ans:[["much","far"]],exp:"比較級を強調するにはmuch/farを使う。"},
-];
+// ── Section 3：日本文に合う英文（{}がカッコ。完答＝全空欄正解で得点） ──
+const S3_BANK = [].concat(
+  tagT('comparison',[
+    {jp:"この問題は下の問題よりもはるかに簡単だ。",en:"This question is {} {} {} the one below.",ans:[["much","far"],["easier"],["than"]],exp:"比較級の強調 much/far＋比較級＋than。"},
+    {jp:"モーツァルトはきわめて偉大な作曲家だ。",en:"Mozart is as great {} composer {} {} lived.",ans:[["a"],["as"],["ever"]],exp:"as＋形容詞＋a＋名詞＋as ever lived「かつてないほどの〜」。"},
+    {jp:"その寺は春がみごろです。",en:"The temple is at {} {} in Spring.",ans:[["its"],["best"]],exp:"〈at one's best〉「最も良い状態で」。"},
+    {jp:"彼女は私の2倍の本を持っている。",en:"She has {} as {} books as I do.",ans:[["twice"],["many"]],exp:"〈倍数詞＋as many＋名詞＋as〉。"},
+    {jp:"時間ほど貴重なものはない。",en:"{} is {} precious {} time.",ans:[["nothing"],["as","so"],["as"]],exp:"〈Nothing is as[so]＋原級＋as〜〉で最上級の意味。"},
+    {jp:"彼は私より3歳年上だ。",en:"He is {} years {} than I.",ans:[["three"],["older"]],exp:"〈数＋比較級＋than〉で差を表す。"},
+    {jp:"勉強すればするほど、ますます面白くなる。",en:"{} {} you study, {} {} interesting it becomes.",ans:[["the"],["more"],["the"],["more"]],exp:"〈The＋比較級…, the＋比較級…〉。"},
+    {jp:"彼は簡単な英語さえ話せない。ましてやフランス語など話せない。",en:"He can't speak simple English, {} {} French.",ans:[["much","still"],["less"]],exp:"〈much[still] less〉「ましてや…ない」。"},
+  ]),
+  tagT('relative',[
+    {jp:"私たちをもっとも驚かせたのはジョンがその試験に合格したということだった。",en:"{} {} us most was that John had passed the exam.",ans:[["what"],["surprised","amazed","astonished"]],exp:"先行詞を含む関係代名詞what（主語になる）。"},
+    {jp:"彼は私が優勝すると思うランナーだ。",en:"He is the runner {} I {} {} come in first.",ans:[["who","that"],["think","believe"],["will"]],exp:"関係代名詞の後にI thinkなどの挿入節が入る形。"},
+    {jp:"どんなに疲れていても、彼女は笑顔を絶やさない。",en:"{} {} {} tired she is, she always smiles.",ans:[["no"],["matter"],["how"]],exp:"〈no matter how＋形容詞＋S＋V〉＝however。"},
+    {jp:"ほめ言葉と子供の関係は水と植物の関係と同じだ。",en:"Words of praise are {} a child {} water is {} a plant.",ans:[["to"],["what"],["to"]],exp:"〈A is to B what C is to D〉。"},
+    {jp:"彼が昨日話してくれたことは本当だった。",en:"{} he told me yesterday was true.",ans:[["what"]],exp:"先行詞を含む関係代名詞what「〜したこと」。"},
+    {jp:"屋根が赤い家が私の家です。",en:"The house {} roof is red is mine.",ans:[["whose"]],exp:"〈whose＋名詞〉所有格の関係代名詞。"},
+    {jp:"私が子供のころ住んでいた町は小さかった。",en:"The town {} I lived as a child was small.",ans:[["where"]],exp:"先行詞が場所→関係副詞where。"},
+    {jp:"彼はピアノが弾けて、そのうえ歌もうまい。",en:"He plays the piano, and {} {} {}, he sings well.",ans:[["what"],["is"],["more"]],exp:"what is more「そのうえ」。"},
+    {jp:"誰が来ても、私は歓迎します。",en:"{} comes, I will welcome him.",ans:[["whoever"]],exp:"whoever＝no matter who「だれが〜しようとも」。"},
+  ]),
+  tagT('conditional',[
+    {jp:"彼と面と向かって話せば、彼は心の優しい人だと思うだろう。",en:"{} {} with him face to face, you {} {} that he had a soft heart.",ans:[["to"],["talk","speak"],["would"],["think"]],exp:"不定詞（To talk…）がif節の代わりになる。"},
+    {jp:"試験がなければ、私たちは幸せなのに。",en:"{} it {} {} the exam, we would be happy.",ans:[["were"],["not"],["for"]],exp:"Were it not for〜（If it were not for〜の倒置）。"},
+    {jp:"もしあなたが結婚するとしたら、どんな結婚式をしたいですか。",en:"If you {} {} get married, what kind of wedding {} you want to hold?",ans:[["were"],["to"],["would"]],exp:"〈if S were to＋原形〉未来の仮定。主節はwould。"},
+    {jp:"彼女の助言を聞いていさえすればなあ。",en:"{} {} I had taken her advice!",ans:[["if"],["only"]],exp:"〈If only＋仮定法過去完了〉過去への強い後悔。"},
+    {jp:"もう寝てもよい時間だ。",en:"It's {} you {} to bed.",ans:[["time"],["went"]],exp:"〈It's time＋仮定法過去〉。"},
+    {jp:"雨がなければ、私たちはピクニックに行けるのに。",en:"{} {} {} {} for the rain, we could go on a picnic.",ans:[["if"],["it"],["were"],["not"]],exp:"If it were not for〜「〜がなければ」（現在）。"},
+    {jp:"彼は、まるで何でも知っているかのように話す。",en:"He talks {} {} he {} everything.",ans:[["as"],["if"],["knew"]],exp:"〈as if＋仮定法過去〉。"},
+    {jp:"万一彼が来たら、知らせてください。",en:"If he {} come, please let me know.",ans:[["should"]],exp:"〈If S should＋原形〉「万一〜なら」。"},
+    {jp:"シートベルトがなかったら、私は死んでいただろう。",en:"{} it {} not {} for my seat belt, I would have been killed.",ans:[["if"],["had"],["been"]],exp:"If it had not been for〜（過去）。"},
+    {jp:"もっと時間があれば、旅行に行けるのに。",en:"If I {} more time, I {} travel.",ans:[["had"],["could","would"]],exp:"仮定法過去：if節＝過去形、主節＝would/could＋原形。"},
+  ])
+);
 
-// ── 関係詞（L24〜L27）：穴埋めバンク ──
-const RELATIVE_FILL_BANK = [
-  {diff:1,q:"I have a friend. She lives in Boston.",blank:"I have a friend _____ lives in Boston.",ans:[["who"]],exp:"先行詞が人で主格の関係代名詞はwho。"},
-  {diff:1,q:"This is the house. It stands on a hill.",blank:"This is the house _____ stands on a hill.",ans:[["which","that"]],exp:"先行詞が物で主格の関係代名詞はwhich。"},
-  {diff:2,q:"He has a friend. Her husband is a doctor.",blank:"He has a friend _____ husband is a doctor.",ans:[["whose"]],exp:"所有格の関係代名詞はwhose。"},
-  {diff:2,q:"Tell me the reason. You look so happy.",blank:"Tell me the reason _____ you look so happy.",ans:[["why"]],exp:"先行詞がreasonの場合はwhyを使う。"},
-  {diff:2,q:"This is the hospital. My aunt works there.",blank:"This is the hospital _____ my aunt works.",ans:[["where"]],exp:"先行詞が場所の場合は関係副詞whereを使う。"},
-  {diff:2,q:"I don't know what he said, but I couldn't believe it.",blank:"I couldn't believe _____ he said.",ans:[["what"]],exp:"先行詞を含む関係代名詞whatを使う。"},
-  {diff:3,q:"She married a man. She met him at a party.",blank:"She married a man _____ she met at a party.",ans:[["whom","who","that"]],exp:"目的格の関係代名詞（省略も可）。"},
-  {diff:2,q:"On holidays, I can get up at any time I want.",blank:"On holidays, I can get up _____ I want.",ans:[["whenever"]],exp:"wheneverは「〜する時ならいつでも」を表す。"},
-  {diff:2,q:"No matter what happens, I will support you.",blank:"_____ happens, I will support you.",ans:[["Whatever","whatever"]],exp:"whatever＝no matter what「何が〜しようとも」。"},
-  {diff:2,q:"I have a book. Its cover is red.",blank:"I have a book _____ cover is red.",ans:[["whose"]],exp:"先行詞が物でも所有格はwhoseを使う。"},
-];
+// ── Section 4：並べ替え（pre/postは固定部分。カンマも1語として並べる） ──
+const S4_REAL = [].concat(
+  tagT('conditional',[
+    {jp:"その雪がなかったら、私たちの飛行機は時間通りに離陸していただろう。",pre:"If",post:"off on time.",words:["been","the snow","it","have","had","taken","for","our plane","not","would",","],ans:"it had not been for the snow, our plane would have taken",exp:"If it had not been for〜, S would have＋過去分詞（過去の仮定）。"},
+  ]),
+  tagT('relative',[
+    {jp:"このようにしてケイトはダニエルに恋したんだ。",pre:"",post:"with Daniel.",words:["fell","how","in","is","Kate","love","this"],ans:"this is how Kate fell in love",exp:"This is how〜「このようにして〜」。howは先行詞なし。"},
+    {jp:"その映画は感動的だとだれもが言っていたが、それは本当だった。",pre:"Everyone",post:"",words:["impressive","the movie","that","true","which","was","said","was",","],ans:"said that the movie was impressive, which was true",exp:"継続用法のwhichは前の節全体を先行詞にする。"},
+    {jp:"今日のピーターがあるのは、彼の先生のおかげだ。",pre:"Peter",post:".",words:["owes","is","what","his teacher","to","he"],ans:"owes what he is to his teacher",exp:"what he is「今の彼」＋owe A to B「AはBのおかげ」。"},
+  ]),
+  tagT('comparison',[
+    {jp:"海外旅行中に受ける親切ほどうれしいものはない。",pre:"Nothing",post:"traveling abroad.",words:["gives","kindness","more","receive","than","the","pleasure","us","we","while"],ans:"gives us more pleasure than the kindness we receive while",exp:"〈Nothing＋比較級＋than〜〉最上級の意味。the kindness (that) we receive。"},
+  ])
+);
+const S4_EXTRA = [].concat(
+  tagT('comparison',[
+    {jp:"彼はこの学校で最も人気のある先生の一人だ。",pre:"He is",post:"in this school.",words:["one","of","the","most","popular","teachers"],ans:"one of the most popular teachers",exp:"〈one of the＋最上級＋複数名詞〉。"},
+    {jp:"彼は私が期待していた以上の仕事をした。",pre:"He did",post:"",words:["more","work","than","I","had","expected"],ans:"more work than I had expected",exp:"thanが関係代名詞の働きをする形。"},
+  ]),
+  tagT('relative',[
+    {jp:"私が昨日会った女性は先生だ。",pre:"The woman",post:".",words:["whom","I","met","yesterday","is","a teacher"],ans:"whom I met yesterday is a teacher",exp:"目的格の関係代名詞whom。"},
+    {jp:"彼女が今日欠席している理由を教えて。",pre:"Tell me",post:".",words:["the reason","why","she","is","absent","today"],ans:"the reason why she is absent today",exp:"先行詞reason＋関係副詞why。"},
+    {jp:"彼は自分が何をしたいのか分からない。",pre:"He doesn't know",post:".",words:["what","he","wants","to","do"],ans:"what he wants to do",exp:"what節が知らない内容（目的語）になる。"},
+  ]),
+  tagT('conditional',[
+    {jp:"彼女がここにいればなあ。",pre:"I wish",post:".",words:["she","were","here"],ans:"she were here",exp:"I wish＋仮定法過去。"},
+    {jp:"彼はまるで幽霊を見たかのような顔をしている。",pre:"He looks",post:".",words:["as","if","he","had","seen","a ghost"],ans:"as if he had seen a ghost",exp:"as if＋仮定法過去完了（主節より前のこと）。"},
+    {jp:"時間があれば、あなたを手伝うのに。",pre:"If",post:".",words:["I","had","time",",","I","would","help","you"],ans:"I had time, I would help you",exp:"仮定法過去。カンマは1語として並べる。"},
+  ])
+);
+// 既存の確認テスト（QUIZ_BANK）の並べ替え問題も出題候補に加える
+const S4_FROM_QUIZ = [];
+Object.entries(QUIZ_BANK).forEach(([lessonId, qs]) => {
+  const topic = lessonIdToTopic(lessonId);
+  qs.forEach(q => { if (q.type === 'sort') S4_FROM_QUIZ.push({topic, jp:q.q.replace(/になるよう並べ替えなさい。?.*$/,'').replace(/[「」]/g,''), pre:'', post:'', words:q.words, ans:q.ans, exp:q.exp}); });
+});
+const S4_BANK = S4_REAL.concat(S4_EXTRA).concat(S4_FROM_QUIZ);
 
-const CONDITIONAL_FILL_BANK = [
-  {diff:1,q:"I'm not good at cooking, so I don't make dinner for you.",blank:"If I _____ good at cooking, I _____ dinner for you.",ans:[["were","was"],["would make"]],exp:"仮定法過去：be動詞はwere（口語ではwasも可）。"},
-  {diff:2,q:"I didn't have enough time, so I couldn't finish my homework.",blank:"If I _____ enough time, I _____ my homework.",ans:[["had had","had"],["could have finished","would have finished"]],exp:"仮定法過去完了：had＋過去分詞（hadが2回続く点に注意）。"},
-  {diff:1,q:"She doesn't like coffee, so she doesn't drink it in the morning.",blank:"If she _____ coffee, she _____ it in the morning.",ans:[["liked"],["would drink"]],exp:"仮定法過去：現在の事実と反対の仮定。"},
-  {diff:2,q:"I didn't see the email, so I missed the meeting.",blank:"If I _____ the email, I _____ the meeting.",ans:[["had seen"],["would not have missed","wouldn't have missed"]],exp:"仮定法過去完了：過去の事実と反対の仮定。"},
-  {diff:2,q:"He doesn't have a driver's license, so he can't rent a car.",blank:"If he _____ a driver's license, he _____ a car.",ans:[["had"],["could rent"]],exp:"仮定法過去：if節に過去形、主節にcould＋原形。"},
-  {diff:3,q:"We didn't book the hotel early, so we couldn't get a discount.",blank:"If we _____ the hotel early, we _____ a discount.",ans:[["had booked"],["could have gotten","could have got"]],exp:"仮定法過去完了：could have＋過去分詞で「〜できたのに」。"},
-  {diff:2,q:"I'm afraid of heights, so I don't go skydiving.",blank:"If I _____ afraid of heights, I _____ skydiving.",ans:[["were not","weren't"],["would go"]],exp:"仮定法過去：be動詞はwere（否定形）。"},
-  {diff:3,q:"She didn't lock the door, so the thief got in.",blank:"If she _____ the door, the thief _____ in.",ans:[["had locked"],["would not have gotten","wouldn't have gotten"]],exp:"仮定法過去完了：過去の事実と反対の仮定。"},
-  {diff:1,q:"I don't have his email address, so I can't contact him.",blank:"If I _____ his email address, I _____ him.",ans:[["had"],["could contact"]],exp:"仮定法過去：if節に過去形、主節にcould＋原形。"},
-  {diff:3,q:"He didn't apologize, so she is still angry.",blank:"If he _____ , she _____ angry now.",ans:[["had apologized"],["would not be","wouldn't be"]],exp:"混合仮定法：if節は仮定法過去完了、主節は現在の結果（仮定法過去）。"},
-  {diff:2,q:"I don't know how to swim, so I'm scared of the ocean.",blank:"If I _____ how to swim, I _____ scared of the ocean.",ans:[["knew"],["would not be","wouldn't be"]],exp:"仮定法過去：現在の事実と反対の仮定。"},
-  {diff:2,q:"We didn't take an umbrella, so we got wet.",blank:"If we _____ an umbrella, we _____ wet.",ans:[["had taken"],["would not have gotten","wouldn't have gotten"]],exp:"仮定法過去完了：過去の事実と反対の仮定。"},
-  {diff:2,q:"She is shy, so she doesn't speak in public.",blank:"If she _____ shy, she _____ in public.",ans:[["were not","weren't"],["would speak"]],exp:"仮定法過去：be動詞はwere（否定形）。"},
-  {diff:3,q:"I didn't study abroad, so my English isn't fluent.",blank:"If I _____ abroad, my English _____ fluent.",ans:[["had studied"],["would be"]],exp:"混合仮定法：if節は過去の事実、主節は現在の結果。"},
-  {diff:1,q:"He doesn't save money, so he can't buy a house.",blank:"If he _____ money, he _____ a house.",ans:[["saved"],["could buy"]],exp:"仮定法過去：if節に過去形、主節にcould＋原形。"},
-];
+// ── Section 5：Aとほぼ同じ意味の文に（Bの空欄を埋める・AI採点） ──
+const S5_BANK = [].concat(
+  tagT('conditional',[
+    {a:"I can't do a lot of exercise because I don't have enough free time.",b:"If I ______ more free time, I ______.",dir:"仮定法を用いて",model:["had","could do a lot of exercise"],exp:"現在の事実と反対→仮定法過去（If＋過去形, could＋原形）。"},
+    {a:"The accident happened because the road was icy.",b:"If the road ______, the accident ______.",dir:"仮定法を用いて",model:["had not been icy","would not have happened"],exp:"過去の事実と反対→仮定法過去完了。"},
+    {a:"I'm sorry I didn't call you yesterday.",b:"I wish I ______ you yesterday.",dir:"仮定法を用いて",model:["had called"],exp:"I wish＋仮定法過去完了（過去への後悔）。"},
+    {a:"He is poor, so he can't buy a house.",b:"If he ______ rich, he ______ a house.",dir:"仮定法を用いて",model:["were","could buy"],exp:"仮定法過去：be動詞はwere。"},
+    {a:"We lost the game because we didn't practice enough.",b:"If we ______ enough, we ______ the game.",dir:"仮定法を用いて",model:["had practiced","would not have lost"],exp:"仮定法過去完了：had＋過去分詞／would have＋過去分詞。"},
+  ]),
+  tagT('comparison',[
+    {a:"You learn things more easily when you're young.",b:"The ______ you are, the ______ it is to learn.",dir:"比較級を用いて",model:["younger","easier"],exp:"〈the＋比較級…, the＋比較級…〉。"},
+    {a:"You're drinking coffee with a friend. You've never had this good coffee. You say:",b:"This is ______.",dir:"最上級を用いて",model:["the best coffee I have ever had"],exp:"〈the＋最上級＋(名詞)＋(that) I have ever＋過去分詞〉。"},
+    {a:"This is the most expensive watch in this shop.",b:"No other watch in this shop is ______ expensive ______ this one.",dir:"原級を用いて",model:["as","as"],exp:"〈No other…as[so]＋原級＋as〜〉。"},
+    {a:"Mt. Fuji is the highest mountain in Japan.",b:"No other mountain in Japan is ______ ______ Mt. Fuji.",dir:"比較級を用いて",model:["higher","than"],exp:"〈No other…比較級＋than〜〉。"},
+    {a:"As you get older, you become wiser.",b:"The ______ you get, the ______ you become.",dir:"比較級を用いて",model:["older","wiser"],exp:"〈the＋比較級…, the＋比較級…〉。"},
+    {a:"He is the tallest in his class.",b:"He is ______ than ______ other student in his class.",dir:"比較級を用いて",model:["taller","any"],exp:"〈比較級＋than any other＋単数名詞〉。"},
+    {a:"No other girl in the class is as kind as Ann.",b:"Ann is ______ ______ girl in the class.",dir:"最上級を用いて",model:["the","kindest"],exp:"No other…as＋原級＋as → the＋最上級。"},
+  ]),
+  tagT('relative',[
+    {a:"A bicycle was stolen yesterday. It has now been found.",b:"The bicycle ______.",dir:"関係代名詞を用いて",model:["which was stolen yesterday has now been found"],exp:"先行詞the bicycle＋主格which（thatも可）。"},
+    {a:"This is the book. I told you about it.",b:"This is the book ______ I told you ______.",dir:"関係代名詞を用いて",model:["which","about"],exp:"目的格which＋前置詞aboutを後ろに残す。"},
+    {a:"I don't know the man. His car is parked here.",b:"I don't know the man ______ ______ is parked here.",dir:"関係代名詞を用いて",model:["whose","car"],exp:"〈whose＋名詞〉所有格。"},
+    {a:"I want to meet the girl. She lives next door.",b:"I want to meet the girl ______ ______ next door.",dir:"関係代名詞を用いて",model:["who","lives"],exp:"主格who＋動詞。"},
+  ])
+);
 
-// ── 比較・関係詞・仮定法を統合（第2問・第3問の出題範囲＝L21〜L30全範囲） ──
-const GRAMMAR_MC_BANK = COMPARISON_MC_BANK.concat(RELATIVE_MC_BANK).concat(CONDITIONAL_MC_BANK);
-const GRAMMAR_FILL_BANK = COMPARISON_FILL_BANK.concat(RELATIVE_FILL_BANK).concat(CONDITIONAL_FILL_BANK);
+// ── Section 6：和文英訳（注意書きに従う・AI採点） ──
+const S6_BANK = [].concat(
+  tagT('comparison',[
+    {jp:"ケイトは東京に5日間しか滞在しなかった。",notes:["moreを用いて","ケイト：Kate"],model:"Kate stayed in Tokyo for no more than five days.",exp:"〈no more than〜〉「〜しか」＝only。"},
+    {jp:"勉強すればするほど、英語が好きになった。",notes:["〈the＋比較級…, the＋比較級…〉を用いて"],model:"The more I studied, the more I liked English.",exp:"〈The＋比較級…, the＋比較級…〉。"},
+    {jp:"この問題はあの問題の3倍難しい。",notes:["倍数表現を用いて"],model:"This question is three times as difficult as that one.",exp:"〈倍数詞＋as＋原級＋as〉。"},
+    {jp:"彼はクラスで最も人気のある生徒の一人だ。",notes:["最上級を用いて"],model:"He is one of the most popular students in his class.",exp:"〈one of the＋最上級＋複数名詞〉。"},
+  ]),
+  tagT('relative',[
+    {jp:"サラが先週買ったその財布はとても高価だ。",notes:["that以外の関係代名詞を用いて","サラ：Sara"],model:"The purse which Sara bought last week is very expensive.",exp:"目的格which（thatは使わない指示）。"},
+    {jp:"いつ私が祖父を訪ねても、彼は私に有益な助言をくれる。",notes:["複合関係詞を用いて"],model:"Whenever I visit my grandfather, he gives me useful advice.",exp:"whenever「〜するときはいつでも」。"},
+    {jp:"何が起ころうとも、私は決してあきらめない。",notes:["複合関係詞を用いて"],model:"Whatever happens, I will never give up.",exp:"whatever＝no matter what。"},
+    {jp:"私は父が働いている会社を訪れた。",notes:["関係副詞を用いて"],model:"I visited the company where my father works.",exp:"先行詞が場所→where。"},
+    {jp:"彼が昨日言ったことは本当ではなかった。",notes:["whatを用いて"],model:"What he said yesterday was not true.",exp:"what節が主語になる。"},
+  ]),
+  tagT('conditional',[
+    {jp:"万が一、不審な人を見かけたら、すぐに警察へ連絡してください。",notes:["shouldを用いてifを省略し倒置文にすること"],model:"Should you see a suspicious person, please contact the police immediately.",exp:"If you should〜 → Should you〜（倒置）。"},
+    {jp:"もし私が鳥なら、あなたのところへ飛んでいくのに。",notes:["仮定法を用いて"],model:"If I were a bird, I would fly to you.",exp:"仮定法過去。"},
+    {jp:"もっと勉強していればよかったのに。",notes:["wishを用いて"],model:"I wish I had studied harder.",exp:"I wish＋仮定法過去完了。"},
+    {jp:"彼女のおかげで私たちは試合に勝てた。",notes:["if it had not been forを用いて"],model:"If it had not been for her, we could not have won the game.",exp:"If it had not been for〜（過去）。"},
+    {jp:"彼は、まるで自分がその家の持ち主であるかのように話す。",notes:["as ifを用いて"],model:"He talks as if he were the owner of the house.",exp:"as if＋仮定法過去。"},
+  ])
+);
 
-// ── 意味を問う問題かどうか判定 ──
-function isMeaningQuestion(q) {
-  const meaningPatterns = [
-    /意味は/, /日本語の意味/, /の意味を/, /正しい説明/, /説明は/,
-    /どういう意味/, /意味する/, /意味を表/
-  ];
-  return meaningPatterns.some(p => p.test(q.q || ''));
+function pickRandom(arr, n) { return [...arr].sort(()=>Math.random()-.5).slice(0, n); }
+// 分野ごとの出題数（mix）に従って抽出し、比較→関係詞→仮定法の順に並べる
+function pickMix(bank, mix) {
+  return ['comparison','relative','conditional'].flatMap(t =>
+    pickRandom(bank.filter(q => q.topic === t), mix[t] || 0));
 }
-
-function pickRandom(arr, n) {
-  return [...arr].sort(()=>Math.random()-.5).slice(0, n);
-}
+const fillBlanks = (tpl, answers) => { let i = 0; return tpl.replace(/_{3,}/g, () => (answers[i++] ?? '')); };
 
 // ================================================================
 // 期末テストホーム画面
 // ================================================================
 function renderExamHome() {
+  const c = EXAM_CFG;
   document.getElementById('examContent').innerHTML = `
     <div class="exam-home">
-      <h2>📋 期末テスト（ランダム生成）</h2>
-      <p>毎回ランダムに出題される期末テストです。全10レッスン＋全300語から出題。満点は100点！<br>
-      ライティング・ひねり問題はAIが自動採点します。</p>
+      <h2>📋 期末テスト（実際の試験形式）</h2>
+      <p>実際の期末テストと同じ <b>Section 1〜6</b> の構成で、毎回ランダムに出題します。満点は${EXAM_MAX}点。<br>
+      Section 5・6 はAIが採点します。採点後は<b>分野別の成績表と苦手分野のアドバイス</b>が表示されます。</p>
       <div class="exam-stats">
-        <div class="estat"><div class="estat-num">3問</div><div class="estat-pts">×5点</div><div class="estat-lbl">単語穴埋め</div></div>
-        <div class="estat"><div class="estat-num">10問</div><div class="estat-pts">×2点</div><div class="estat-lbl">四択問題<br><small>（比較・関係詞・仮定法）</small></div></div>
-        <div class="estat"><div class="estat-num">10問</div><div class="estat-pts">×2点</div><div class="estat-lbl">穴埋め問題<br><small>（比較・関係詞・仮定法）</small></div></div>
-        <div class="estat"><div class="estat-num">5問</div><div class="estat-pts">×3点</div><div class="estat-lbl">並び替え</div></div>
-        <div class="estat"><div class="estat-num">5問</div><div class="estat-pts">×3点</div><div class="estat-lbl">ライティング<br><small>AI採点</small></div></div>
-        <div class="estat"><div class="estat-num">5問</div><div class="estat-pts">×3点</div><div class="estat-lbl">仮定法ひねり<br><small>AI採点</small></div></div>
+        <div class="estat"><div class="estat-num">${c.vocab.sets}題</div><div class="estat-pts">${c.vocab.sets*c.vocab.blanks*c.vocab.pts}点</div><div class="estat-lbl">Sec.1 単語穴埋め<br><small>(A)〜(E)×5空所</small></div></div>
+        <div class="estat"><div class="estat-num">${c.mc.n}問</div><div class="estat-pts">×${c.mc.pts}点</div><div class="estat-lbl">Sec.2 四択<br><small>比較・関係詞・仮定法</small></div></div>
+        <div class="estat"><div class="estat-num">${c.fill.n}問</div><div class="estat-pts">×${c.fill.pts}点</div><div class="estat-lbl">Sec.3 カッコ補充<br><small>完答</small></div></div>
+        <div class="estat"><div class="estat-num">${c.sort.n}問</div><div class="estat-pts">×${c.sort.pts}点</div><div class="estat-lbl">Sec.4 並べ替え</div></div>
+        <div class="estat"><div class="estat-num">${c.rewrite.n}問</div><div class="estat-pts">×${c.rewrite.pts}点</div><div class="estat-lbl">Sec.5 書き換え<br><small>AI採点</small></div></div>
+        <div class="estat"><div class="estat-num">${c.trans.n}問</div><div class="estat-pts">×${c.trans.pts}点</div><div class="estat-lbl">Sec.6 和文英訳<br><small>AI採点</small></div></div>
       </div>
       <button class="start-btn" onclick="startExam()">🎯 テストを開始する</button>
     </div>`;
@@ -1766,111 +1908,74 @@ function renderExamHome() {
 // ================================================================
 // テスト開始
 // ================================================================
+function lessonIdToTopic(lessonId) {
+  const num = parseInt(lessonId.replace('l',''));
+  if (num >= 21 && num <= 23) return 'comparison';
+  if (num >= 24 && num <= 27) return 'relative';
+  if (num >= 28 && num <= 30) return 'conditional';
+  return 'other';
+}
+
 function startExam() {
-  // 並び替え・ライティングは従来通りQUIZ_BANKから取得
-  const allQ = {sort:[],write:[]};
-  Object.values(QUIZ_BANK).forEach(qs => {
-    qs.forEach(q => {
-      if (q.type === 'sort') allQ.sort.push(q);
-      else if (q.type === 'write') allQ.write.push(q);
-    });
-  });
-
+  const c = EXAM_CFG;
   examState = {
-    vocabSets: [],          // AI生成後に格納
-    mcQs: pickRandom(GRAMMAR_MC_BANK, 10),
-    fillQs: pickRandom(GRAMMAR_FILL_BANK, 10),
-    sortQs: pickRandom(allQ.sort, 5),
-    writeQs: pickRandom(allQ.write, 5),
-    twistQs: pickRandom(KASO_TWIST_BANK, 5),
+    vocabSets: [],
+    mcQs: pickMix(S2_BANK, c.mc.mix),
+    fillQs: pickMix(S3_BANK, c.fill.mix),
+    sortQs: pickRandom(S4_BANK, c.sort.n),
+    rewriteQs: pickMix(S5_BANK, c.rewrite.mix),
+    transQs: pickMix(S6_BANK, c.trans.mix),
     answers: {},
-    submitted: false,
-    vocabReady: false,
-    aiScores: {}   // AI採点結果
+    submitted: false
   };
-
-  // ローディング画面を表示してからAI生成開始
   document.getElementById('examContent').innerHTML = `
     <div style="text-align:center;padding:60px 20px;">
       <div class="dp" style="justify-content:center;margin-bottom:16px;"><span></span><span></span><span></span></div>
-      <p style="color:var(--indigo);font-weight:700;font-size:15px;">単語穴埋め問題をAIが生成中です...</p>
-      <p style="color:var(--muted);font-size:12px;margin-top:8px;">少々お待ちください（約10〜20秒）</p>
+      <p style="color:var(--indigo);font-weight:700;font-size:15px;">Section 1 の単語穴埋め問題をAIが生成中です...</p>
+      <p style="color:var(--muted);font-size:12px;margin-top:8px;">少々お待ちください（約10〜20秒）。失敗した場合は用意済みの問題を使います。</p>
     </div>`;
-
-  generateVocabSets().then(() => {
-    examState.vocabReady = true;
-    renderExamPaper();
-  }).catch(() => {
-    // AI失敗時はフォールバック問題を使用
-    examState.vocabSets = buildFallbackVocabSets();
-    examState.vocabReady = true;
-    renderExamPaper();
-  });
+  generateVocabSets()
+    .catch(() => VOCAB_STATIC_SETS.map(s => ({...s})))
+    .then(sets => { examState.vocabSets = sets; renderExamPaper(); });
 }
 
-// ── AI生成：5穴文章×3セット ──
+// ── Section 1：AI生成（A〜Eの5空所×3題）。検証に失敗した題は予備セットで補う ──
 async function generateVocabSets() {
-  const groups = [];
-  for (let i = 0; i < 3; i++) {
-    const picked = [...VOCAB].sort(()=>Math.random()-.5).slice(0, 5);
-    groups.push(picked);
-  }
+  const groups = [0,1,2].map(i => pickRandom(VOCAB, i === 2 ? 6 : 5));
+  const fmt = g => g.map(v => `${v.en}(${v.jp})`).join('、');
+  const prompt = `あなたは高校英語の試験作成者です。次の3グループの英単語を使って、穴埋め用の英文を3つ作ってください。
 
-  const prompt = `あなたは英語教材作成の専門家です。以下の3グループの英単語を使って、それぞれ約100語の英文（1〜2文）を作成してください。
-各グループの5単語を全て文中に使い、使用箇所を___（3つのアンダースコア）に置き換えてください。
-また、各グループについて4択の選択肢（正解1つ＋誤答3つ）を5単語分作成してください。
+【ルール】
+- グループ1・2は5語すべて、グループ3は6語のうち5語（残り1語は使わないダミー）を使う。
+- 各英文は4〜6文、約70〜100語。環境・健康・社会などの自然な話題にする。
+- 単語は活用させず、与えられた形のままで空所に入る文にする。
+- 使った単語の位置を ( A ) ( B ) ( C ) ( D ) ( E ) に置き換える（括弧と文字の間は半角スペース）。A→Eの順に文中に登場させる。
+- 空所は他の候補語では文法的・意味的に入らないようにする。
+- 各セットについて、A〜Eに入る単語を answers に順番に入れる。
 
-出力形式（JSON）：
-{
-  "sets": [
-    {
-      "sentence": "英文（___が5箇所）",
-      "answers": ["単語1","単語2","単語3","単語4","単語5"],
-      "opts": [
-        ["正解","誤答A","誤答B","誤答C"],
-        ["正解","誤答A","誤答B","誤答C"],
-        ["正解","誤答A","誤答B","誤答C"],
-        ["正解","誤答A","誤答B","誤答C"],
-        ["正解","誤答A","誤答B","誤答C"]
-      ]
-    }
-  ]
-}
+グループ1：${fmt(groups[0])}
+グループ2：${fmt(groups[1])}
+グループ3：${fmt(groups[2])}
 
-グループ1の単語：${groups[0].map(v=>v.en+'('+v.jp+')').join('、')}
-グループ2の単語：${groups[1].map(v=>v.en+'('+v.jp+')').join('、')}
-グループ3の単語：${groups[2].map(v=>v.en+'('+v.jp+')').join('、')}
-
-必ずJSONのみを返してください。説明文は不要です。`;
+JSONのみを返してください（説明・コードブロック不要）：
+{"sets":[{"sentence":"...","answers":["Aの語","Bの語","Cの語","Dの語","Eの語"]},{"sentence":"...","answers":[...]},{"sentence":"...","answers":[...]}]}`;
 
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method:"POST", headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({model:"claude-sonnet-4-6", max_tokens:2000,
-      messages:[{role:"user",content:prompt}]})
+    body: JSON.stringify({model:"claude-sonnet-4-6", max_tokens:2500, messages:[{role:"user",content:prompt}]})
   });
   const data = await res.json();
-  const text = data.content?.map(c=>c.text||'').join('') || '';
-  const clean = text.replace(/```json|```/g,'').trim();
-  const parsed = JSON.parse(clean);
-  examState.vocabSets = parsed.sets.map((s, gi) => ({
-    ...s,
-    opts: s.opts.map(o => shuffle(o))
-  }));
-}
-
-// フォールバック：AI失敗時の代替問題
-function buildFallbackVocabSets() {
+  const text = (data.content||[]).map(x=>x.text||'').join('');
+  const parsed = JSON.parse(text.replace(/```json|```/g,'').trim());
   return [0,1,2].map(i => {
-    const picked = [...VOCAB].sort(()=>Math.random()-.5).slice(i*5, i*5+5);
-    const blanks = picked.map(v=>'___').join(' ... ');
-    return {
-      sentence: `Fill in the blanks: ${blanks}`,
-      answers: picked.map(v=>v.en),
-      opts: picked.map(v => {
-        const wrongs = VOCAB.filter(w=>w.id!==v.id).sort(()=>Math.random()-.5).slice(0,3).map(w=>w.en);
-        return shuffle([v.en,...wrongs]);
-      })
-    };
+    const s = parsed.sets && parsed.sets[i];
+    const words = groups[i].map(v => v.en);
+    const ok = s && typeof s.sentence === 'string' && Array.isArray(s.answers) && s.answers.length === 5
+      && new Set(s.answers.map(a => String(a).toLowerCase())).size === 5
+      && s.answers.every(a => words.includes(String(a).toLowerCase()))
+      && ['A','B','C','D','E'].every(L => new RegExp('\\(\\s*'+L+'\\s*\\)').test(s.sentence));
+    if (!ok) return {...VOCAB_STATIC_SETS[i]};
+    return {sentence:s.sentence, words:shuffle(words), answers:s.answers.map(a=>String(a).toLowerCase())};
   });
 }
 
@@ -1878,127 +1983,123 @@ function buildFallbackVocabSets() {
 // テスト用紙レンダリング
 // ================================================================
 function renderExamPaper() {
-  const es = examState;
-  const secColor = {vocab:'#3d52a0',mc:'#5563a8',fill:'#28a745',sort:'#fd7e14',write:'#dc3545',twist:'#6b4c9e'};
+  const es = examState, c = EXAM_CFG;
+  const col = {s1:'#3d52a0',s2:'#5563a8',s3:'#28a745',s4:'#fd7e14',s5:'#6b4c9e',s6:'#dc3545'};
+  const LET = ['A','B','C','D','E'];
 
-  // 単語穴埋めセクション（3セット）
+  // Section 1
   const renderVocabSet = (s, si) => {
-    // 文中の___を番号付きspan+selectに
-    let blankIdx = 0;
-    const sentenceHtml = s.sentence.replace(/___/g, () => {
-      const i = blankIdx++;
-      const opts = s.opts[i];
-      return `<select class="exam-select" id="evs-${si}-${i}">
+    const sentenceHtml = s.sentence.replace(/\(\s*([A-E])\s*\)/g, (m, L) => {
+      const bi = LET.indexOf(L);
+      return `<span class="blank-lbl">(${L})</span><select class="exam-select" id="evs-${si}-${bi}">
         <option value="">-- 選択 --</option>
-        ${opts.map(o=>`<option value="${o}">${o}</option>`).join('')}
+        ${s.words.map((w,k)=>`<option value="${w}">${k+1}. ${w}</option>`).join('')}
       </select>`;
     });
     return `
-      <div class="exam-qitem" id="eq-vocab-${si}">
-        <div class="exam-q-lbl">単語穴埋め (5点) — セット${si+1}</div>
-        <div style="font-size:13px;line-height:2;color:var(--navy);font-weight:500;margin-bottom:6px;">${sentenceHtml}</div>
+      <div class="exam-qitem">
+        <div class="exam-q-lbl">(${si+1})　5空所×${c.vocab.pts}点</div>
+        <div class="exam-passage">${sentenceHtml}</div>
+        <div class="exam-wordlist">【 ${s.words.map((w,k)=>`${k+1}. ${w}`).join(' / ')} 】</div>
         <div class="exam-fb" id="efb-vocab-${si}"></div>
       </div>`;
   };
 
-  const renderMCItem = (q, idx) => {
-    const correctText = q.opts[q.ans];
-    const shuffledOpts = shuffle([...q.opts]);
-    return `
-    <div class="exam-qitem" id="eq-mc-${idx}" data-correct="${encodeURIComponent(correctText)}">
-      <div class="exam-q-lbl">四択問題 (2点) — 問${idx+1}</div>
-      <div class="exam-qtext">${q.q}${q.blank?'\n'+q.blank:''}</div>
-      <div class="exam-opts">${shuffledOpts.map((o,i)=>`
-        <button class="exam-opt" onclick="selExamOptText('mc',${idx},this)" data-opt="${encodeURIComponent(o)}">
-          <span class="exam-opt-ind">${String.fromCharCode(65+i)}</span>${o}
+  // Section 2
+  const renderMC = (q, idx) => `
+    <div class="exam-qitem" id="eq-mc-${idx}">
+      <div class="exam-q-lbl">(${idx+1})　${c.mc.pts}点</div>
+      <div class="exam-qtext">${q.q}</div>
+      <div class="exam-opts">${q.opts.map((o,i)=>`
+        <button class="exam-opt" onclick="selExamOpt('mc',${idx},${i},this)">
+          <span class="exam-opt-ind">${i+1}</span>${o}
         </button>`).join('')}</div>
       <div class="exam-fb" id="efb-mc-${idx}"></div>
     </div>`;
-  };
 
-  const renderFillItem = (q, idx) => {
-    const blanks = (q.blank.match(/_+/g)||[]).length;
-    let inputs = '';
-    for(let i=0;i<blanks;i++) inputs += `<input class="exam-input" id="efi-fill-${idx}-${i}" placeholder="答えを入力..." style="margin-bottom:6px;" />`;
+  // Section 3
+  const renderFill = (q, idx) => {
+    let b = 0;
+    const html = q.en.replace(/\{\}/g, () => `<input class="exam-blank" id="e3-${idx}-${b++}" autocomplete="off" autocapitalize="off" spellcheck="false" />`);
     return `
       <div class="exam-qitem" id="eq-fill-${idx}">
-        <div class="exam-q-lbl">穴埋め問題 (2点) — 問${idx+1}</div>
-        <div class="exam-qtext">${q.q}</div>
-        <div class="exam-qtext" style="font-size:12px;color:#555;font-weight:400;">${q.blank}</div>
-        ${inputs}
+        <div class="exam-q-lbl">(${idx+1})　${c.fill.pts}点（完答）</div>
+        <div class="exam-qtext">${q.jp}</div>
+        <div class="exam-sentence">${html}</div>
         <div class="exam-fb" id="efb-fill-${idx}"></div>
       </div>`;
   };
 
-  const renderSortItem = (q, idx) => {
+  // Section 4
+  const renderSort = (q, idx) => {
     const shuffled = [...q.words].sort(()=>Math.random()-.5);
     return `
       <div class="exam-qitem" id="eq-sort-${idx}">
-        <div class="exam-q-lbl">並び替え問題 (3点) — 問${idx+1}</div>
-        <div class="exam-qtext">${q.q}</div>
-        <div class="slot-lbl">単語バンク</div>
+        <div class="exam-q-lbl">(${idx+1})　${c.sort.pts}点</div>
+        <div class="exam-qtext">${q.jp}</div>
+        <div class="exam-frame">${q.pre ? q.pre+' ' : ''}[ ここに並べる ]${q.post ? ' '+q.post : ''}</div>
+        <div class="slot-lbl">単語バンク（クリックで回答欄へ）</div>
         <div class="exam-sort-bank" id="ebank-sort-${idx}">${shuffled.map(w=>`<button class="exam-chip" onclick="moveExamChip('sort',${idx},this,'slot')" data-word="${w}">${w}</button>`).join('')}</div>
-        <div class="slot-lbl">回答欄</div>
+        <div class="slot-lbl">回答欄（クリックで戻す）</div>
         <div class="exam-sort-slot" id="eslot-sort-${idx}"></div>
         <div class="exam-fb" id="efb-sort-${idx}"></div>
       </div>`;
   };
 
-  const renderWriteItem = (q, idx, cat, pts, lbl) => `
-    <div class="exam-qitem" id="eq-${cat}-${idx}">
-      <div class="exam-q-lbl">${lbl} (${pts}点) — 問${idx+1}　<span style="color:var(--sky);font-size:10px;">🤖 AI採点</span></div>
-      <div class="exam-qtext">${q.q || q.jp}</div>
-      <textarea class="exam-textarea" id="eta-${cat}-${idx}" placeholder="英文を入力してください..."></textarea>
-      <div class="exam-fb" id="efb-${cat}-${idx}"></div>
-    </div>`;
+  // Section 5
+  const renderRewrite = (q, idx) => {
+    let b = 0;
+    const single = (q.b.match(/_{3,}/g)||[]).length === 1 && q.model[0].split(' ').length > 3;
+    const bHtml = q.b.replace(/_{3,}/g, () => `<input class="exam-blank ${single?'wide':''}" id="e5-${idx}-${b++}" autocomplete="off" autocapitalize="off" spellcheck="false" />`);
+    return `
+      <div class="exam-qitem" id="eq-rewrite-${idx}">
+        <div class="exam-q-lbl">(${idx+1})　${c.rewrite.pts}点　<span style="color:var(--sky);font-size:10px;">🤖 AI採点</span></div>
+        <div class="exam-sentence"><b>A:</b> ${q.a}</div>
+        <div class="exam-sentence"><b>B:</b> ${bHtml} <span class="exam-dir">(${q.dir})</span></div>
+        <div class="exam-fb" id="efb-rewrite-${idx}"></div>
+      </div>`;
+  };
 
-  const renderTwistItem = (q, idx) => `
-    <div class="exam-qitem" id="eq-twist-${idx}">
-      <div class="exam-q-lbl">仮定法ひねり問題 (3点) — 問${idx+1}　<span style="color:var(--sky);font-size:10px;">🤖 AI採点</span></div>
+  // Section 6
+  const renderTrans = (q, idx) => `
+    <div class="exam-qitem" id="eq-trans-${idx}">
+      <div class="exam-q-lbl">(${idx+1})　${c.trans.pts}点　<span style="color:var(--sky);font-size:10px;">🤖 AI採点</span></div>
       <div class="exam-qtext">${q.jp}</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">状況を把握し、ifを用いた仮定法に書き直しなさい。</div>
-      <div style="font-size:13px;color:var(--navy);font-weight:600;margin-bottom:6px;">${q.stem}</div>
-      <textarea class="exam-textarea" id="eta-twist-${idx}" placeholder="If で始まる英文全体を入力してください..."></textarea>
-      <div class="exam-fb" id="efb-twist-${idx}"></div>
+      <div class="exam-note-list">${q.notes.map(n=>`＊${n}`).join('<br>')}</div>
+      <textarea class="exam-textarea" id="e6-${idx}" placeholder="英文を入力してください..."></textarea>
+      <div class="exam-fb" id="efb-trans-${idx}"></div>
     </div>`;
 
-  const html = `
+  const sec = (cls, title, body) => `
+    <div class="exam-section-card">
+      <div class="exam-sec-header" style="background:${cls}">${title}</div>
+      <div class="exam-sec-body">${body}</div>
+    </div>`;
+
+  document.getElementById('examContent').innerHTML = `
     <div class="exam-progress-bar">
       <span class="ep-label">テスト進行状況</span>
       <div class="ep-bar-wrap"><div class="ep-bar" id="examProgBar" style="width:0%"></div></div>
       <span class="ep-num" id="examProgNum">採点前</span>
     </div>
-    <div class="exam-section-card">
-      <div class="exam-sec-header" style="background:${secColor.vocab}">📝 第1問 単語穴埋め（3セット×5点＝15点）</div>
-      <div class="exam-sec-body">${es.vocabSets.map((s,i)=>renderVocabSet(s,i)).join('')}</div>
-    </div>
-    <div class="exam-section-card">
-      <div class="exam-sec-header" style="background:${secColor.mc}">📋 第2問 四択問題（10問×2点＝20点）</div>
-      <div class="exam-sec-body">${es.mcQs.map((q,i)=>renderMCItem(q,i)).join('')}</div>
-    </div>
-    <div class="exam-section-card">
-      <div class="exam-sec-header" style="background:${secColor.fill}">✏️ 第3問 穴埋め問題（10問×2点＝20点）</div>
-      <div class="exam-sec-body">${es.fillQs.map((q,i)=>renderFillItem(q,i)).join('')}</div>
-    </div>
-    <div class="exam-section-card">
-      <div class="exam-sec-header" style="background:${secColor.sort}">🔀 第4問 並び替え問題（5問×3点＝15点）</div>
-      <div class="exam-sec-body">${es.sortQs.map((q,i)=>renderSortItem(q,i)).join('')}</div>
-    </div>
-    <div class="exam-section-card">
-      <div class="exam-sec-header" style="background:${secColor.write}">📝 第5問 ライティング問題（5問×3点＝15点）🤖 AI採点</div>
-      <div class="exam-sec-body">${es.writeQs.map((q,i)=>renderWriteItem(q,i,'write',3,'ライティング問題')).join('')}</div>
-    </div>
-    <div class="exam-section-card">
-      <div class="exam-sec-header" style="background:${secColor.twist}">🌀 第6問 仮定法ひねり問題（5問×3点＝15点）🤖 AI採点</div>
-      <div class="exam-sec-body">${es.twistQs.map((q,i)=>renderTwistItem(q,i)).join('')}</div>
-    </div>
+    ${sec(col.s1,'Section 1　単語（(A)〜(E)に当てはまる単語を選ぶ）',
+      `<div class="exam-note-list">問. (A)〜(E)に当てはまる単語を選択肢から1つ選びなさい。（1空所${c.vocab.pts}点）</div>` + es.vocabSets.map((s,i)=>renderVocabSet(s,i)).join(''))}
+    ${sec(col.s2,`Section 2　四択（${c.mc.n}問×${c.mc.pts}点）`,
+      `<div class="exam-note-list">問A. カッコに当てはまる適切な選択肢を1つ選びなさい。</div>` + es.mcQs.map((q,i)=>renderMC(q,i)).join(''))}
+    ${sec(col.s3,`Section 3　日本文に合う英文（${c.fill.n}問×${c.fill.pts}点・完答）`,
+      `<div class="exam-note-list">次の日本文に合う英文になるように、( )に適する語を書きなさい。（完答：すべて正解で得点）</div>` + es.fillQs.map((q,i)=>renderFill(q,i)).join(''))}
+    ${sec(col.s4,`Section 4　並べ替え（${c.sort.n}問×${c.sort.pts}点）`,
+      `<div class="exam-note-list">日本語の意味に合うように、カッコ内の表現を並べ替えなさい。（カンマ「,」も1語として並べる）</div>` + es.sortQs.map((q,i)=>renderSort(q,i)).join(''))}
+    ${sec(col.s5,`Section 5　書き換え（${c.rewrite.n}問×${c.rewrite.pts}点）🤖 AI採点`,
+      `<div class="exam-note-list">Bの空欄を埋めて、Aとほぼ同じ意味の文を完成させなさい。（カッコ内の指示に従うこと）</div>` + es.rewriteQs.map((q,i)=>renderRewrite(q,i)).join(''))}
+    ${sec(col.s6,`Section 6　和文英訳（${c.trans.n}問×${c.trans.pts}点）🤖 AI採点`,
+      `<div class="exam-note-list">以下の日本語を英語にしなさい。＊注意書きの指示に従うこと。</div>` + es.transQs.map((q,i)=>renderTrans(q,i)).join(''))}
     <div class="exam-submit-wrap">
       <button class="exam-submit-btn" onclick="submitExam()">📊 採点する</button>
     </div>`;
-
-  document.getElementById('examContent').innerHTML = html;
 }
 
+// 選択肢の番号（0始まり）で回答を保持
 function selExamOpt(cat, idx, optIdx, btn) {
   if (examState.submitted) return;
   const wrap = document.getElementById(`eq-${cat}-${idx}`);
@@ -2006,16 +2107,6 @@ function selExamOpt(cat, idx, optIdx, btn) {
   btn.classList.add('sel');
   if (!examState.answers[cat]) examState.answers[cat] = {};
   examState.answers[cat][idx] = optIdx;
-}
-
-// シャッフル後の選択肢はテキストで照合
-function selExamOptText(cat, idx, btn) {
-  if (examState.submitted) return;
-  const wrap = document.getElementById(`eq-${cat}-${idx}`);
-  wrap.querySelectorAll('.exam-opt').forEach(b => b.classList.remove('sel'));
-  btn.classList.add('sel');
-  if (!examState.answers[cat]) examState.answers[cat] = {};
-  examState.answers[cat][idx] = decodeURIComponent(btn.dataset.opt);
 }
 
 function moveExamChip(cat, idx, btn, dir) {
@@ -2032,256 +2123,327 @@ function moveExamChip(cat, idx, btn, dir) {
 }
 
 // ================================================================
+// 成績表（分野別の得点＋苦手分野アドバイス）
+// ================================================================
+function buildReportCard(topicStats) {
+  const ADVICE = {
+    comparison: {
+      bad:  '原級・比較級・最上級の「型」がまだ定着していません。Lesson 21〜23の解説を開き、〈as＋原級＋as〉〈比較級＋than〉〈the＋最上級＋in/of〉の3つを例文ごと音読しましょう。そのあと〈the＋比較級…, the＋比較級…〉、no more/no less than、倍数表現（twice as…as）の順に進むと効率的です。',
+      mid:  '基本はできています。ミスが出やすいのは、no more than / not more than の使い分け、比較級の強調（veryではなくmuch/far）、倍数表現の語順です。Lesson 23の「noを使った比較表現」を重点的に見直しましょう。',
+      good: '比較は得意分野です。余裕があれば、No構文や than any other を使った「最上級の書き換え」を英作文で練習すると、さらに強くなります。'
+    },
+    relative: {
+      bad:  '関係詞は、次の3段階で整理すると解けるようになります。①先行詞が人か物か、②関係詞節の中で主語・目的語・所有格のどれの働きか（who/which/whose）、③what（先行詞を含む）と関係副詞（where/when/why/how）の区別。Lesson 24→25→26の順に復習しましょう。継続用法（コンマあり）ではthatが使えない点も要チェックです。',
+      mid:  'あと一歩です。ミスが出やすいのは、whatと関係副詞の使い分け、「前置詞＋whom/which」の形、複合関係詞（whoever / whatever / however）の意味です。Lesson 25〜27の「ひとこと解説」を読み直し、書き換え（where＝前置詞＋which など）を練習しましょう。',
+      good: '関係詞は得意分野です。次は、継続用法や as/than が関係代名詞として働く文など、Lesson 27の応用表現に挑戦してみましょう。'
+    },
+    conditional: {
+      bad:  '仮定法は「時制のセット」を覚えるのが最優先です。①現在の事実の反対：If＋過去形（beはwere）, would＋原形。②過去の事実の反対：If＋had＋過去分詞, would have＋過去分詞。③混合型：if節は過去、主節は現在。ひねり問題の練習法は、日本語の事実文を「否定⇔肯定」に反転してからifで書き直すことです。Lesson 28を最初に復習しましょう。',
+      mid:  '仮定法の形は理解できています。ミスが出やすいのは、had had の連続、否定形のif節（had not＋過去分詞）、混合仮定法、could/mightの使い分けです。Lesson 28Dと29の「ifの省略（倒置）」を確認しましょう。',
+      good: '仮定法は得意分野です。さらに力をつけるなら、Lesson 30の but for / without / if it were not for や、ていねい表現（I was wondering if…）も英作文で使ってみましょう。'
+    },
+    vocab: {
+      bad:  '単語の定着がこれからの課題です。まず間違えた単語を「単語」タブの検索で確認し、例文の中で覚え直しましょう。1日20語ずつ進め、翌日に前日分をクイズで確認する方法がおすすめです。品詞（名詞・形容詞・動詞）も一緒に覚えると、穴埋めで文脈から選びやすくなります。',
+      mid:  'あと少しです。間違えた単語は「単語確認クイズ」で何度か出題し直しましょう。形が似た単語を混同していないかも確認してください。',
+      good: '単語力は十分です。さらに伸ばすなら、各単語を使った自作の英文を書いてみましょう。'
+    }
+  };
+  const LV = {good:'🟢 得意', mid:'🟡 もう少し', bad:'🔴 要復習'};
+
+  const rows = ['comparison','relative','conditional','vocab']
+    .map(k => {
+      const t = topicStats[k];
+      if (!t || t.total === 0) return null;
+      const pct = Math.round(t.correct / t.total * 100);
+      return {k, t, pct, lv: pct >= 80 ? 'good' : pct >= 50 ? 'mid' : 'bad'};
+    })
+    .filter(Boolean);
+  if (rows.length === 0) return '';
+
+  const sorted = [...rows].sort((a, b) => a.pct - b.pct);
+  const weakest = sorted[0], strongest = sorted[sorted.length - 1];
+  const overall = weakest.lv === 'good'
+    ? '全分野で80%以上と、とても安定した成績です。この調子で応用問題にも挑戦しましょう。'
+    : `最優先で復習したいのは <b>${weakest.t.label}</b>（${weakest.pct}%）です。` +
+      (strongest.lv !== 'bad' && strongest !== weakest
+        ? `一方、<b>${strongest.t.label}</b>（${strongest.pct}%）は得意分野です。` : '');
+
+  const rowsHtml = rows.map(r => {
+    let wrongHtml = '';
+    if (r.t.wrong.length) {
+      const items = r.k === 'vocab'
+        ? r.t.wrong.map(w => {
+            const v = VOCAB.find(x => x.en.toLowerCase() === String(w).toLowerCase());
+            return v ? `${v.en}（${v.jp}）` : w;
+          })
+        : r.t.wrong.slice(0, 3);
+      wrongHtml = `<div class="topic-wrong"><b>${r.k === 'vocab' ? '間違えた単語' : '間違えたポイント'}：</b><br>` +
+        items.map(i => `・${i}`).join('<br>') + `</div>`;
+    }
+    return `<div class="topic-row">
+      <div class="topic-head">
+        <span class="topic-name">${r.t.label}</span>
+        <span class="topic-pct ${r.lv}">${r.t.correct}/${r.t.total}（${r.pct}%）</span>
+      </div>
+      <div class="topic-bar-wrap"><div class="topic-bar ${r.lv}" style="width:${r.pct}%"></div></div>
+      <div class="topic-advice"><b>${LV[r.lv]}</b>　${ADVICE[r.k][r.lv]}${wrongHtml}</div>
+    </div>`;
+  }).join('');
+
+  return `<div class="report-card">
+    <div class="report-title">📊 成績表｜分野別の得点とアドバイス</div>
+    <div class="report-overall">${overall}</div>
+    ${rowsHtml}
+  </div>`;
+}
+
+// ================================================================
 // 採点
 // ================================================================
 async function submitExam() {
-  const es = examState;
+  const es = examState, c = EXAM_CFG;
   if (es.submitted) return;
   es.submitted = true;
 
-  // ボタンを無効化＆ローディング表示
-  document.querySelector('.exam-submit-btn').disabled = true;
-  document.querySelector('.exam-submit-btn').textContent = '🤖 AI採点中...';
+  const btn = document.querySelector('.exam-submit-btn');
+  btn.disabled = true;
+  btn.textContent = '🤖 採点中...';
 
   let total = 0;
-  const breakdown = {vocab:0,mc:0,fill:0,sort:0,write:0,twist:0};
+  const breakdown = {vocab:0,mc:0,fill:0,sort:0,rewrite:0,trans:0};
+  // 分野別の正答数・総数・間違えたポイント（比較・関係詞・仮定法・単語）
+  const topicStats = {
+    comparison: {correct:0, total:0, wrong:[], label:'比較（Lesson 21〜23）'},
+    relative:   {correct:0, total:0, wrong:[], label:'関係詞（Lesson 24〜27）'},
+    conditional:{correct:0, total:0, wrong:[], label:'仮定法（Lesson 28〜30）'},
+    vocab:      {correct:0, total:0, wrong:[], label:'英単語（1001〜1300）'}
+  };
+  const recordTopic = (topic, ok, note) => {
+    if (topic && topicStats[topic]) {
+      topicStats[topic].total++;
+      if (ok) topicStats[topic].correct++;
+      else if (note && !topicStats[topic].wrong.includes(note)) topicStats[topic].wrong.push(note);
+    }
+  };
+  const LET = ['A','B','C','D','E'];
 
-  // ── 単語穴埋め（3セット×5点）──
+  // ── Section 1：単語（1空所 pts 点）──
   es.vocabSets.forEach((s, si) => {
-    let setScore = 0;
-    for (let i = 0; i < s.answers.length; i++) {
+    let n = 0;
+    s.answers.forEach((ans, i) => {
       const sel = document.getElementById(`evs-${si}-${i}`);
-      const chosen = sel ? sel.value : '';
-      const correct = chosen.toLowerCase() === s.answers[i].toLowerCase();
+      const ok = !!sel && sel.value.toLowerCase() === ans.toLowerCase();
       if (sel) {
         sel.disabled = true;
-        sel.style.background = correct ? '#e8f8ed' : '#fde8ec';
-        sel.style.border = correct ? '2px solid #28a745' : '2px solid #dc3545';
+        sel.style.background = ok ? '#e8f8ed' : '#fde8ec';
+        sel.style.border = ok ? '2px solid #28a745' : '2px solid #dc3545';
       }
-      if (correct) setScore++;
-    }
-    const pts = Math.round(setScore / s.answers.length * 5);
+      if (ok) n++;
+      recordTopic('vocab', ok, ans);
+    });
+    const pts = n * c.vocab.pts;
     total += pts; breakdown.vocab += pts;
     const fb = document.getElementById(`efb-vocab-${si}`);
     if (fb) {
-      fb.className = `exam-fb ${setScore===s.answers.length?'ok':'ng'} vis`;
-      fb.innerHTML = `${setScore}/${s.answers.length}語正解（${pts}点）　正解：${s.answers.join('、')}`;
+      const num = w => s.words.findIndex(x => x.toLowerCase() === w.toLowerCase()) + 1;
+      fb.className = `exam-fb ${n===s.answers.length?'ok':'ng'} vis`;
+      fb.innerHTML = `${n}/${s.answers.length}空所正解（${pts}点）<br>正解：` +
+        s.answers.map((a,i)=>`(${LET[i]}) ${num(a)}. ${a}`).join('　');
     }
   });
 
-  // ── 四択（10問×2点）──
+  // ── Section 2：四択 ──
   es.mcQs.forEach((q, i) => {
-    const selectedText = es.answers.mc?.[i] ?? null;
-    const correctText = q.opts[q.ans];
-    const ok = selectedText === correctText;
-    // DOM上で正解・不正解ボタンを色付け
+    const sel = es.answers.mc?.[i];
+    const ok = sel === q.ans;
     const wrap = document.getElementById(`eq-mc-${i}`);
     if (wrap) {
-      wrap.querySelectorAll('.exam-opt').forEach(btn => {
-        btn.disabled = true;
-        const optText = decodeURIComponent(btn.dataset.opt || '');
-        if (optText === correctText) btn.classList.add('ex-ok');
-        else if (btn.classList.contains('sel') && !ok) btn.classList.add('ex-ng');
+      wrap.querySelectorAll('.exam-opt').forEach((b, k) => {
+        b.disabled = true;
+        if (k === q.ans) b.classList.add('ex-ok');
+        else if (k === sel) b.classList.add('ex-ng');
       });
     }
     const fb = document.getElementById(`efb-mc-${i}`);
     if (fb) {
       fb.className = `exam-fb ${ok?'ok':'ng'} vis`;
-      fb.innerHTML = `${ok?'✅ 正解':'❌ 不正解'}：${q.exp}${!ok?'<br>正解：'+correctText:''}`;
+      fb.innerHTML = `${ok?'✅ 正解':'❌ 不正解'}：${q.exp}${!ok?`<br>正解：${q.ans+1}. ${q.opts[q.ans]}`:''}`;
     }
-    if (ok) { total += 2; breakdown.mc += 2; }
+    if (ok) { total += c.mc.pts; breakdown.mc += c.mc.pts; }
+    recordTopic(q.topic, ok, q.exp);
   });
 
-  // ── 穴埋め（10問×2点・全空欄正解で2点）──
+  // ── Section 3：カッコ補充（完答）──
   es.fillQs.forEach((q, i) => {
-    const answers = Array.isArray(q.ans) ? q.ans : [q.ans];
-    const blanks = (q.blank.match(/_+/g)||[]).length;
     let allOk = true;
-    for (let b = 0; b < blanks; b++) {
-      const el = document.getElementById(`efi-fill-${i}-${b}`);
-      if (!el) continue;
-      const val = el.value.trim().toLowerCase();
-      const correctAns = answers[b] ? (Array.isArray(answers[b]) ? answers[b] : [answers[b]]) : [answers[0]];
-      const ok = correctAns.some(a => val === a.toLowerCase());
+    q.ans.forEach((alts, b) => {
+      const el = document.getElementById(`e3-${i}-${b}`);
+      if (!el) return;
+      const ok = alts.some(a => normEn(el.value) === a.toLowerCase());
       el.classList.add(ok ? 'ex-ok' : 'ex-ng');
       el.disabled = true;
       if (!ok) allOk = false;
-    }
+    });
     const fb = document.getElementById(`efb-fill-${i}`);
     if (fb) {
-      const correctDisplay = answers.map(a => Array.isArray(a) ? a[0] : a).join(' / ');
+      let b = 0;
+      const full = q.en.replace(/\{\}/g, () => `<b>${q.ans[b++][0]}</b>`);
       fb.className = `exam-fb ${allOk?'ok':'ng'} vis`;
-      fb.innerHTML = `${allOk?'✅ 正解':'❌ 不正解'}：${q.exp}${!allOk?'<br>正解：'+correctDisplay:''}`;
+      fb.innerHTML = `${allOk?'✅ 正解':'❌ 不正解（完答でないと得点になりません）'}：${q.exp}${!allOk?`<br>正解：${full}`:''}`;
     }
-    if (allOk) { total += 2; breakdown.fill += 2; }
+    if (allOk) { total += c.fill.pts; breakdown.fill += c.fill.pts; }
+    recordTopic(q.topic, allOk, q.exp);
   });
 
-  // ── 並び替え（5問×3点）──
+  // ── Section 4：並べ替え ──
   es.sortQs.forEach((q, i) => {
-    const slot = document.getElementById(`eslot-sort-${i}`);
-    const chips = slot?.querySelectorAll('.exam-chip') || [];
-    const ans = Array.from(chips).map(c => c.dataset.word).join(' ');
-    const ok = ans.toLowerCase() === q.ans.toLowerCase();
-    chips.forEach(c => { c.classList.add('disabled'); c.disabled = true; });
+    const chips = document.getElementById(`eslot-sort-${i}`)?.querySelectorAll('.exam-chip') || [];
+    const user = normEn(Array.from(chips).map(x => x.dataset.word).join(' '));
+    const ok = user === normEn(q.ans);
+    chips.forEach(x => { x.classList.add('disabled'); x.disabled = true; });
     const fb = document.getElementById(`efb-sort-${i}`);
-    if (fb) { fb.className = `exam-fb ${ok?'ok':'ng'} vis`; fb.innerHTML = `${ok?'✅ 正解':'❌ 不正解'}：${q.exp}${!ok?'<br>正解：'+q.ans:''}`; }
-    if (ok) { total += 3; breakdown.sort += 3; }
+    if (fb) {
+      fb.className = `exam-fb ${ok?'ok':'ng'} vis`;
+      fb.innerHTML = `${ok?'✅ 正解':'❌ 不正解'}：${q.exp}${!ok?`<br>正解：${[q.pre,q.ans,q.post].filter(Boolean).join(' ').replace(/\s+([,.])/g,'$1')}`:''}`;
+    }
+    if (ok) { total += c.sort.pts; breakdown.sort += c.sort.pts; }
+    recordTopic(q.topic, ok, q.exp);
   });
 
-  // ── AI採点：ライティング（5問×3点）──
-  const writeAnswers = es.writeQs.map((q,i) => ({
-    question: q.q,
-    model: q.model,
-    exp: q.exp,
-    userAns: document.getElementById(`eta-write-${i}`)?.value?.trim() || '（未回答）',
-    idx: i
-  }));
-  const twistAnswers = es.twistQs.map((q,i) => ({
-    question: `状況：「${q.jp}」を、ifを用いた仮定法で書き直す（${q.stem}の形で全文を完成させる）`,
-    model: q.model,
-    key: q.key,
-    userAns: document.getElementById(`eta-twist-${i}`)?.value?.trim() || '（未回答）',
-    idx: i
-  }));
+  // ── Section 5・6：AI採点 ──
+  const rewriteItems = es.rewriteQs.map((q, i) => {
+    const user = (q.model.map((_, b) => document.getElementById(`e5-${i}-${b}`)?.value?.trim() || ''));
+    return {idx:i, kind:'rewrite', a:q.a, b:q.b, dir:q.dir,
+      userAns: fillBlanks(q.b, user.map(u => u || '（空欄）')), rawUser: user,
+      model: fillBlanks(q.b, q.model), exp:q.exp, topic:q.topic};
+  });
+  const transItems = es.transQs.map((q, i) => ({
+    idx:i, kind:'trans', jp:q.jp, notes:q.notes.join('／'),
+    userAns: document.getElementById(`e6-${i}`)?.value?.trim() || '（未回答）',
+    model:q.model, exp:q.exp, topic:q.topic}));
 
-  // AI採点をまとめて実行
-  const [writeScores, twistScores] = await Promise.all([
-    aiGradeWriting(writeAnswers, 'write'),
-    aiGradeWriting(twistAnswers, 'twist')
+  const [rewriteScores, transScores] = await Promise.all([
+    aiGradeExam(rewriteItems, 'rewrite', c.rewrite.pts),
+    aiGradeExam(transItems, 'trans', c.trans.pts)
   ]);
 
-  // ライティング採点結果を反映
-  writeScores.forEach(r => {
-    const pts = Math.min(3, Math.max(0, r.score));
-    total += pts; breakdown.write += pts;
-    const fb = document.getElementById(`efb-write-${r.idx}`);
-    if (fb) {
-      fb.className = `exam-fb ${pts>=2?'ok':'ng'} vis`;
-      fb.innerHTML = `🤖 <strong>AI採点：${pts}/3点</strong><br>
-        📝 <strong>あなたの回答：</strong>${writeAnswers[r.idx].userAns}<br>
-        ✅ <strong>模範解答：</strong>${writeAnswers[r.idx].model}<br>
-        💬 <strong>AIフィードバック：</strong>${r.feedback}`;
-    }
-    const ta = document.getElementById(`eta-write-${r.idx}`);
-    if (ta) ta.disabled = true;
-  });
-
-  // ひねり採点結果を反映
-  twistScores.forEach(r => {
-    const pts = Math.min(3, Math.max(0, r.score));
-    total += pts; breakdown.twist += pts;
-    const fb = document.getElementById(`efb-twist-${r.idx}`);
-    if (fb) {
-      fb.className = `exam-fb ${pts>=2?'ok':'ng'} vis`;
-      fb.innerHTML = `🤖 <strong>AI採点：${pts}/3点</strong><br>
-        📝 <strong>あなたの回答：</strong>${twistAnswers[r.idx].userAns}<br>
-        ✅ <strong>模範解答：</strong>${twistAnswers[r.idx].model}<br>
-        💡 <strong>文法ポイント：</strong>${twistAnswers[r.idx].key}<br>
-        💬 <strong>AIフィードバック：</strong>${r.feedback}`;
-    }
-    const ta = document.getElementById(`eta-twist-${r.idx}`);
-    if (ta) ta.disabled = true;
-  });
+  const applyAI = (results, items, cat, maxPts, bdKey) => {
+    results.forEach(r => {
+      const it = items[r.idx];
+      if (!it) return;
+      const pts = Math.min(maxPts, Math.max(0, Math.round(r.score)));
+      total += pts; breakdown[bdKey] += pts;
+      const good = pts >= maxPts * 0.6;
+      const fb = document.getElementById(`efb-${cat}-${r.idx}`);
+      if (fb) {
+        fb.className = `exam-fb ${good?'ok':'ng'} vis`;
+        fb.innerHTML = `🤖 <strong>AI採点：${pts}/${maxPts}点</strong><br>
+          📝 <strong>あなたの解答：</strong>${it.userAns}<br>
+          ✅ <strong>模範解答：</strong>${it.model}<br>
+          💡 <strong>ポイント：</strong>${it.exp}<br>
+          💬 <strong>AIフィードバック：</strong>${r.feedback}`;
+      }
+      const lock = cat === 'rewrite'
+        ? document.querySelectorAll(`#eq-rewrite-${r.idx} .exam-blank`)
+        : [document.getElementById(`e6-${r.idx}`)];
+      lock.forEach(el => { if (el) el.disabled = true; });
+      recordTopic(it.topic, good, it.exp);
+    });
+  };
+  applyAI(rewriteScores, rewriteItems, 'rewrite', c.rewrite.pts, 'rewrite');
+  applyAI(transScores, transItems, 'trans', c.trans.pts, 'trans');
 
   document.getElementById('examProgBar').style.width = '100%';
-  document.getElementById('examProgNum').textContent = `${total}点 / 100点`;
+  document.getElementById('examProgNum').textContent = `${total}点 / ${EXAM_MAX}点`;
   addXP(50);
   document.getElementById('examContent').scrollIntoView({behavior:'smooth'});
 
-  // 結果サマリーを先頭に追加
-  const pct = total;
+  // 結果サマリー（成績表付き）を先頭に追加
+  const pct = Math.round(total / EXAM_MAX * 100);
   const emoji = pct>=80?'🏆':pct>=60?'😊':pct>=40?'💪':'📚';
   const msg = pct>=80?'優秀！素晴らしい成績です！':pct>=60?'よくできました！苦手な分野を復習しよう。':pct>=40?'もう少し！解説をしっかり読んで再挑戦しよう。':'解説を読んで基礎から復習しよう。';
+  const mx = {
+    vocab: c.vocab.sets*c.vocab.blanks*c.vocab.pts, mc: c.mc.n*c.mc.pts, fill: c.fill.n*c.fill.pts,
+    sort: c.sort.n*c.sort.pts, rewrite: c.rewrite.n*c.rewrite.pts, trans: c.trans.n*c.trans.pts
+  };
+  const bd = (key, label, color) => `<div class="ex-bd"><div class="ex-bd-num" style="color:${color}">${breakdown[key]}/${mx[key]}</div><div class="ex-bd-lbl">${label}</div></div>`;
 
   const summary = document.createElement('div');
   summary.className = 'exam-result';
   summary.innerHTML = `
     <div class="exam-result-emoji">${emoji}</div>
     <div class="exam-result-score">${total}</div>
-    <div class="exam-result-total">/ 100点</div>
+    <div class="exam-result-total">/ ${EXAM_MAX}点</div>
     <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">${msg}</p>
     <div class="exam-breakdown">
-      <div class="ex-bd"><div class="ex-bd-num" style="color:var(--indigo)">${breakdown.vocab}/15</div><div class="ex-bd-lbl">単語穴埋め</div></div>
-      <div class="ex-bd"><div class="ex-bd-num" style="color:var(--indigo)">${breakdown.mc}/20</div><div class="ex-bd-lbl">四択(×2点)</div></div>
-      <div class="ex-bd"><div class="ex-bd-num" style="color:var(--green)">${breakdown.fill}/20</div><div class="ex-bd-lbl">穴埋め(×2点)</div></div>
-      <div class="ex-bd"><div class="ex-bd-num" style="color:#fd7e14">${breakdown.sort}/15</div><div class="ex-bd-lbl">並び替え(×3点)</div></div>
-      <div class="ex-bd"><div class="ex-bd-num" style="color:var(--red)">${breakdown.write}/15</div><div class="ex-bd-lbl">ライティング🤖</div></div>
-      <div class="ex-bd"><div class="ex-bd-num" style="color:#6b4c9e">${breakdown.twist}/15</div><div class="ex-bd-lbl">仮定法ひねり🤖</div></div>
+      ${bd('vocab','Sec.1 単語','var(--indigo)')}
+      ${bd('mc','Sec.2 四択','var(--indigo)')}
+      ${bd('fill','Sec.3 カッコ補充','var(--green)')}
+      ${bd('sort','Sec.4 並べ替え','#fd7e14')}
+      ${bd('rewrite','Sec.5 書き換え🤖','#6b4c9e')}
+      ${bd('trans','Sec.6 和文英訳🤖','var(--red)')}
     </div>
-    <button class="start-btn" style="margin-top:14px;" onclick="renderExamHome()">🔄 もう一度テストを受ける</button>`;
+    ${buildReportCard(topicStats)}
+    <button class="start-btn" style="margin-top:18px;" onclick="renderExamHome()">🔄 もう一度テストを受ける</button>`;
   document.getElementById('examContent').prepend(summary);
 }
 
-// ── AI採点関数 ──
-async function aiGradeWriting(items, type) {
-  const isKaso = (type === 'twist');
+// ── AI採点（Section 5・6）。失敗時は模範解答との完全一致のみ得点 ──
+async function aiGradeExam(items, kind, maxPts) {
+  const isRewrite = (kind === 'rewrite');
 
-  const sys = isKaso
-    ? `あなたは英語教師です。仮定法の英作文を採点してください。
+  const rubric = isRewrite
+    ? `Section 5「Aとほぼ同じ意味の文に書き換える（Bの空欄補充）」を採点します。
+- 生徒がBの空欄に入れた語句で完成した文が、(1)指示（仮定法・比較級・関係代名詞・最上級など）に従い、(2)文法的に正しく、(3)Aとほぼ同じ意味になっていれば満点（${maxPts}点）。
+- 模範解答と違う別表現（could do / would do、which / that など）でも、条件を満たせば満点にしてください。
+- 空欄の一部だけが誤り、または小さな文法ミス（時制・冠詞・綴り）があれば満点から減点。
+- 指示に従っていない、意味が違う、未回答は0点。`
+    : `Section 6「和文英訳（注意書きの指示に従う）」を採点します。
+- 文法・語法・意味がすべて正しく、注意書きの指示（使うべき構文・語）を満たしていれば満点（${maxPts}点）。
+- 模範解答と違う別表現でも、条件を満たせば満点にしてください。
+- 小さなミス（綴り・冠詞・三単現など）1つで満点から1点減点、文法ミスが複数あれば更に減点。
+- 注意書きの指示を満たしていない場合は、文が正しくても大きく減点（満点の半分以下）。
+- 意味が大きく違う、未回答は0点。`;
 
-重要な採点方針：
-- 模範解答と全く同じでなくても、文法的に正しく意味が同等であれば【満点（3点）】を与えてください。
-- 英語では同じ意味を複数の正しい表現で言えるため、模範解答はあくまで参考です。
-- 仮定法の核となる形（if節の時制・主節のwould/could＋原形 or have＋過去分詞）が正しければ満点を与えてください。
+  const sys = `あなたは日本の高校英語の教師です。${rubric}
 
-採点基準（3点満点）：
-3点：仮定法の形が正しく、意味も正確（模範解答と同等の表現も満点）
-2点：仮定法の概念は合っているが、時制や助動詞に小さなミスがある
-1点：仮定法を使おうとしているが、形に大きな誤りがある
-0点：仮定法になっていない、または未回答
+得点は0〜${maxPts}の整数で付けてください。各問題の見出しは「問題N」（Nは0始まり）です。返すJSONの"idx"にはそのNの数値をそのまま使い、入力と同じ数の結果をすべて返してください。
+JSONのみを返してください（説明・コードブロック不要）：
+{"results":[{"idx":0,"score":点数,"feedback":"日本語で1〜2文。満点なら良かった点を具体的に、減点なら何をどう直すかを具体的に"}]}`;
 
-各問題についてJSON形式のみで返してください（説明文不要）：
-{"results":[{"idx":問題番号,"score":点数,"feedback":"日本語で1〜2文。満点の場合は何が良かったかを具体的に褒める"}]}`
-    : `あなたは英語教師です。英作文を採点してください。
-
-重要な採点方針：
-- 模範解答と全く同じでなくても、文法的に正しく意味が同等であれば【満点（3点）】を与えてください。
-- 英語では同じ内容を複数の正しい表現で書けるため、模範解答はあくまで参考です。
-- スペルミスが1箇所だけの場合は2点（内容が正しければ）を目安にしてください。
-
-採点基準（3点満点）：
-3点：文法・意味ともに正しい（模範解答と同等の表現も満点）
-2点：意味は通じるが小さな文法ミスまたはスペルミスがある
-1点：意味はわかるが文法の誤りが複数ある
-0点：著しく不正確、または未回答
-
-各問題についてJSON形式のみで返してください（説明文不要）：
-{"results":[{"idx":問題番号,"score":点数,"feedback":"日本語で1〜2文。満点の場合は何が良かったかを具体的に褒める"}]}`;
-
-  const content = items.map(it => isKaso
-    ? `問題${it.idx}：\n状況：「${it.question}」\n文法ポイント：${it.key}\n模範解答：「${it.model}」\n生徒の解答：「${it.userAns}」`
-    : `問題${it.idx}：\n設問：「${it.question}」\n模範解答：「${it.model}」\n生徒の解答：「${it.userAns}」`
+  const content = items.map(it => isRewrite
+    ? `問題${it.idx}：\nA：${it.a}\nB（指示：${it.dir}）：${it.b}\n生徒の完成文：「${it.userAns}」\n模範解答の完成文：「${it.model}」`
+    : `問題${it.idx}：\n日本文：${it.jp}\n注意書き：${it.notes}\n生徒の解答：「${it.userAns}」\n模範解答：「${it.model}」`
   ).join('\n\n');
+
+  const fallback = () => items.map(it => {
+    const same = normEn(it.userAns.replace(/[（）]/g,'')) === normEn(it.model);
+    return {idx:it.idx, score: same ? maxPts : 0,
+      feedback: 'AI採点に接続できなかったため、模範解答と完全に一致した場合のみ得点にしています。別の正しい表現でも0点になっている可能性があるので、模範解答と見比べて確認してください。'};
+  });
 
   try {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({model:"claude-sonnet-4-6", max_tokens:1500,
-        system: sys,
-        messages:[{role:"user", content}]})
+      body: JSON.stringify({model:"claude-sonnet-4-6", max_tokens:2000, system: sys, messages:[{role:"user", content}]})
     });
     const data = await res.json();
-    const text = data.content?.map(c=>c.text||'').join('') || '';
-    const clean = text.replace(/```json|```/g,'').trim();
-    const parsed = JSON.parse(clean);
-    return parsed.results;
-  } catch(e) {
-    return items.map(it => ({idx:it.idx, score:2, feedback:'採点中にエラーが発生しました。模範解答と照らし合わせてご確認ください。'}));
-  }
-}
+    const text = (data.content||[]).map(x=>x.text||'').join('');
+    const parsed = JSON.parse(text.replace(/```json|```/g,'').trim());
+    let results = parsed.results;
+    if (!Array.isArray(results)) return fallback();
 
-function showExamFB(cat, idx, correct, exp, model, correctIdx) {
-  const wrap = document.getElementById(`eq-${cat}-${idx}`);
-  if (!wrap) return;
-  wrap.querySelectorAll('.exam-opt').forEach((b,i) => {
-    b.disabled = true;
-    if (i === correctIdx) b.classList.add('ex-ok');
-    else if (b.classList.contains('sel') && !correct) b.classList.add('ex-ng');
-  });
-  const fb = document.getElementById(`efb-${cat}-${idx}`);
-  if (fb) {
-    fb.className = `exam-fb ${correct?'ok':'ng'} vis`;
-    fb.innerHTML = `${correct?'✅ 正解':'❌ 不正解'}：${exp}`;
+    // idxの検証：期待どおりでなければ配列の順序で振り直す
+    const returned = results.map(r => r.idx);
+    if (!items.every(it => returned.includes(it.idx)) || results.length !== items.length) {
+      results = results.map((r, i) => ({idx: items[i] ? items[i].idx : r.idx, score:r.score, feedback:r.feedback}));
+    }
+    // 不足分は個別にフォールバック
+    const got = new Set(results.map(r => r.idx));
+    fallback().forEach(f => { if (!got.has(f.idx)) results.push(f); });
+    return results.map(r => ({...r, score: Number.isFinite(+r.score) ? +r.score : 0}));
+  } catch(e) {
+    return fallback();
   }
 }
 
